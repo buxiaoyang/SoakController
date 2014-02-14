@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   KEY                                                                   12/03/2013 19:29:25 PAGE 1   
+C51 COMPILER V7.50   KEY                                                                   02/14/2014 13:40:53 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE KEY
@@ -62,7 +62,7 @@ line level    source
   52   2                              if(Key_Out == 1 && Key_In == 1)
   53   2                              {
   54   3                                      Key_Scan_Steps = 0;
-C51 COMPILER V7.50   KEY                                                                   12/03/2013 19:29:25 PAGE 2   
+C51 COMPILER V7.50   KEY                                                                   02/14/2014 13:40:53 PAGE 2   
 
   55   3                              }
   56   2                      break;
