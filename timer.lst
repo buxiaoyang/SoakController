@@ -1,0 +1,163 @@
+C51 COMPILER V7.50   TIMER                                                                 12/03/2013 19:29:23 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\output\timer.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\timer.c LARGE BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT(.\t
+                    -imer.lst) OBJECT(.\output\timer.obj)
+
+line level    source
+
+   1          /*------------------------------------------------------------------*/
+   2          /* --- STC MCU Limited ---------------------------------------------*/
+   3          /* --- STC12C5Axx Series 16-bit Timer Demo -------------------------*/
+   4          /* --- Mobile: (86)13922805190 -------------------------------------*/
+   5          /* --- Fax: 86-755-82905966 ----------------------------------------*/
+   6          /* --- Tel: 86-755-82948412 ----------------------------------------*/
+   7          /* --- Web: www.STCMCU.com -----------------------------------------*/
+   8          /* If you want to use the program or the program referenced in the  */
+   9          /* article, please specify in which data and procedures from STC    */
+  10          /*------------------------------------------------------------------*/
+  11          
+  12          #include <reg52.h>
+  13          #include <timer.h>
+  14          #include <parameter.h>
+  15          #include <position.h>
+  16          #include <operation.h>
+  17          #include <dispatch.h>
+  18          #include <key.h>
+  19          
+  20          typedef unsigned char BYTE;
+  21          typedef unsigned int WORD;
+  22          
+  23          //-----------------------------------------------
+  24          
+  25          #define T1MS 53536      //1ms timer calculation method in 1T mode
+  26          #define T10MS 5536      //1ms timer calculation method in 1T mode
+  27          
+  28          /* define SFR */
+  29          sfr AUXR = 0x8e;                    //Auxiliary register
+  30          
+  31          sbit TEST_LED = P2^0;               //work LED, flash once per second
+  32          sbit TEST_LED1 = P2^1;               //work LED, flash once per second
+  33          /* define variables */
+  34          //-----------------------------------------------
+  35          BYTE count1s; // 1s时间计数
+  36          BYTE count5ms; // 5ms时间计数
+  37          
+  38          /***************************************************************************/
+  39          // 槽计时函数 每秒调用一次
+  40          // 参数：无
+  41          // 返回值：无   
+  42          /***************************************************************************/
+  43          void cisternCount()
+  44          {
+  45   1              unsigned char i;
+  46   1              for(i=0; i<8; i++)
+  47   1              {
+  48   2                      if(cistern[i].cisternStatus == InCounting)
+  49   2                      {
+  50   3                              cistern[i].currentTime ++;
+  51   3                              //cistern[i].currentTime += 60;
+  52   3                              if(cistern[i].currentTime >= cistern[i].settingTime)
+  53   3                              {
+  54   4                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
+C51 COMPILER V7.50   TIMER                                                                 12/03/2013 19:29:23 PAGE 2   
+
+  55   4                                      {
+  56   5                                              cistern[i].cisternStatus = Ready;
+  57   5                                      }
+  58   4                                      else
+  59   4                                      {
+  60   5                                              cistern[i].currentTime = 0;
+  61   5                                      }
+  62   4                              }
+  63   3                              if(cistern[i].currentTime % 60 == 0)
+  64   3                              {
+  65   4                                      displayFlag = 1;
+  66   4                              }
+  67   3                      }
+  68   2              }
+  69   1      }
+  70          
+  71          /* Timer0 interrupt routine */
+  72          void tm0_isr() interrupt 1 using 1  //1ms
+  73          {
+  74   1          TL0 = T1MS;                     //reload timer0 low byte
+  75   1          TH0 = T1MS >> 8;                //reload timer0 high byte
+  76   1              TEST_LED = ! TEST_LED;
+  77   1              count5ms ++;
+  78   1              maniPosition();
+  79   1      }
+  80          
+  81          /* Timer1 interrupt routine */
+  82          void tm1_isr() interrupt 3 using 1  //5ms
+  83          {
+  84   1          TL1 = T10MS;                     //reload timer1 low byte
+  85   1          TH1 = T10MS >> 8;                //reload timer1 high byte
+  86   1              count1s ++;
+  87   1              TEST_LED1 = ~TEST_LED1;
+  88   1              if(displayMode != PowerOffed)
+  89   1              {
+  90   2                      if(count1s == 200) //1s
+  91   2                      {
+  92   3                              count1s = 0;
+  93   3                              cisternCount();
+  94   3                              TEST_LED1 = ! TEST_LED1;      //work LED flash
+  95   3                              ManiOperationTimer ++; //机械臂操作定时器
+  96   3                      }
+  97   2                      if(count1s%2==0) //10ms
+  98   2                      {
+  99   3                              if(runMode == AutoMode)
+ 100   3                              {
+ 101   4                                      ManiDispatch();
+ 102   4                              }
+ 103   3                              else
+ 104   3                              {
+ 105   4                                      ManualDispatch();
+ 106   4                              }
+ 107   3                              Key_Scan();
+ 108   3                      }
+ 109   2              }
+ 110   1      }
+ 111          
+ 112          //-----------------------------------------------
+ 113          
+ 114          /* timer_init program */
+ 115          void timer_init()
+ 116          {
+C51 COMPILER V7.50   TIMER                                                                 12/03/2013 19:29:23 PAGE 3   
+
+ 117   1          AUXR = 0x80|0x40;                    //timer0 work in 1T mode
+ 118   1          TMOD = 0x01|0x10;                    //set timer0 as mode1 (16-bit)
+ 119   1          TL0 = T1MS;                     //initial timer0 low byte
+ 120   1          TH0 = T1MS >> 8;                //initial timer0 high byte
+ 121   1          TR0 = 1;                        //timer0 start running
+ 122   1          ET0 = 1;                        //enable timer0 interrupt
+ 123   1      
+ 124   1              TL1 = T10MS;                     //initial timer1 low byte
+ 125   1          TH1 = T10MS >> 8;                //initial timer1 high byte
+ 126   1          TR1 = 1;                        //timer1 start running
+ 127   1          ET1 = 1;                        //enable timer1 interrupt
+ 128   1      
+ 129   1          EA = 1;                         //open global interrupt switch
+ 130   1      
+ 131   1              count1s = 0;
+ 132   1              count5ms = 0;
+ 133   1      }
+ 134          
+ 135          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    354    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

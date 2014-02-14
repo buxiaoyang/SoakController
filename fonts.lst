@@ -1,0 +1,56 @@
+C51 COMPILER V7.50   FONTS                                                                 11/07/2013 21:09:19 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE FONTS
+OBJECT MODULE PLACED IN .\output\fonts.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\fonts.c BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT(.\fonts.l
+                    -st) OBJECT(.\output\fonts.obj)
+
+line level    source
+
+   1          #include <fonts.h>
+   2          #include <parameter.h>
+   3          
+   4          
+   5          code RoundedTLB[] = {0x07,0x18,0x20,0x40,0x40,0x80,0x80,0x80};
+*** WARNING C231 IN LINE 5 OF SOURCE\FONTS.C: 'RoundedTLB': redefinition
+   6          code RoundedTRB[] = {0xE0,0x18,0x04,0x02,0x02,0x01,0x01,0x01};
+*** WARNING C231 IN LINE 6 OF SOURCE\FONTS.C: 'RoundedTRB': redefinition
+   7          code RoundedBLB[] = {0x80,0x80,0x80,0x40,0x40,0x20,0x18,0x07};
+*** WARNING C231 IN LINE 7 OF SOURCE\FONTS.C: 'RoundedBLB': redefinition
+   8          code RoundedBRB[] = {0x01,0x01,0x01,0x02,0x02,0x04,0x18,0xE0};
+*** WARNING C231 IN LINE 8 OF SOURCE\FONTS.C: 'RoundedBRB': redefinition
+   9          
+  10          code RoundedTLF[] = {0x07,0x1F,0x3F,0x7F,0x7F,0xFF,0xFF,0xFF};
+*** WARNING C231 IN LINE 10 OF SOURCE\FONTS.C: 'RoundedTLF': redefinition
+  11          code RoundedTRF[] = {0xE0,0xF8,0xFC,0xFE,0xFE,0xFF,0xFF,0xFF};
+*** WARNING C231 IN LINE 11 OF SOURCE\FONTS.C: 'RoundedTRF': redefinition
+  12          code RoundedBLF[] = {0xFF,0xFF,0xFF,0x7F,0x7F,0x3F,0x1F,0x07};
+*** WARNING C231 IN LINE 12 OF SOURCE\FONTS.C: 'RoundedBLF': redefinition
+  13          code RoundedBRF[] = {0xFF,0xFF,0xFF,0xFE,0xFE,0xFC,0xF8,0xE0};
+*** WARNING C231 IN LINE 13 OF SOURCE\FONTS.C: 'RoundedBRF': redefinition
+  14          
+  15          code Block[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+*** WARNING C231 IN LINE 15 OF SOURCE\FONTS.C: 'Block': redefinition
+  16          
+  17          code RoundedTest[] = {  
+*** WARNING C231 IN LINE 17 OF SOURCE\FONTS.C: 'RoundedTest': redefinition
+  18                                                                          0x00,0x00,0x01,0xFC,0x7F,0xFC,0x66,0x18,
+  19                                                                          0x66,0x30,0x66,0x60,0x7F,0xFE,0x7E,0x7A,
+  20                                                                          0x66,0x5A,0x66,0xDA,0x7E,0xB2,0x7F,0xB2,
+  21                                                                          0x67,0x66,0x00,0xCE,0x01,0x8C,0x00,0x00
+  22                                                                          };
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =    208    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     27    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  10 WARNING(S),  0 ERROR(S)

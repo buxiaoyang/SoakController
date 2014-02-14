@@ -1,0 +1,201 @@
+C51 COMPILER V7.50   DISPATCH                                                              12/03/2013 19:29:24 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
+OBJECT MODULE PLACED IN .\output\dispatch.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\dispatch.c LARGE BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT(
+                    -.\dispatch.lst) OBJECT(.\output\dispatch.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <position.h>
+   3          #include <parameter.h>
+   4          #include <basefunc.h>
+   5          #include <operation.h>
+   6          #include <intrins.h>
+   7          #include <dispatch.h>
+   8          
+   9          void ManiDispatch(void); //械臂调度操作
+  10          void ManualDispatch(void); //手动状态下机械臂检测
+  11          
+  12          uchar ManiDispatchSteps = 0;    //0：开机状态（机械臂在最下面，槽1为空）
+  13                                                                          //1：机械臂移动到进口位置
+  14                                                                          //2：出口空，并且6号槽就绪
+  15                                                                          //3：6号槽空，并且5号就绪
+  16                                                                          //4：5号槽空，并且4号就绪
+  17                                                                          //5：4号槽空，并且3号就绪
+  18                                                                          //6：3号槽空，并且2号就绪
+  19                                                                          //7：3号槽空，并且1号就绪
+  20                                                                          //8：2号槽空，并且入口就绪
+  21                                                                          //20：检测空槽
+  22                                                                          //100：空操作
+  23          
+  24          uchar ManualDispatchSteps = 0;
+  25          
+  26          uint ManiDispatchTimer = 0; //机械臂调度定时器                                                  
+  27          uchar ManiDispatchCurrent = 0; //当前操作的框
+  28          
+  29          
+  30          void ManiDispatch(void)
+  31          {
+  32   1              switch(ManiDispatchSteps)
+  33   1              {
+  34   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
+  35   2                              A_Move_Entrance_Steps = 0;
+  36   2                              ManiDispatchSteps = 1;
+  37   2                      break;
+  38   2                      case 1: //1：机械臂移动到进口位置
+  39   2                              A_Move_Entrance();
+  40   2                              if(A_Move_Entrance_Steps == 100)
+  41   2                              {
+  42   3                                      ManiDispatchSteps = 20;
+  43   3                              }
+  44   2                      break;
+  45   2                      case 2:  //2：出口空，并且6号槽就绪
+  46   2                              A_Up_Down(12,14);
+  47   2                              if(A_Up_Down_Steps == 100)
+  48   2                              {
+  49   3                                      ManiDispatchSteps = 20;
+  50   3                              } 
+  51   2                      break;
+  52   2                      case 3:  //3：6号槽空，并且5号就绪
+  53   2                              A_Up_Down(10,12);
+  54   2                              if(A_Up_Down_Steps == 100)
+C51 COMPILER V7.50   DISPATCH                                                              12/03/2013 19:29:24 PAGE 2   
+
+  55   2                              {
+  56   3                                      ManiDispatchSteps = 20;
+  57   3                              }
+  58   2                      break;
+  59   2                      case 4:  //4：5号槽空，并且4号就绪
+  60   2                              A_Up_Down(8,10);
+  61   2                              if(A_Up_Down_Steps == 100)
+  62   2                              {
+  63   3                                      ManiDispatchSteps = 20;
+  64   3                              }
+  65   2                      break;
+  66   2                      case 5:  //5：4号槽空，并且3号就绪
+  67   2                              A_Up_Down(6,8);
+  68   2                              if(A_Up_Down_Steps == 100)
+  69   2                              {
+  70   3                                      ManiDispatchSteps = 20;
+  71   3                              }
+  72   2                      break;
+  73   2                      case 6:  //6：3号槽空，并且2号就绪
+  74   2                              A_Up_Down(4,6);
+  75   2                              if(A_Up_Down_Steps == 100)
+  76   2                              {
+  77   3                                      ManiDispatchSteps = 20;
+  78   3                              }
+  79   2                      break;
+  80   2                      case 7:  //7：3号槽空，并且1号就绪
+  81   2                              A_Up_Down(2,6);
+  82   2                              if(A_Up_Down_Steps == 100)
+  83   2                              {
+  84   3                                      ManiDispatchSteps = 20;
+  85   3                                      //下班检测
+  86   3                                      if(displayMode == PowerOffing)
+  87   3                                      {
+  88   4                                              displayMode = PowerOffed;
+  89   4                                      }
+  90   3                              }
+  91   2                      break;
+  92   2                      case 8:  //8：2号槽空，并且入口就绪
+  93   2                              A_Up_Down(0,4);
+  94   2                              if(A_Up_Down_Steps == 100)
+  95   2                              {
+  96   3                                      ManiDispatchSteps = 20;
+  97   3                              }
+  98   2                      break;
+  99   2                      case 9:  //9：1号槽空，并且入口就绪
+ 100   2                              A_Up_Down(0,2);
+ 101   2                              if(A_Up_Down_Steps == 100)
+ 102   2                              {
+ 103   3                                      ManiDispatchSteps = 20;
+ 104   3                              }
+ 105   2                      break;
+ 106   2                      case 10: //10：入口空，并且出口就绪
+ 107   2                              speedUpFlag = 1; //开启加速模式
+ 108   2                              A_Up_Down(14,0);
+ 109   2                              if(A_Up_Down_Steps == 100)
+ 110   2                              {
+ 111   3                                      speedUpFlag = 0;   //关闭加速模式
+ 112   3                                      ManiDispatchSteps = 20;
+ 113   3                              }
+ 114   2                      break;
+ 115   2                      case 20:
+ 116   2                              if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
+C51 COMPILER V7.50   DISPATCH                                                              12/03/2013 19:29:24 PAGE 3   
+
+ 117   2                              {
+ 118   3                                      A_Up_Down_Steps = 0;
+ 119   3                                      ManiDispatchSteps = 2;   
+ 120   3                              }
+ 121   2                              else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
+ 122   2                              {
+ 123   3                                      A_Up_Down_Steps = 0;
+ 124   3                                      ManiDispatchSteps = 3;
+ 125   3                              }
+ 126   2                              else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
+ 127   2                              {
+ 128   3                                      A_Up_Down_Steps = 0;
+ 129   3                                      ManiDispatchSteps = 4;
+ 130   3                              }
+ 131   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
+ 132   2                              {
+ 133   3                                      A_Up_Down_Steps = 0;
+ 134   3                                      ManiDispatchSteps = 5;
+ 135   3                              }
+ 136   2                              else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
+ 137   2                              {
+ 138   3                                      A_Up_Down_Steps = 0;
+ 139   3                                      ManiDispatchSteps = 6;
+ 140   3                              }
+ 141   2                              else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
+ 142   2                              {
+ 143   3                                      A_Up_Down_Steps = 0;
+ 144   3                                      ManiDispatchSteps = 7;
+ 145   3                              }
+ 146   2                              else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 147   2                              {
+ 148   3                                      A_Up_Down_Steps = 0;
+ 149   3                                      ManiDispatchSteps = 8;
+ 150   3                              }
+ 151   2                              else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 152   2                              {
+ 153   3                                      A_Up_Down_Steps = 0;
+ 154   3                                      ManiDispatchSteps = 9;
+ 155   3                              }
+ 156   2                              else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
+ 157   2                              {
+ 158   3                                      A_Up_Down_Steps = 0;
+ 159   3                                      ManiDispatchSteps = 10;
+ 160   3                              }
+ 161   2                      break;
+ 162   2                      default:
+ 163   2                               _nop_();
+ 164   2              }
+ 165   1      }
+ 166          
+ 167          void ManualDispatch(void)
+ 168          {
+ 169   1              ManiDispatchSteps = 20;
+ 170   1              ManualMode_Operation();
+ 171   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    523    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      5    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V7.50   DISPATCH                                                              12/03/2013 19:29:24 PAGE 4   
+
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

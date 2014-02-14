@@ -1,0 +1,66 @@
+C51 COMPILER V7.50   BASEFUNC                                                              12/03/2013 19:29:21 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE BASEFUNC
+OBJECT MODULE PLACED IN .\output\basefunc.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\basefunc.c LARGE BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT(
+                    -.\basefunc.lst) OBJECT(.\output\basefunc.obj)
+
+line level    source
+
+   1          /***************************************************************************/
+   2          // 程序：清洗设备控制器
+   3          // 模块：通用函数       
+   4          // 文件：basefunc.c
+   5          // 作者：卜晓旸
+   6          // 版本：V0.02
+   7          // 日期：2013年11月8日
+   8          // 功能：通用函数
+   9          // 芯片：STC12C5A60S2
+  10          // 编译：Keil uVision3 V3.90
+  11          /***************************************************************************/
+  12          
+  13          #include <basefunc.h>
+  14          
+  15          /***************************************************************************/
+  16          // 延迟1us函数
+  17          // 参数：延迟时间（us）
+  18          // 返回值：无   
+  19          /***************************************************************************/
+  20          void delay_us(uint us_value)
+  21          {
+  22   1              uint k;
+  23   1              while(us_value--)
+  24   1              {
+  25   2                      k++;
+  26   2              }
+  27   1      }
+  28          
+  29          /***************************************************************************/
+  30          // 延迟1ms函数
+  31          // 参数：延迟时间（ms）
+  32          // 返回值：无   
+  33          /***************************************************************************/
+  34          void delay_ms(uint ms_value)
+  35          {
+  36   1              uint k;
+  37   1              for(k=0;k<ms_value;k++)
+  38   1              {
+  39   2                      delay_us(478);
+  40   2              }
+  41   1      }
+  42          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     66    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

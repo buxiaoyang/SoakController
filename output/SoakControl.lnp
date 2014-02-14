@@ -1,0 +1,14 @@
+".\output\STARTUP.obj",
+".\output\main.obj",
+".\output\ra8806.obj",
+".\output\basefunc.obj",
+".\output\parameter.obj",
+".\output\eeprom.obj",
+".\output\timer.obj",
+".\output\position.obj",
+".\output\operation.obj",
+".\output\dispatch.obj",
+".\output\key.obj" 
+TO ".\output\SoakControl" 
+PRINT(".\SoakControl.m51") RAMSIZE(256) 
+XDATA( 0X0000-0X03FE )

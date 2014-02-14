@@ -1,0 +1,157 @@
+C51 COMPILER V7.50   PARAMETER                                                             12/03/2013 19:29:21 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
+OBJECT MODULE PLACED IN .\output\parameter.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\parameter.c LARGE BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT
+                    -(.\parameter.lst) OBJECT(.\output\parameter.obj)
+
+line level    source
+
+   1          /***************************************************************************/
+   2          // 程序：清洗设备控制器
+   3          // 模块：参数
+   4          // 文件：parameter.c
+   5          // 作者：卜晓旸
+   6          // 版本：V0.02
+   7          // 日期：2013年11月8日
+   8          // 功能：参数
+   9          // 芯片：STC12C5A60S2
+  10          // 编译：Keil uVision3 V3.90
+  11          /***************************************************************************/
+  12          
+  13          #include <parameter.h>
+  14          #include <eeprom.h>
+  15          
+  16          /***************************************************************************/
+  17          // 参数定义     
+  18          /***************************************************************************/
+  19          enum RunMode runMode;
+  20          enum DisplayMode displayMode; 
+  21          enum DrivingDirect drivingDirect; 
+  22          
+  23          struct Cistern cistern[8];
+  24          struct Manipulator manipulator;
+  25          
+  26          unsigned char displayFlag; //刷新显示标志位  0不刷新 1刷新主页面
+  27          unsigned char speedUpFlag; //加速标志位
+  28          
+  29          /***************************************************************************/
+  30          // 读取参数
+  31          // 参数：无
+  32          // 返回值：0失败 1成功  
+  33          /***************************************************************************/
+  34          unsigned char parameter_read()
+  35          {
+  36   1              WORD i, result = 1;
+  37   1              Delay(10); 
+  38   1              if(IapReadByte(IAP_ADDRESS+256) == 0xEE)
+  39   1              {
+  40   2                      for(i=0; i<8; i++)
+  41   2                      {
+  42   3                              cistern[i].settingTime = ((IapReadByte(IAP_ADDRESS+(i*2)) << 8) | IapReadByte(IAP_ADDRESS+(i*2+1)));
+  43   3                      }
+  44   2                      result = 1;
+  45   2              }
+  46   1              else
+  47   1              {
+  48   2                      result = 0;
+  49   2              }
+  50   1              return result;
+  51   1      }
+  52          
+  53          /***************************************************************************/
+  54          // 参数初始化函数
+C51 COMPILER V7.50   PARAMETER                                                             12/03/2013 19:29:21 PAGE 2   
+
+  55          // 参数：无
+  56          // 返回值：无   
+  57          /***************************************************************************/
+  58          void parameter_init()
+  59          {
+  60   1              unsigned char i;
+  61   1              runMode = AutoMode;
+  62   1              displayMode = MainDisplayMode;
+  63   1              for(i=0; i<8; i++)
+  64   1              {
+  65   2                      cistern[i].cisternStatus = InCounting;
+  66   2                      cistern[i].currentTime = 0;
+  67   2              }
+  68   1              cistern[1].cisternStatus = Empty; //初始状态一号槽空
+  69   1              if(!parameter_read())
+  70   1              {
+  71   2                      cistern[0].settingTime = 1800;
+  72   2                      cistern[1].settingTime = 720;
+  73   2                      cistern[2].settingTime = 720;
+  74   2                      cistern[3].settingTime = 300;
+  75   2                      cistern[4].settingTime = 300;
+  76   2                      cistern[5].settingTime = 300;
+  77   2                      cistern[6].settingTime = 300;
+  78   2                      cistern[7].settingTime = 1800;
+  79   2              }
+  80   1              manipulator.manipulaterStatus = Stop;
+  81   1              manipulator.manipulatorPosition = Bottom;
+  82   1              manipulator.currentPosition = 0;
+  83   1              drivingDirect = DStop;
+  84   1              displayFlag = 0;
+  85   1              speedUpFlag = 0;
+  86   1      }
+  87          
+  88          /***************************************************************************/
+  89          // 参数保存到eeprom
+  90          // 参数：无
+  91          // 返回值：0失败 1成功  
+  92          /***************************************************************************/
+  93          unsigned char parameter_save()
+  94          {
+  95   1              WORD i, result = 1;
+  96   1              Delay(10);
+  97   1          IapEraseSector(IAP_ADDRESS); //拆除EEPROM
+  98   1          for (i=0; i<512; i++)           //检测是否擦除成功
+  99   1          {
+ 100   2              if (IapReadByte(IAP_ADDRESS+i) != 0xff)
+ 101   2                  result = 0;
+ 102   2          }
+ 103   1          Delay(10);                      //Delay
+ 104   1              for(i=0; i<8; i++) //写入EEPROM
+ 105   1              {
+ 106   2                      IapProgramByte(IAP_ADDRESS+(i*2), (BYTE)(cistern[i].perSettingTime>>8));
+ 107   2                      IapProgramByte(IAP_ADDRESS+(i*2+1), (BYTE)cistern[i].perSettingTime);
+ 108   2              }
+ 109   1              IapProgramByte(IAP_ADDRESS+256, 0xEE); //写入标志位
+ 110   1          Delay(10);
+ 111   1              for(i=0; i<8; i++)  //校验保存值
+ 112   1              {
+ 113   2                      if(IapReadByte(IAP_ADDRESS+(i*2)) != (BYTE)(cistern[i].perSettingTime>>8))
+ 114   2                      {
+ 115   3                              result = 0;
+ 116   3                      }
+C51 COMPILER V7.50   PARAMETER                                                             12/03/2013 19:29:21 PAGE 3   
+
+ 117   2                      if(IapReadByte(IAP_ADDRESS+(i*2+1)) != (BYTE)cistern[i].perSettingTime)
+ 118   2                      {
+ 119   3                              result = 0;
+ 120   3                      }
+ 121   2              }
+ 122   1              for(i=0; i<8; i++) //设置值为界面值
+ 123   1              {
+ 124   2                      cistern[i].settingTime = cistern[i].perSettingTime;
+ 125   2              }
+ 126   1              return result;
+ 127   1      }
+ 128          
+ 129          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    799    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     72       8
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
