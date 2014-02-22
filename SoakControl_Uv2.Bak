@@ -13,6 +13,9 @@ File 1,1,<.\source\parameter.c><parameter.c>
 File 1,1,<.\source\eeprom.c><eeprom.c>
 File 1,1,<.\source\timer.c><timer.c>
 File 1,1,<.\source\position.c><position.c>
+File 1,1,<.\source\operation.c><operation.c>
+File 1,1,<.\source\dispatch.c><dispatch.c>
+File 1,1,<.\source\key.c><key.c>
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -58,7 +61,7 @@ Options 1,0,0  // Target 'Target 1'
  CrunUsr 0 0 <>
  CrunUsr 1 0 <>
  SVCSID <>
- MODEL5=1
+ MODEL5=2
  RTOS5=0
  ROMSZ5=2
  DHOLD5=0

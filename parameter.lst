@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   PARAMETER                                                             02/14/2014 13:40:50 PAGE 1   
+C51 COMPILER V7.50   PARAMETER                                                             02/22/2014 21:50:56 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
@@ -62,7 +62,7 @@ line level    source
   52          
   53          /***************************************************************************/
   54          // 参数初始化函数
-C51 COMPILER V7.50   PARAMETER                                                             02/14/2014 13:40:50 PAGE 2   
+C51 COMPILER V7.50   PARAMETER                                                             02/22/2014 21:50:56 PAGE 2   
 
   55          // 参数：无
   56          // 返回值：无   
@@ -126,7 +126,7 @@ line level    source
  114   2                      {
  115   3                              result = 0;
  116   3                      }
-C51 COMPILER V7.50   PARAMETER                                                             02/14/2014 13:40:50 PAGE 3   
+C51 COMPILER V7.50   PARAMETER                                                             02/22/2014 21:50:56 PAGE 3   
 
  117   2                      if(IapReadByte(IAP_ADDRESS+(i*2+1)) != (BYTE)cistern[i].perSettingTime)
  118   2                      {

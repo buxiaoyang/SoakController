@@ -4,8 +4,8 @@
 #include <basefunc.h>
 #include <key.h>
 
-sbit Key_Out = P1^5;
-sbit Key_In = P1^6;
+sbit Key_Out = P1^5;  //出口就绪按键
+sbit Key_In = P1^6;	  //进口就绪按键
 
 void Key_Scan(void);
 

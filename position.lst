@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   POSITION                                                              02/14/2014 13:40:51 PAGE 1   
+C51 COMPILER V7.50   POSITION                                                              02/22/2014 21:51:03 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE POSITION
@@ -62,7 +62,7 @@ line level    source
   52   3                              //干扰信号直接释放
   53   3                              sensorPosiCheck = 0;
   54   3                      }
-C51 COMPILER V7.50   POSITION                                                              02/14/2014 13:40:51 PAGE 2   
+C51 COMPILER V7.50   POSITION                                                              02/22/2014 21:51:03 PAGE 2   
 
   55   2              }
   56   1              else if(sensorPosiCheck==2)

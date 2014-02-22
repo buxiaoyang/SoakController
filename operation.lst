@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -15,16 +15,16 @@ line level    source
    5          #include <operation.h>
    6          #include <intrins.h>
    7          
-   8          sbit MotorLeft = P3^2;
-   9          sbit MotorRight = P3^3;
-  10          sbit ManiUp =  P3^4;
-  11          sbit ManiDown =  P3^5;
-  12          sbit MotorSpeedUp =  P3^6;
+   8          sbit MotorLeft = P2^0; //机械臂向进口移动电机
+   9          sbit MotorRight = P2^1; //机械臂向出口移动电机
+  10          sbit ManiUp =  P1^0; //机械臂向上移动电机
+  11          sbit ManiDown =  P1^1; //机械臂向下移动电机
+  12          sbit MotorSpeedUp =  P1^2; //出口到进口空槽机械臂加速
   13          
-  14          sbit sensorInput = P1^1;
-  15          sbit sensorManiTop = P1^2;
-  16          sbit sensorManiBut = P1^3;
-  17          sbit sensorOutput = P1^4;
+  14          sbit sensorInput = P3^0; //进口位置感应
+  15          sbit sensorManiTop = P3^1; //机械臂在顶端位置感应
+  16          sbit sensorManiBut = P3^2; //机械臂在低端位置感应
+  17          sbit sensorOutput = P3^3; //出位置感应
   18          
   19          
   20          void A_Move(uchar move_cisternNumber);          //机械臂A移动到cisternNumber号槽位置
@@ -62,7 +62,7 @@ line level    source
   51          void A_Move_Entrance(void);             //机械臂A移动到进口槽位置
   52          uchar A_Move_Entrance_Steps = 100;              //0：机械臂初始状态
   53                                                                                          //1：机械臂A定位前等待
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 2   
 
   54                                                                                          //2：机械臂A定位
   55                                                                                          //3：机械臂定位后等待
@@ -126,7 +126,7 @@ line level    source
  113   2                              if(manipulator.currentPosition == move_cisternNumber)
  114   2                              {
  115   3                                      ManiOperationTimer = 0;
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 3   
 
  116   3                                      MotorLeft = 1;
  117   3                                      MotorRight = 1;
@@ -190,7 +190,7 @@ line level    source
  175   1              switch(A_Down_Steps)
  176   1              {
  177   2                      case 0:         //0：机械臂初始状态
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 4   
 
  178   2                              ManiOperationTimer = 0;
  179   2                              A_Down_Steps ++;
@@ -254,7 +254,7 @@ line level    source
  237   3                                      if(manipulator.currentPosition > down_cisternNumber) //当前机械臂在cisternNumber号槽右边
  238   3                                      {
  239   4                                              MotorLeft = 0; //行车向左
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 5   
 
  240   4                                              MotorRight = 1;
  241   4                                              if(speedUpFlag == 1)
@@ -318,7 +318,7 @@ line level    source
  299   1      }
  300          
  301          void A_Up(uchar up_cisternNumber)
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 6   
 
  302          {
  303   1              switch(A_Up_Steps)
@@ -382,7 +382,7 @@ line level    source
  361   2                      break;
  362   2                      case 3:         //1：机械臂A定位前等待
  363   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 7   
 
  364   2                              {
  365   3                                      if(manipulator.currentPosition > up_cisternNumber) //当前机械臂在cisternNumber号槽右边
@@ -446,7 +446,7 @@ line level    source
  423   2                      break;
  424   2                      default:
  425   2                                _nop_();
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 8   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 8   
 
  426   2              }
  427   1      }
@@ -510,7 +510,7 @@ line level    source
  485   2                      case 2:         //2：机械臂A定位
  486   2                              if(manipulator.currentPosition == upCisternNumber)
  487   2                              {
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 9   
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 9   
 
  488   3                                      ManiOperationTimer = 0;
  489   3                                      MotorLeft = 1;
@@ -574,7 +574,7 @@ line level    source
  547   4                                              {
  548   5                                                      displayFlag = 2;
  549   5                                              }
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 10  
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 10  
 
  550   4                                              A_Up_Down_Steps ++;     
  551   4                                      }       
@@ -638,7 +638,7 @@ line level    source
  609   4                                              else
  610   4                                              {
  611   5                                                      MotorSpeedUp = 1;
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 11  
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 11  
 
  612   5                                              }
  613   4                                              drivingDirect = GoOutfall;
@@ -702,7 +702,7 @@ line level    source
  671   5                                                      MotorSpeedUp = 0;       
  672   5                                              }
  673   4                                              else
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 12  
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 12  
 
  674   4                                              {
  675   5                                                      MotorSpeedUp = 1;
@@ -766,7 +766,7 @@ line level    source
  733   3                                      MotorLeft = 0; //行车向左
  734   3                                      drivingDirect = DGoEntrance;
  735   3                                      manipulator.manipulaterStatus = GoEntrance;
-C51 COMPILER V7.50   OPERATION                                                             02/14/2014 13:40:52 PAGE 13  
+C51 COMPILER V7.50   OPERATION                                                             02/22/2014 21:51:04 PAGE 13  
 
  736   3                                      if(displayFlag == 0)
  737   3                                      {

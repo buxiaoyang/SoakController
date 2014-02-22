@@ -5,16 +5,16 @@
 #include <operation.h>
 #include <intrins.h>
 
-sbit MotorLeft = P3^2; //机械臂向进口移动电机
-sbit MotorRight = P3^3; //机械臂向出口移动电机
-sbit ManiUp =  P3^4; //机械臂向上移动电机
-sbit ManiDown =  P3^5; //机械臂向下移动电机
-sbit MotorSpeedUp =  P3^6; //出口到进口空槽机械臂加速
+sbit MotorLeft = P2^0; //机械臂向进口移动电机
+sbit MotorRight = P2^1; //机械臂向出口移动电机
+sbit ManiUp =  P1^0; //机械臂向上移动电机
+sbit ManiDown =  P1^1; //机械臂向下移动电机
+sbit MotorSpeedUp =  P1^2; //出口到进口空槽机械臂加速
 
-sbit sensorInput = P1^1; //进口位置感应
-sbit sensorManiTop = P1^2; //机械臂在顶端位置感应
-sbit sensorManiBut = P1^3; //机械臂在低端位置感应
-sbit sensorOutput = P1^4; //出位置感应
+sbit sensorInput = P3^0; //进口位置感应
+sbit sensorManiTop = P3^1; //机械臂在顶端位置感应
+sbit sensorManiBut = P3^2; //机械臂在低端位置感应
+sbit sensorOutput = P3^3; //出位置感应
 
 
 void A_Move(uchar move_cisternNumber); 		//机械臂A移动到cisternNumber号槽位置
