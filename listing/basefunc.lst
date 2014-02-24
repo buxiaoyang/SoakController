@@ -1,10 +1,10 @@
-C51 COMPILER V7.50   BASEFUNC                                                              02/22/2014 21:50:54 PAGE 1   
+C51 COMPILER V7.50   BASEFUNC                                                              02/24/2014 21:00:21 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE BASEFUNC
 OBJECT MODULE PLACED IN .\output\basefunc.obj
 COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\basefunc.c LARGE BROWSE INCDIR(.\include\) DEBUG OBJECTEXTEND PRINT(
-                    -.\basefunc.lst) OBJECT(.\output\basefunc.obj)
+                    -.\listing\basefunc.lst) OBJECT(.\output\basefunc.obj)
 
 line level    source
 

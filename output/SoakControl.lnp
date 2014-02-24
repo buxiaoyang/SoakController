@@ -10,5 +10,5 @@
 ".\output\dispatch.obj",
 ".\output\key.obj" 
 TO ".\output\SoakControl" 
-PRINT(".\SoakControl.m51") RAMSIZE(256) 
+PRINT(".\listing\SoakControl.m51") RAMSIZE(256) 
 XDATA( 0X0000-0X03FE )

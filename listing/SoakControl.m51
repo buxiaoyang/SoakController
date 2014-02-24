@@ -1,10 +1,11 @@
-BL51 BANKED LINKER/LOCATER V5.12                                                        02/22/2014  21:51:10  PAGE 1
+BL51 BANKED LINKER/LOCATER V5.12                                                        02/24/2014  21:00:34  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V5.12, INVOKED BY:
 C:\KEIL\C51\BIN\BL51.EXE .\output\STARTUP.obj, .\output\main.obj, .\output\ra8806.obj, .\output\basefunc.obj, .\output\p
 >> arameter.obj, .\output\eeprom.obj, .\output\timer.obj, .\output\position.obj, .\output\operation.obj, .\output\dispat
->> ch.obj, .\output\key.obj TO .\output\SoakControl PRINT (.\SoakControl.m51) RAMSIZE (256) XDATA (0X0000-0X03FE)
+>> ch.obj, .\output\key.obj TO .\output\SoakControl PRINT (.\listing\SoakControl.m51) RAMSIZE (256) XDATA (0X0000-0X03FE
+>> )
 
 
 MEMORY MODEL: LARGE
@@ -58,10 +59,10 @@ LINK MAP OF MODULE:  .\output\SoakControl (?C_STARTUP)
             XDATA   0080H     0003H     UNIT         ?XD?_DROW_POINT?RA8806
             XDATA   0083H     0002H     UNIT         ?XD?TIMER
             XDATA   0085H     0001H     UNIT         ?XD?MAIN
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 2
+
+
             XDATA   0086H     0001H     UNIT         ?XD?POSITION
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 2
-
-
             XDATA   0087H     0001H     UNIT         ?XD?KEY
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
@@ -118,10 +119,10 @@ LINK MAP OF MODULE:  .\output\SoakControl (?C_STARTUP)
             CODE    2C96H     0027H     UNIT         ?PR?_DELAY_MS?BASEFUNC
             CODE    2CBDH     0026H     UNIT         ?PR?_TRANS_TPX?RA8806
             CODE    2CE3H     0026H     UNIT         ?PR?TIMER_INIT?TIMER
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 3
+
+
             CODE    2D09H     0025H     UNIT         ?PR?_TRANS_TPY?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 3
-
-
             CODE    2D2EH     0024H     UNIT         ?PR?_LCD_CMDREAD?RA8806
             CODE    2D52H     001EH     UNIT         ?PR?_LCD_GOTOXY?RA8806
             CODE    2D70H     001DH     UNIT         ?PR?_LCD_CMDWRITE?RA8806
@@ -178,10 +179,10 @@ SEGMENT                                       XDATA_GROUP
   +--> ?PR?PARAMETER_INIT?PARAMETER
   +--> ?PR?TIMER_INIT?TIMER
   +--> ?PR?ENABLE_TP?RA8806
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 4
+
+
   +--> ?PR?ENABLE_MAUNAL_TP?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 4
-
-
   +--> ?PR?_MAINDISPLAY?RA8806
   +--> ?PR?TP_MANUALMODE?RA8806
   +--> ?PR?_CHECKTOUCHPAD?MAIN
@@ -238,10 +239,10 @@ SEGMENT                                       XDATA_GROUP
 ?PR?ACCESS_PAGE1?RA8806                     -----    -----
   +--> ?PR?_LCD_CMDREAD?RA8806
   +--> ?PR?_LCD_CMDWRITE?RA8806
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 5
+
+
   +--> ?PR?_LCD_DATAWRITE?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 5
-
-
 
 ?PR?CLEAR?RA8806                            -----    -----
   +--> ?PR?LCD_GRAPHIC?RA8806
@@ -298,10 +299,10 @@ SEGMENT                                       XDATA_GROUP
   +--> ?PR?_DISPLAY_KUANG?RA8806
   +--> ?CO?RA8806
   +--> ?PR?_DROW_PICTURE?RA8806
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 6
+
+
   +--> ?PR?_DISPLAY_R_KUANG?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 6
-
-
   +--> ?PR?LCD_NOINV?RA8806
   +--> ?PR?_LCD_SHOWSTR?RA8806
   +--> ?PR?_LCD_SHOWCHAR?RA8806
@@ -358,10 +359,10 @@ SEGMENT                                       XDATA_GROUP
 ?PR?SWITCH_LATCH_Y_DATA?RA8806              -----    -----
   +--> ?PR?_LCD_CMDREAD?RA8806
   +--> ?PR?_LCD_CMDWRITE?RA8806
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 7
+
+
   +--> ?PR?_LCD_DATAWRITE?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 7
-
-
 
 ?PR?_CHECKTOUCHPAD?MAIN                     0048H    0001H
   +--> ?PR?_TP_RESPONSE?RA8806
@@ -418,8 +419,8 @@ SEGMENT                                       XDATA_GROUP
   +--> ?PR?MANIPOSITION?POSITION
 
 *** NEW ROOT ***************************************************
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 8
 
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 8
 
 
 ?PR?TM1_ISR?TIMER                           -----    -----
@@ -478,10 +479,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 9
+
+
   C:0A96H         PUBLIC        _checkTouchPad
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 9
-
-
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
@@ -538,10 +539,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   -------         ENDPROC       INITSETTINGPAGE
   -------         PROC          _TOUCHPADSETCHOOSECISTERN
   D:0007H         SYMBOL        cisternNum
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 10
+
+
   -------         DO            
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 10
-
-
   D:0006H         SYMBOL        i
   -------         ENDDO         
   C:2C44H         LINE#         76
@@ -598,10 +599,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0ADDH         LINE#         133
   C:0AE8H         LINE#         134
   C:0AE8H         LINE#         135
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 11
+
+
   C:0AF0H         LINE#         136
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 11
-
-
   C:0AF7H         LINE#         137
   C:0AFDH         LINE#         138
   C:0B00H         LINE#         139
@@ -658,10 +659,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0BC1H         LINE#         191
   C:0BCCH         LINE#         192
   C:0BCCH         LINE#         193
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 12
+
+
   C:0BD4H         LINE#         194
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 12
-
-
   C:0BDBH         LINE#         195
   C:0BE0H         LINE#         196
   C:0BE2H         LINE#         197
@@ -718,10 +719,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0CA9H         LINE#         248
   C:0CB0H         LINE#         250
   C:0CB5H         LINE#         251
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 13
+
+
   C:0CBBH         LINE#         252
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 13
-
-
   C:0CBFH         LINE#         254
   C:0CC4H         LINE#         255
   C:0CCBH         LINE#         257
@@ -778,10 +779,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2926H         LINE#         316
   C:292DH         LINE#         317
   C:292DH         LINE#         318
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 14
+
+
   C:2930H         LINE#         319
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 14
-
-
   C:2935H         LINE#         320
   C:2937H         LINE#         321
   C:293EH         LINE#         322
@@ -838,10 +839,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   C:3029H         PUBLIC        _LCD_ShowChar
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 15
+
+
   C:2D7CH         PUBLIC        _LCD_CmdWrite
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 15
-
-
   C:2E3CH         PUBLIC        Only_Show_Page1
   C:259EH         PUBLIC        _TP_Response
   C:0A1EH         PUBLIC        RoundedTLB
@@ -898,10 +899,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2D88H         LINE#         49
   C:2D8AH         LINE#         50
   C:2D8CH         LINE#         51
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 16
+
+
   -------         ENDPROC       _LCD_CMDWRITE
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 16
-
-
   C:2DE0H         SYMBOL        L?0317
   -------         PROC          L?0316
   -------         ENDPROC       L?0316
@@ -958,10 +959,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2F0DH         LINE#         107
   C:2F0FH         LINE#         108
   C:2F11H         LINE#         109
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 17
+
+
   C:2F13H         LINE#         111
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 17
-
-
   C:2F16H         LINE#         112
   C:2F16H         LINE#         113
   -------         ENDPROC       LCD_DATAREAD
@@ -1018,10 +1019,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2235H         LINE#         190
   C:2238H         LINE#         192
   C:223AH         LINE#         193
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 18
+
+
   C:223DH         LINE#         195
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 18
-
-
   C:2242H         LINE#         196
   -------         ENDPROC       LCD_INITAL
   -------         PROC          L?0328
@@ -1078,10 +1079,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2E52H         LINE#         261
   C:2E52H         LINE#         263
   C:2E59H         LINE#         264
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 19
+
+
   C:2E5CH         LINE#         265
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 19
-
-
   C:2E5FH         LINE#         266
   C:2E64H         LINE#         267
   -------         ENDPROC       ONLY_SHOW_PAGE2
@@ -1138,10 +1139,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   -------         ENDDO         
   C:2F94H         LINE#         334
   C:2F94H         LINE#         335
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 20
+
+
   C:2F94H         LINE#         337
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 20
-
-
   C:2F9BH         LINE#         338
   C:2F9FH         LINE#         339
   C:2FA4H         LINE#         340
@@ -1198,10 +1199,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2F48H         LINE#         413
   C:2F4CH         LINE#         414
   C:2F51H         LINE#         415
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 21
+
+
   -------         ENDPROC       NORMAL_DATA
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 21
-
-
   -------         PROC          REVERSE_DATA
   -------         DO            
   D:0006H         SYMBOL        temp
@@ -1258,10 +1259,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2BDBH         LINE#         481
   C:2BDBH         LINE#         482
   C:2BE0H         LINE#         483
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 22
+
+
   C:2BE4H         LINE#         484
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 22
-
-
   C:2BE4H         LINE#         485
   C:2BE4H         LINE#         486
   -------         ENDPROC       _ENLARGE
@@ -1318,10 +1319,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2AC7H         LINE#         538
   C:2AC7H         LINE#         539
   C:2AC7H         LINE#         540
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 23
+
+
   C:2ACAH         LINE#         541
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 23
-
-
   C:2ADAH         LINE#         542
   C:2ADAH         LINE#         543
   C:2AEFH         LINE#         544
@@ -1378,10 +1379,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1F79H         LINE#         586
   C:1F88H         LINE#         587
   C:1F88H         LINE#         588
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 24
+
+
   C:1F8BH         LINE#         589
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 24
-
-
   C:1F8BH         LINE#         590
   C:1F8EH         LINE#         591
   C:1F98H         LINE#         592
@@ -1438,10 +1439,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   D:0004H         SYMBOL        j
   -------         ENDDO         
   C:275FH         LINE#         637
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 25
+
+
   C:276AH         LINE#         638
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 25
-
-
   C:276AH         LINE#         640
   C:276DH         LINE#         641
   C:277FH         LINE#         642
@@ -1498,10 +1499,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   X:0066H         SYMBOL        x0
   X:0068H         SYMBOL        y0
   X:006AH         SYMBOL        y1
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 26
+
+
   -------         DO            
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 26
-
-
   D:0006H         SYMBOL        temp
   -------         ENDDO         
   C:2831H         LINE#         695
@@ -1558,10 +1559,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:202EH         LINE#         743
   C:202EH         LINE#         744
   C:2037H         LINE#         745
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 27
+
+
   C:2037H         LINE#         746
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 27
-
-
   C:203AH         LINE#         747
   C:2059H         LINE#         748
   C:207CH         LINE#         749
@@ -1618,10 +1619,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   -------         PROC          ENABLE_INTERRPUT_TP
   -------         DO            
   D:0006H         SYMBOL        temp
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 28
+
+
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 28
-
-
   C:2FE4H         LINE#         812
   C:2FE4H         LINE#         813
   C:2FE4H         LINE#         815
@@ -1678,10 +1679,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2CE2H         LINE#         877
   -------         ENDPROC       _TRANS_TPX
   -------         PROC          _TRANS_TPY
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 29
+
+
   D:0006H         SYMBOL        y
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 29
-
-
   -------         DO            
   D:0004H         SYMBOL        tp_y
   D:0004H         SYMBOL        temp
@@ -1738,10 +1739,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:10CCH         LINE#         950
   C:10CFH         LINE#         951
   C:10F0H         LINE#         952
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 30
+
+
   C:10F0H         LINE#         953
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 30
-
-
   C:10F2H         LINE#         954
   C:10F5H         LINE#         955
   C:1116H         LINE#         956
@@ -1798,10 +1799,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   D:0006H         SYMBOL        temp
   X:0049H         SYMBOL        result_data
   D:0004H         SYMBOL        X
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 31
+
+
   X:004AH         SYMBOL        Y
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 31
-
-
   X:004CH         SYMBOL        x_temp
   D:0004H         SYMBOL        y_temp
   -------         ENDDO         
@@ -1858,10 +1859,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1D48H         LINE#         1054
   C:1D48H         LINE#         1055
   C:1D51H         LINE#         1056
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 32
+
+
   C:1D51H         LINE#         1057
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 32
-
-
   C:1D54H         LINE#         1058
   C:1D54H         LINE#         1059
   C:1D59H         LINE#         1060
@@ -1918,10 +1919,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0EB2H         LINE#         1121
   C:0EC7H         LINE#         1122
   C:0ED3H         LINE#         1123
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 33
+
+
   C:0EE0H         LINE#         1124
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 33
-
-
   C:0EEDH         LINE#         1125
   C:0EFAH         LINE#         1127
   C:0F07H         LINE#         1128
@@ -1978,10 +1979,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:004CH         LINE#         1193
   C:005BH         LINE#         1194
   C:005BH         LINE#         1195
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 34
+
+
   C:007CH         LINE#         1196
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 34
-
-
   C:00A0H         LINE#         1197
   C:00A8H         LINE#         1198
   C:00B0H         LINE#         1199
@@ -2038,10 +2039,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:01E8H         LINE#         1258
   C:01F0H         LINE#         1259
   C:01F6H         LINE#         1261
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 35
+
+
   C:0201H         LINE#         1264
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 35
-
-
   C:020EH         LINE#         1265
   C:0222H         LINE#         1266
   C:0222H         LINE#         1267
@@ -2098,10 +2099,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:03CEH         LINE#         1321
   C:03D9H         LINE#         1322
   C:03E4H         LINE#         1324
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 36
+
+
   C:03EAH         LINE#         1325
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 36
-
-
   C:03EAH         LINE#         1326
   C:03F1H         LINE#         1327
   C:03F1H         LINE#         1328
@@ -2158,10 +2159,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   -------         PROC          _TP_RESPONSE
   D:0005H         SYMBOL        tpValue
   C:259EH         LINE#         1393
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 37
+
+
   C:25A0H         LINE#         1394
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 37
-
-
   C:25A0H         LINE#         1395
   C:25A3H         LINE#         1396
   C:25C6H         LINE#         1397
@@ -2218,10 +2219,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2C9EH         LINE#         35
   C:2C9EH         LINE#         37
   C:2CAEH         LINE#         38
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 38
+
+
   C:2CAEH         LINE#         39
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 38
-
-
   C:2CB5H         LINE#         40
   C:2CBCH         LINE#         41
   -------         ENDPROC       _DELAY_MS
@@ -2278,10 +2279,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:252CH         LINE#         68
   C:2531H         LINE#         69
   C:2537H         LINE#         70
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 39
+
+
   C:2537H         LINE#         71
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 39
-
-
   C:2540H         LINE#         72
   C:254AH         LINE#         73
   C:2554H         LINE#         74
@@ -2338,10 +2339,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:17FAH         LINE#         125
   C:180AH         LINE#         126
   C:1810H         LINE#         127
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 40
+
+
   -------         ENDPROC       PARAMETER_SAVE
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 40
-
-
   -------         ENDMOD        PARAMETER
 
   -------         MODULE        EEPROM
@@ -2398,10 +2399,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2E08H         LINE#         84
   C:2E0AH         LINE#         85
   C:2E0DH         LINE#         87
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 41
+
+
   C:2E0DH         LINE#         88
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 41
-
-
   -------         ENDPROC       _IAPREADBYTE
   -------         PROC          _IAPPROGRAMBYTE
   D:0006H         SYMBOL        addr
@@ -2458,10 +2459,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   D:008AH         PUBLIC        TL0
   X:0084H         PUBLIC        count1s
   D:008BH         PUBLIC        TL1
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 42
+
+
   B:0088H.4       PUBLIC        TR0
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 42
-
-
   B:0088H.6       PUBLIC        TR1
   D:00C8H         PUBLIC        T2CON
   B:00A0H.0       PUBLIC        TEST_LED
@@ -2518,10 +2519,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:28CAH         LINE#         93
   C:28CDH         LINE#         94
   C:28CFH         LINE#         95
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 43
+
+
   C:28DDH         LINE#         96
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 43
-
-
   C:28DDH         LINE#         97
   C:28E4H         LINE#         98
   C:28E4H         LINE#         99
@@ -2578,10 +2579,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2253H         LINE#         20
   C:2253H         LINE#         21
   C:2255H         LINE#         22
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 44
+
+
   C:2255H         LINE#         23
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 44
-
-
   C:2256H         LINE#         24
   C:225BH         LINE#         25
   C:225BH         LINE#         26
@@ -2638,10 +2639,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:22F0H         LINE#         84
   C:22F2H         LINE#         85
   C:22F2H         LINE#         86
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 45
+
+
   C:22F2H         LINE#         87
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 45
-
-
   C:22F7H         LINE#         88
   C:22F7H         LINE#         89
   C:22F7H         LINE#         90
@@ -2698,10 +2699,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1D96H         LINE#         77
   C:1D98H         LINE#         78
   C:1D9FH         LINE#         79
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 46
+
+
   C:1D9FH         LINE#         80
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 46
-
-
   C:1DA1H         LINE#         81
   C:1DA3H         LINE#         83
   C:1DA3H         LINE#         84
@@ -2758,10 +2759,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1E31H         LINE#         147
   C:1E33H         LINE#         148
   C:1E3AH         LINE#         149
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 47
+
+
   C:1E3AH         LINE#         150
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 47
-
-
   C:1E3CH         LINE#         151
   C:1E3EH         LINE#         153
   C:1E3EH         LINE#         154
@@ -2818,10 +2819,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1881H         LINE#         207
   C:1883H         LINE#         209
   C:1883H         LINE#         210
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 48
+
+
   C:1885H         LINE#         211
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 48
-
-
   C:1885H         LINE#         212
   C:188BH         LINE#         213
   C:188FH         LINE#         215
@@ -2878,10 +2879,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1918H         LINE#         278
   C:1918H         LINE#         279
   C:191AH         LINE#         280
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 49
+
+
   C:1920H         LINE#         281
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 49
-
-
   C:1926H         LINE#         282
   C:192CH         LINE#         283
   C:192DH         LINE#         284
@@ -2938,10 +2939,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:19E1H         LINE#         335
   C:19E3H         LINE#         337
   C:19E3H         LINE#         338
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 50
+
+
   C:19E5H         LINE#         339
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 50
-
-
   C:19E5H         LINE#         340
   C:19EBH         LINE#         341
   C:19EFH         LINE#         343
@@ -2998,10 +2999,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:1A78H         LINE#         406
   C:1A78H         LINE#         407
   C:1A7AH         LINE#         408
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 51
+
+
   C:1A80H         LINE#         409
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 51
-
-
   C:1A86H         LINE#         410
   C:1A8CH         LINE#         411
   C:1A8DH         LINE#         412
@@ -3058,10 +3059,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:04F8H         LINE#         461
   C:04FAH         LINE#         462
   C:04FCH         LINE#         463
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 52
+
+
   C:0503H         LINE#         464
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 52
-
-
   C:0503H         LINE#         465
   C:0505H         LINE#         466
   C:0507H         LINE#         468
@@ -3118,10 +3119,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0585H         LINE#         522
   C:0587H         LINE#         523
   C:058CH         LINE#         524
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 53
+
+
   C:058CH         LINE#         525
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 53
-
-
   C:058EH         LINE#         526
   C:0590H         LINE#         527
   C:0597H         LINE#         528
@@ -3178,10 +3179,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:0632H         LINE#         582
   C:063BH         LINE#         583
   C:063BH         LINE#         584
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 54
+
+
   C:063DH         LINE#         585
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 54
-
-
   C:063FH         LINE#         586
   C:0646H         LINE#         587
   C:0646H         LINE#         588
@@ -3238,10 +3239,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:06BDH         LINE#         643
   C:06CFH         LINE#         644
   C:06CFH         LINE#         645
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 55
+
+
   C:06D8H         LINE#         646
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 55
-
-
   C:06D8H         LINE#         647
   C:06DAH         LINE#         648
   C:06DCH         LINE#         649
@@ -3298,10 +3299,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:074FH         LINE#         703
   C:0755H         LINE#         704
   C:0756H         LINE#         705
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 56
+
+
   C:0756H         LINE#         706
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 56
-
-
   C:0759H         LINE#         707
   C:0759H         LINE#         708
   C:075BH         LINE#         709
@@ -3358,10 +3359,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:2723H         LINE#         759
   C:2723H         LINE#         760
   C:2732H         LINE#         761
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 57
+
+
   C:2732H         LINE#         762
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 57
-
-
   C:2736H         LINE#         763
   C:273AH         LINE#         764
   C:2740H         LINE#         765
@@ -3418,10 +3419,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:129AH         LINE#         45
   C:129AH         LINE#         46
   C:12A1H         LINE#         47
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 58
+
+
   C:12ACH         LINE#         48
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 58
-
-
   C:12ACH         LINE#         49
   C:12ACH         LINE#         50
   C:12ACH         LINE#         51
@@ -3478,10 +3479,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:134DH         LINE#         103
   C:134DH         LINE#         104
   C:134DH         LINE#         105
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 59
+
+
   C:134FH         LINE#         106
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 59
-
-
   C:134FH         LINE#         107
   C:1355H         LINE#         108
   C:135CH         LINE#         109
@@ -3538,10 +3539,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:144EH         LINE#         160
   C:144EH         LINE#         161
   C:144FH         LINE#         162
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 60
+
+
   C:144FH         LINE#         163
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 60
-
-
   C:1450H         LINE#         164
   C:1450H         LINE#         165
   -------         ENDPROC       MANIDISPATCH
@@ -3598,10 +3599,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
   C:29A9H         LINE#         50
   C:29AAH         LINE#         51
   C:29AAH         LINE#         52
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 61
+
+
   C:29B0H         LINE#         53
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 61
-
-
   C:29B0H         LINE#         54
   C:29B5H         LINE#         55
   C:29B5H         LINE#         56
@@ -3658,10 +3659,10 @@ SYMBOL TABLE OF MODULE:  .\output\SoakControl (?C_STARTUP)
     SEGMENT: ?PR?NOR_TWO_LAYER?RA8806
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+BL51 BANKED LINKER/LOCATER V5.12                                                      02/24/2014  21:00:34  PAGE 62
+
+
     SEGMENT: ?PR?AND_TWO_LAYER?RA8806
-BL51 BANKED LINKER/LOCATER V5.12                                                      02/22/2014  21:51:10  PAGE 62
-
-
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?DISPLAY_ALL?RA8806
