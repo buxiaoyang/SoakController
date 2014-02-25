@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -30,7 +30,7 @@ line level    source
   20          /***************************************************************************/
   21          // 参数定义     
   22          /***************************************************************************/
-  23          sbit OUT_PUT = P3^7; //用于测试输出
+  23          //sbit OUT_PUT = P3^7; //用于测试输出
   24          uchar currentTP=0; //用于触摸屏消抖动 
   25          
   26          /***************************************************************************/
@@ -62,7 +62,7 @@ line level    source
   52   2              }       
   53   1      }
   54          
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 2   
 
   55          /***************************************************************************/
   56          // 设置页面初始化函数
@@ -126,7 +126,7 @@ line level    source
  114   2                      {
  115   3                              cistern[cisternNum].perSettingTime = 60;
  116   3                      }
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 3   
 
  117   2              }
  118   1      }
@@ -190,7 +190,7 @@ line level    source
  176   3                                      delay_ms(100);
  177   3                                      touchPadSetChooseCistern(1);
  178   3                                      SettingDisplay(0);
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 4   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 4   
 
  179   3                              }
  180   2                      break;
@@ -254,7 +254,7 @@ line level    source
  238   3                                      TP_Response(tpValue);
  239   3                                      delay_ms(70);
  240   3                                      settingOperationTime(1);
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 5   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 5   
 
  241   3                                      SettingDisplay(0);
  242   3                              }
@@ -318,7 +318,7 @@ line level    source
  300          void main()
  301          {
  302   1              lcd_inital();
-C51 COMPILER V7.50   MAIN                                                                  02/24/2014 21:00:17 PAGE 6   
+C51 COMPILER V7.50   MAIN                                                                  02/25/2014 21:09:07 PAGE 6   
 
  303   1              PowerOnDisplay();
  304   1              delay_ms(2000);
@@ -330,7 +330,7 @@ line level    source
  310   1              while(1)
  311   1              {
  312   2                      
- 313   2                      OUT_PUT = ~OUT_PUT;
+ 313   2      //              OUT_PUT = ~OUT_PUT;
  314   2                      checkTouchPad(tp_ManualMode());
  315   2                      //delay_ms(40);
  316   2                      if(displayFlag == 1) //整屏刷新
@@ -360,7 +360,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1175    ----
+   CODE SIZE        =   1173    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      1       1
    PDATA SIZE       =   ----    ----

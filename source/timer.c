@@ -28,8 +28,8 @@ typedef unsigned int WORD;
 /* define SFR */
 sfr AUXR = 0x8e;                    //Auxiliary register
 
-sbit TEST_LED = P2^0;               //work LED, flash once per second
-sbit TEST_LED1 = P2^1;               //work LED, flash once per second
+//sbit TEST_LED = P2^0;               //work LED, flash once per second
+//sbit TEST_LED1 = P2^1;               //work LED, flash once per second
 /* define variables */
 //-----------------------------------------------
 BYTE count1s; // 1s时间计数
@@ -73,7 +73,7 @@ void tm0_isr() interrupt 1 using 1  //1ms
 {
     TL0 = T1MS;                     //reload timer0 low byte
     TH0 = T1MS >> 8;                //reload timer0 high byte
-	TEST_LED = ! TEST_LED;
+//	TEST_LED = ! TEST_LED;
 	count5ms ++;
 	maniPosition();
 }
@@ -84,14 +84,14 @@ void tm1_isr() interrupt 3 using 1  //5ms
     TL1 = T10MS;                     //reload timer1 low byte
     TH1 = T10MS >> 8;                //reload timer1 high byte
 	count1s ++;
-	TEST_LED1 = ~TEST_LED1;
+//	TEST_LED1 = ~TEST_LED1;
 	if(displayMode != PowerOffed)
 	{
 		if(count1s == 200) //1s
 		{
 			count1s = 0;
 			cisternCount();
-			TEST_LED1 = ! TEST_LED1;      //work LED flash
+//			TEST_LED1 = ! TEST_LED1;      //work LED flash
 			ManiOperationTimer ++; //机械臂操作定时器
 		}
 		if(count1s%2==0) //10ms

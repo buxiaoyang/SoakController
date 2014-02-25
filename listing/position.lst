@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   POSITION                                                              02/24/2014 21:00:30 PAGE 1   
+C51 COMPILER V7.50   POSITION                                                              02/25/2014 21:09:24 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE POSITION
@@ -13,7 +13,7 @@ line level    source
    3          #include <parameter.h>
    4          #include <basefunc.h>
    5          
-   6          sbit sensorPositon = P1^0; //机械臂定位传感器
+   6          sbit sensorPositon = P3^4; //机械臂定位传感器
    7          
    8          uchar sensorPosiCheck = 0; //机械臂A位置检测标志位 
    9                                                                  //0：没有感应器没有低电位状态
@@ -62,7 +62,7 @@ line level    source
   52   3                              //干扰信号直接释放
   53   3                              sensorPosiCheck = 0;
   54   3                      }
-C51 COMPILER V7.50   POSITION                                                              02/24/2014 21:00:30 PAGE 2   
+C51 COMPILER V7.50   POSITION                                                              02/25/2014 21:09:24 PAGE 2   
 
   55   2              }
   56   1              else if(sensorPosiCheck==2)

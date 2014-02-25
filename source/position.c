@@ -3,7 +3,7 @@
 #include <parameter.h>
 #include <basefunc.h>
 
-sbit sensorPositon = P1^0; //机械臂定位传感器
+sbit sensorPositon = P3^4; //机械臂定位传感器
 
 uchar sensorPosiCheck = 0; //机械臂A位置检测标志位 
 							//0：没有感应器没有低电位状态

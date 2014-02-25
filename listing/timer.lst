@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 02/24/2014 21:00:28 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 02/25/2014 21:09:21 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -38,8 +38,8 @@ line level    source
   28          /* define SFR */
   29          sfr AUXR = 0x8e;                    //Auxiliary register
   30          
-  31          sbit TEST_LED = P2^0;               //work LED, flash once per second
-  32          sbit TEST_LED1 = P2^1;               //work LED, flash once per second
+  31          //sbit TEST_LED = P2^0;               //work LED, flash once per second
+  32          //sbit TEST_LED1 = P2^1;               //work LED, flash once per second
   33          /* define variables */
   34          //-----------------------------------------------
   35          BYTE count1s; // 1s时间计数
@@ -62,7 +62,7 @@ line level    source
   52   3                              if(cistern[i].currentTime >= cistern[i].settingTime)
   53   3                              {
   54   4                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
-C51 COMPILER V7.50   TIMER                                                                 02/24/2014 21:00:28 PAGE 2   
+C51 COMPILER V7.50   TIMER                                                                 02/25/2014 21:09:21 PAGE 2   
 
   55   4                                      {
   56   5                                              cistern[i].cisternStatus = Ready;
@@ -85,7 +85,7 @@ line level    source
   73          {
   74   1          TL0 = T1MS;                     //reload timer0 low byte
   75   1          TH0 = T1MS >> 8;                //reload timer0 high byte
-  76   1              TEST_LED = ! TEST_LED;
+  76   1      //      TEST_LED = ! TEST_LED;
   77   1              count5ms ++;
   78   1              maniPosition();
   79   1      }
@@ -96,14 +96,14 @@ line level    source
   84   1          TL1 = T10MS;                     //reload timer1 low byte
   85   1          TH1 = T10MS >> 8;                //reload timer1 high byte
   86   1              count1s ++;
-  87   1              TEST_LED1 = ~TEST_LED1;
+  87   1      //      TEST_LED1 = ~TEST_LED1;
   88   1              if(displayMode != PowerOffed)
   89   1              {
   90   2                      if(count1s == 200) //1s
   91   2                      {
   92   3                              count1s = 0;
   93   3                              cisternCount();
-  94   3                              TEST_LED1 = ! TEST_LED1;      //work LED flash
+  94   3      //                      TEST_LED1 = ! TEST_LED1;      //work LED flash
   95   3                              ManiOperationTimer ++; //机械臂操作定时器
   96   3                      }
   97   2                      if(count1s%2==0) //10ms
@@ -126,7 +126,7 @@ line level    source
  114          /* timer_init program */
  115          void timer_init()
  116          {
-C51 COMPILER V7.50   TIMER                                                                 02/24/2014 21:00:28 PAGE 3   
+C51 COMPILER V7.50   TIMER                                                                 02/25/2014 21:09:21 PAGE 3   
 
  117   1          AUXR = 0x80|0x40;                    //timer0 work in 1T mode
  118   1          TMOD = 0x01|0x10;                    //set timer0 as mode1 (16-bit)
@@ -150,7 +150,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    354    ----
+   CODE SIZE        =    348    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      2    ----
    PDATA SIZE       =   ----    ----
