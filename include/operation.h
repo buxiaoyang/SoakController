@@ -16,6 +16,7 @@ extern unsigned char A_Move_Entrance_Steps;
 extern void ManualMode_Operation(void); 
 
 extern unsigned int ManiOperationTimer;
+extern unsigned int timeBetweenOpeartionDry;
 
 #define timeBetweenOpeartion 5  //两个机械臂直接的切换动作等待时间
 

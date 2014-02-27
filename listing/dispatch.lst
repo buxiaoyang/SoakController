@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 20:59:00 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 21:21:42 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   2                      case 3:  //3£º6ºÅ²Û¿Õ£¬²¢ÇÒ5ºÅ¾ÍÐ÷
   53   2                              A_Up_Down(10,12);
   54   2                              if(A_Up_Down_Steps == 100)
-C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 20:59:00 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 21:21:42 PAGE 2   
 
   55   2                              {
   56   3                                      ManiDispatchSteps = 20;
@@ -126,72 +126,81 @@ line level    source
  114   2                      break;
  115   2                      case 20:
  116   2                              if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
-C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 20:59:00 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 21:21:42 PAGE 3   
 
  117   2                              {
  118   3                                      A_Up_Down_Steps = 0;
- 119   3                                      ManiDispatchSteps = 2;   
- 120   3                              }
- 121   2                              else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
- 122   2                              {
- 123   3                                      A_Up_Down_Steps = 0;
- 124   3                                      ManiDispatchSteps = 3;
- 125   3                              }
- 126   2                              else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
- 127   2                              {
- 128   3                                      A_Up_Down_Steps = 0;
- 129   3                                      ManiDispatchSteps = 4;
- 130   3                              }
- 131   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
- 132   2                              {
- 133   3                                      A_Up_Down_Steps = 0;
- 134   3                                      ManiDispatchSteps = 5;
- 135   3                              }
- 136   2                              else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
- 137   2                              {
- 138   3                                      A_Up_Down_Steps = 0;
- 139   3                                      ManiDispatchSteps = 6;
- 140   3                              }
- 141   2                              else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
- 142   2                              {
- 143   3                                      A_Up_Down_Steps = 0;
- 144   3                                      ManiDispatchSteps = 7;
+ 119   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 120   3                                      ManiDispatchSteps = 2;   
+ 121   3                              }
+ 122   2                              else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
+ 123   2                              {
+ 124   3                                      A_Up_Down_Steps = 0;
+ 125   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 126   3                                      ManiDispatchSteps = 3;
+ 127   3                              }
+ 128   2                              else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
+ 129   2                              {
+ 130   3                                      A_Up_Down_Steps = 0;
+ 131   3                                      timeBetweenOpeartionDry = 90;
+ 132   3                                      ManiDispatchSteps = 4;
+ 133   3                              }
+ 134   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
+ 135   2                              {
+ 136   3                                      A_Up_Down_Steps = 0;
+ 137   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 138   3                                      ManiDispatchSteps = 5;
+ 139   3                              }
+ 140   2                              else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
+ 141   2                              {
+ 142   3                                      A_Up_Down_Steps = 0;
+ 143   3                                      timeBetweenOpeartionDry = 90;
+ 144   3                                      ManiDispatchSteps = 6;
  145   3                              }
- 146   2                              else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 146   2                              else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
  147   2                              {
  148   3                                      A_Up_Down_Steps = 0;
- 149   3                                      ManiDispatchSteps = 8;
- 150   3                              }
- 151   2                              else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
- 152   2                              {
- 153   3                                      A_Up_Down_Steps = 0;
- 154   3                                      ManiDispatchSteps = 9;
- 155   3                              }
- 156   2                              else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
- 157   2                              {
- 158   3                                      A_Up_Down_Steps = 0;
- 159   3                                      ManiDispatchSteps = 10;
- 160   3                              }
- 161   2                      break;
- 162   2                      default:
- 163   2                               _nop_();
- 164   2              }
- 165   1      }
- 166          
- 167          void ManualDispatch(void)
- 168          {
- 169   1              ManiDispatchSteps = 20;
- 170   1              ManualMode_Operation();
- 171   1      }
+ 149   3                                      timeBetweenOpeartionDry = 90;
+ 150   3                                      ManiDispatchSteps = 7;
+ 151   3                              }
+ 152   2                              else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 153   2                              {
+ 154   3                                      A_Up_Down_Steps = 0;
+ 155   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 156   3                                      ManiDispatchSteps = 8;
+ 157   3                              }
+ 158   2                              else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 159   2                              {
+ 160   3                                      A_Up_Down_Steps = 0;
+ 161   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 162   3                                      ManiDispatchSteps = 9;
+ 163   3                              }
+ 164   2                              else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
+ 165   2                              {
+ 166   3                                      A_Up_Down_Steps = 0;
+ 167   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 168   3                                      ManiDispatchSteps = 10;
+ 169   3                              }
+ 170   2                      break;
+ 171   2                      default:
+ 172   2                               _nop_();
+ 173   2              }
+ 174   1      }
+ 175          
+ 176          void ManualDispatch(void)
+ 177          {
+ 178   1              ManiDispatchSteps = 20;
+C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 21:21:42 PAGE 4   
+
+ 179   1              ManualMode_Operation();
+ 180   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    523    ----
+   CODE SIZE        =    593    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      5    ----
    PDATA SIZE       =   ----    ----
-C51 COMPILER V7.50   DISPATCH                                                              02/27/2014 20:59:00 PAGE 4   
-
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

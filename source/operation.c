@@ -46,6 +46,7 @@ uchar A_Up_Down_Steps = 100;		   	//0：机械臂初始状态
 										//2：机械臂放框到downCisternNumber槽中
 										//100：机械臂空操作
 
+unsigned int timeBetweenOpeartionDry = timeBetweenOpeartion;		//机械臂调起后悬挂晾干时间
 
 
 void A_Move_Entrance(void); 		//机械臂A移动到进口槽位置
@@ -577,7 +578,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			A_Up_Down_Steps ++;
 		break;
 		case 7: 	//1：机械臂A定位前等待
-			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+			if(ManiOperationTimer > timeBetweenOpeartionDry) //定时时间到
 			{
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{

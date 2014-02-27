@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -57,767 +57,768 @@ line level    source
   46                                                                                          //2：机械臂放框到downCisternNumber槽中
   47                                                                                          //100：机械臂空操作
   48          
-  49          
+  49          unsigned int timeBetweenOpeartionDry = timeBetweenOpeartion;            //机械臂调起后悬挂晾干时间
   50          
-  51          void A_Move_Entrance(void);             //机械臂A移动到进口槽位置
-  52          uchar A_Move_Entrance_Steps = 100;              //0：机械臂初始状态
-  53                                                                                          //1：机械臂A定位前等待
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 2   
+  51          
+  52          void A_Move_Entrance(void);             //机械臂A移动到进口槽位置
+  53          uchar A_Move_Entrance_Steps = 100;              //0：机械臂初始状态
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 2   
 
-  54                                                                                          //2：机械臂A定位
-  55                                                                                          //3：机械臂定位后等待
-  56                                                                                          //100：机械臂空操作     
-  57                                                                                          
-  58          void ManualMode_Operation(void);  //手动模式                                                                                                                                                            
-  59                                                                                          
-  60          uint ManiOperationTimer = 0; //机械臂操作定时器
-  61          
-  62          /*
-  63          void A_Move(uchar move_cisternNumber)
-  64          {
-  65                  switch(A_Move_Steps)
-  66                  {
-  67                          case 0:         //0：机械臂初始状态
-  68                                  ManiOperationTimer = 0;
-  69                                  A_Move_Steps ++;
-  70                          break;
-  71                          case 1:         //1：机械臂A定位前等待
-  72                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
-  73                                  {
-  74                                          if(manipulator.currentPosition > move_cisternNumber) //当前机械臂在cisternNumber号槽右边
-  75                                          {
-  76                                                  MotorLeft = 0; //行车向左
-  77                                                  MotorRight = 1;
-  78                                                  if(speedUpFlag == 1)
-  79                                                  {
-  80                                                          MotorSpeedUp = 0;       
-  81                                                  }
-  82                                                  else
-  83                                                  {
-  84                                                          MotorSpeedUp = 1;
-  85                                                  }
-  86                                                  drivingDirect = DGoEntrance;
-  87                                                  manipulator.manipulaterStatus = GoEntrance;
-  88                                                  //displayFlag = 1;
-  89                                          }
-  90                                          else if(manipulator.currentPosition < move_cisternNumber)
-  91                                          {
-  92                                                  MotorLeft = 1;
-  93                                                  MotorRight = 0; //行车向右
-  94                                                  if(speedUpFlag == 1)
-  95                                                  {
-  96                                                          MotorSpeedUp = 0;       
-  97                                                  }
-  98                                                  else
-  99                                                  {
- 100                                                          MotorSpeedUp = 1;
- 101                                                  }
- 102                                                  drivingDirect = GoOutfall;
- 103                                                  manipulator.manipulaterStatus = DGoOutfall;
- 104                                                  //displayFlag = 1;
- 105                                          }
- 106                                          else
- 107                                          {
- 108                                                  A_Move_Steps++; 
- 109                                          }       
- 110                                  }
- 111                          break;
- 112                          case 2:         //2：机械臂A定位
- 113                                  if(manipulator.currentPosition == move_cisternNumber)
- 114                                  {
- 115                                          ManiOperationTimer = 0;
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 3   
+  54                                                                                          //1：机械臂A定位前等待
+  55                                                                                          //2：机械臂A定位
+  56                                                                                          //3：机械臂定位后等待
+  57                                                                                          //100：机械臂空操作     
+  58                                                                                          
+  59          void ManualMode_Operation(void);  //手动模式                                                                                                                                                            
+  60                                                                                          
+  61          uint ManiOperationTimer = 0; //机械臂操作定时器
+  62          
+  63          /*
+  64          void A_Move(uchar move_cisternNumber)
+  65          {
+  66                  switch(A_Move_Steps)
+  67                  {
+  68                          case 0:         //0：机械臂初始状态
+  69                                  ManiOperationTimer = 0;
+  70                                  A_Move_Steps ++;
+  71                          break;
+  72                          case 1:         //1：机械臂A定位前等待
+  73                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+  74                                  {
+  75                                          if(manipulator.currentPosition > move_cisternNumber) //当前机械臂在cisternNumber号槽右边
+  76                                          {
+  77                                                  MotorLeft = 0; //行车向左
+  78                                                  MotorRight = 1;
+  79                                                  if(speedUpFlag == 1)
+  80                                                  {
+  81                                                          MotorSpeedUp = 0;       
+  82                                                  }
+  83                                                  else
+  84                                                  {
+  85                                                          MotorSpeedUp = 1;
+  86                                                  }
+  87                                                  drivingDirect = DGoEntrance;
+  88                                                  manipulator.manipulaterStatus = GoEntrance;
+  89                                                  //displayFlag = 1;
+  90                                          }
+  91                                          else if(manipulator.currentPosition < move_cisternNumber)
+  92                                          {
+  93                                                  MotorLeft = 1;
+  94                                                  MotorRight = 0; //行车向右
+  95                                                  if(speedUpFlag == 1)
+  96                                                  {
+  97                                                          MotorSpeedUp = 0;       
+  98                                                  }
+  99                                                  else
+ 100                                                  {
+ 101                                                          MotorSpeedUp = 1;
+ 102                                                  }
+ 103                                                  drivingDirect = GoOutfall;
+ 104                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 105                                                  //displayFlag = 1;
+ 106                                          }
+ 107                                          else
+ 108                                          {
+ 109                                                  A_Move_Steps++; 
+ 110                                          }       
+ 111                                  }
+ 112                          break;
+ 113                          case 2:         //2：机械臂A定位
+ 114                                  if(manipulator.currentPosition == move_cisternNumber)
+ 115                                  {
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 3   
 
- 116                                          MotorLeft = 1;
- 117                                          MotorRight = 1;
- 118                                          //drivingDirect = DStop;
- 119                                          manipulator.manipulaterStatus = Stop;
- 120                                          displayFlag = 1;
- 121                                          A_Move_Steps ++;
- 122                                  }
- 123                          break;
- 124                          case 3:         //1：机械臂A定位前等待
- 125                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 126                                  {
- 127                                          if(manipulator.currentPosition > move_cisternNumber) //当前机械臂在cisternNumber号槽右边
- 128                                          {
- 129                                                  MotorLeft = 0; //行车向左
- 130                                                  MotorRight = 1;
- 131                                                  if(speedUpFlag == 1)
- 132                                                  {
- 133                                                          MotorSpeedUp = 0;       
- 134                                                  }
- 135                                                  else
- 136                                                  {
- 137                                                          MotorSpeedUp = 1;
- 138                                                  }
- 139                                                  drivingDirect = DGoEntrance;
- 140                                                  manipulator.manipulaterStatus = GoEntrance;
- 141                                                  //displayFlag = 1;
- 142                                                  A_Move_Steps = 2;
- 143                                          }
- 144                                          else if(manipulator.currentPosition < move_cisternNumber)
- 145                                          {
- 146                                                  MotorLeft = 1;
- 147                                                  MotorRight = 0; //行车向右
- 148                                                  if(speedUpFlag == 1)
- 149                                                  {
- 150                                                          MotorSpeedUp = 0;       
- 151                                                  }
- 152                                                  else
- 153                                                  {
- 154                                                          MotorSpeedUp = 1;
- 155                                                  }
- 156                                                  drivingDirect = GoOutfall;
- 157                                                  manipulator.manipulaterStatus = DGoOutfall;
- 158                                                  //displayFlag = 1;
- 159                                                  A_Move_Steps = 2;
- 160                                          }
- 161                                          else
- 162                                          {
- 163                                                  displayFlag = 1;
- 164                                                  A_Move_Steps = 100;     
- 165                                          }       
- 166                                  }
- 167                          break;
- 168                          default:
- 169                                    _nop_();
- 170                  }
- 171          }
- 172          
- 173          void A_Down(uchar down_cisternNumber)
- 174          {
- 175                  switch(A_Down_Steps)
- 176                  {
- 177                          case 0:         //0：机械臂初始状态
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 4   
+ 116                                          ManiOperationTimer = 0;
+ 117                                          MotorLeft = 1;
+ 118                                          MotorRight = 1;
+ 119                                          //drivingDirect = DStop;
+ 120                                          manipulator.manipulaterStatus = Stop;
+ 121                                          displayFlag = 1;
+ 122                                          A_Move_Steps ++;
+ 123                                  }
+ 124                          break;
+ 125                          case 3:         //1：机械臂A定位前等待
+ 126                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 127                                  {
+ 128                                          if(manipulator.currentPosition > move_cisternNumber) //当前机械臂在cisternNumber号槽右边
+ 129                                          {
+ 130                                                  MotorLeft = 0; //行车向左
+ 131                                                  MotorRight = 1;
+ 132                                                  if(speedUpFlag == 1)
+ 133                                                  {
+ 134                                                          MotorSpeedUp = 0;       
+ 135                                                  }
+ 136                                                  else
+ 137                                                  {
+ 138                                                          MotorSpeedUp = 1;
+ 139                                                  }
+ 140                                                  drivingDirect = DGoEntrance;
+ 141                                                  manipulator.manipulaterStatus = GoEntrance;
+ 142                                                  //displayFlag = 1;
+ 143                                                  A_Move_Steps = 2;
+ 144                                          }
+ 145                                          else if(manipulator.currentPosition < move_cisternNumber)
+ 146                                          {
+ 147                                                  MotorLeft = 1;
+ 148                                                  MotorRight = 0; //行车向右
+ 149                                                  if(speedUpFlag == 1)
+ 150                                                  {
+ 151                                                          MotorSpeedUp = 0;       
+ 152                                                  }
+ 153                                                  else
+ 154                                                  {
+ 155                                                          MotorSpeedUp = 1;
+ 156                                                  }
+ 157                                                  drivingDirect = GoOutfall;
+ 158                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 159                                                  //displayFlag = 1;
+ 160                                                  A_Move_Steps = 2;
+ 161                                          }
+ 162                                          else
+ 163                                          {
+ 164                                                  displayFlag = 1;
+ 165                                                  A_Move_Steps = 100;     
+ 166                                          }       
+ 167                                  }
+ 168                          break;
+ 169                          default:
+ 170                                    _nop_();
+ 171                  }
+ 172          }
+ 173          
+ 174          void A_Down(uchar down_cisternNumber)
+ 175          {
+ 176                  switch(A_Down_Steps)
+ 177                  {
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 4   
 
- 178                                  ManiOperationTimer = 0;
- 179                                  A_Down_Steps ++;
- 180                          break;
- 181                          case 1:         //1：机械臂A定位前等待
- 182                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 183                                  {
- 184                                          if(manipulator.currentPosition > down_cisternNumber) //当前机械臂在cisternNumber号槽右边
- 185                                          {
- 186                                                  MotorLeft = 0; //行车向左
- 187                                                  MotorRight = 1;
- 188                                                  if(speedUpFlag == 1)
- 189                                                  {
- 190                                                          MotorSpeedUp = 0;       
- 191                                                  }
- 192                                                  else
- 193                                                  {
- 194                                                          MotorSpeedUp = 1;
- 195                                                  }
- 196                                                  drivingDirect = DGoEntrance;
- 197                                                  manipulator.manipulaterStatus = GoEntrance;
- 198                                                  //displayFlag = 1;
- 199                                          }
- 200                                          else if(manipulator.currentPosition < down_cisternNumber)
- 201                                          {
- 202                                                  MotorLeft = 1;
- 203                                                  MotorRight = 0; //行车向右
- 204                                                  if(speedUpFlag == 1)
- 205                                                  {
- 206                                                          MotorSpeedUp = 0;       
- 207                                                  }
- 208                                                  else
- 209                                                  {
- 210                                                          MotorSpeedUp = 1;
- 211                                                  }
- 212                                                  drivingDirect = GoOutfall;
- 213                                                  manipulator.manipulaterStatus = DGoOutfall;
- 214                                                  //displayFlag = 1;
- 215                                          }
- 216                                          else
- 217                                          {
- 218                                                  A_Down_Steps++; 
- 219                                          }       
- 220                                  }
- 221                          break;
- 222                          case 2:         //2：机械臂A定位
- 223                                  if(manipulator.currentPosition == down_cisternNumber)
- 224                                  {
- 225                                          ManiOperationTimer = 0;
- 226                                          MotorLeft = 1;
- 227                                          MotorRight = 1;
- 228                                          //drivingDirect = DStop;
- 229                                          manipulator.manipulaterStatus = Stop;
- 230                                          displayFlag = 1;
- 231                                          A_Down_Steps ++;
- 232                                  }
- 233                          break;
- 234                          case 3:         //1：机械臂A定位前等待
- 235                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 236                                  {
- 237                                          if(manipulator.currentPosition > down_cisternNumber) //当前机械臂在cisternNumber号槽右边
- 238                                          {
- 239                                                  MotorLeft = 0; //行车向左
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 5   
+ 178                          case 0:         //0：机械臂初始状态
+ 179                                  ManiOperationTimer = 0;
+ 180                                  A_Down_Steps ++;
+ 181                          break;
+ 182                          case 1:         //1：机械臂A定位前等待
+ 183                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 184                                  {
+ 185                                          if(manipulator.currentPosition > down_cisternNumber) //当前机械臂在cisternNumber号槽右边
+ 186                                          {
+ 187                                                  MotorLeft = 0; //行车向左
+ 188                                                  MotorRight = 1;
+ 189                                                  if(speedUpFlag == 1)
+ 190                                                  {
+ 191                                                          MotorSpeedUp = 0;       
+ 192                                                  }
+ 193                                                  else
+ 194                                                  {
+ 195                                                          MotorSpeedUp = 1;
+ 196                                                  }
+ 197                                                  drivingDirect = DGoEntrance;
+ 198                                                  manipulator.manipulaterStatus = GoEntrance;
+ 199                                                  //displayFlag = 1;
+ 200                                          }
+ 201                                          else if(manipulator.currentPosition < down_cisternNumber)
+ 202                                          {
+ 203                                                  MotorLeft = 1;
+ 204                                                  MotorRight = 0; //行车向右
+ 205                                                  if(speedUpFlag == 1)
+ 206                                                  {
+ 207                                                          MotorSpeedUp = 0;       
+ 208                                                  }
+ 209                                                  else
+ 210                                                  {
+ 211                                                          MotorSpeedUp = 1;
+ 212                                                  }
+ 213                                                  drivingDirect = GoOutfall;
+ 214                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 215                                                  //displayFlag = 1;
+ 216                                          }
+ 217                                          else
+ 218                                          {
+ 219                                                  A_Down_Steps++; 
+ 220                                          }       
+ 221                                  }
+ 222                          break;
+ 223                          case 2:         //2：机械臂A定位
+ 224                                  if(manipulator.currentPosition == down_cisternNumber)
+ 225                                  {
+ 226                                          ManiOperationTimer = 0;
+ 227                                          MotorLeft = 1;
+ 228                                          MotorRight = 1;
+ 229                                          //drivingDirect = DStop;
+ 230                                          manipulator.manipulaterStatus = Stop;
+ 231                                          displayFlag = 1;
+ 232                                          A_Down_Steps ++;
+ 233                                  }
+ 234                          break;
+ 235                          case 3:         //1：机械臂A定位前等待
+ 236                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 237                                  {
+ 238                                          if(manipulator.currentPosition > down_cisternNumber) //当前机械臂在cisternNumber号槽右边
+ 239                                          {
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 5   
 
- 240                                                  MotorRight = 1;
- 241                                                  if(speedUpFlag == 1)
- 242                                                  {
- 243                                                          MotorSpeedUp = 0;       
- 244                                                  }
- 245                                                  else
- 246                                                  {
- 247                                                          MotorSpeedUp = 1;
- 248                                                  }
- 249                                                  drivingDirect = DGoEntrance;
- 250                                                  manipulator.manipulaterStatus = GoEntrance;
- 251                                                  //displayFlag = 1;
- 252                                                  A_Down_Steps = 2;
- 253                                          }
- 254                                          else if(manipulator.currentPosition < down_cisternNumber)
- 255                                          {
- 256                                                  MotorLeft = 1;
- 257                                                  MotorRight = 0; //行车向右
- 258                                                  if(speedUpFlag == 1)
- 259                                                  {
- 260                                                          MotorSpeedUp = 0;       
- 261                                                  }
- 262                                                  else
- 263                                                  {
- 264                                                          MotorSpeedUp = 1;
- 265                                                  }
- 266                                                  drivingDirect = GoOutfall;
- 267                                                  manipulator.manipulaterStatus = DGoOutfall;
- 268                                                  //displayFlag = 1;
- 269                                                  A_Down_Steps = 2;
- 270                                          }
- 271                                          else
- 272                                          {
- 273                                                  displayFlag = 1;
- 274                                                  A_Down_Steps ++;        
- 275                                          }       
- 276                                  }
- 277                          break;
- 278                          case 4:
- 279                                  ManiDown = 0;
- 280                                  manipulator.manipulaterStatus = GoDown;
- 281                                  displayFlag = 1;
- 282                                  A_Down_Steps++;
- 283                          break;
- 284                          case 5:         //4：机械臂A向下 
- 285                                  if(sensorManiBut == 0) //机械臂A底端感应器感应到
- 286                                  {
- 287                                          ManiDown = 1;
- 288                                          manipulator.manipulatorPosition = Bottom;
- 289                                          manipulator.manipulaterStatus = Stop;
- 290                                          displayFlag = 1;
- 291                                          cistern[down_cisternNumber/2].cisternStatus = InCounting;//标记当前槽为满
- 292                                          cistern[down_cisternNumber/2].currentTime = 0;//清除当前槽计时时间
- 293                                          A_Down_Steps = 100;
- 294                                  }
- 295                          break;
- 296                          default:
- 297                                   _nop_();
- 298                  }
- 299          }
- 300          
- 301          void A_Up(uchar up_cisternNumber)
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 6   
+ 240                                                  MotorLeft = 0; //行车向左
+ 241                                                  MotorRight = 1;
+ 242                                                  if(speedUpFlag == 1)
+ 243                                                  {
+ 244                                                          MotorSpeedUp = 0;       
+ 245                                                  }
+ 246                                                  else
+ 247                                                  {
+ 248                                                          MotorSpeedUp = 1;
+ 249                                                  }
+ 250                                                  drivingDirect = DGoEntrance;
+ 251                                                  manipulator.manipulaterStatus = GoEntrance;
+ 252                                                  //displayFlag = 1;
+ 253                                                  A_Down_Steps = 2;
+ 254                                          }
+ 255                                          else if(manipulator.currentPosition < down_cisternNumber)
+ 256                                          {
+ 257                                                  MotorLeft = 1;
+ 258                                                  MotorRight = 0; //行车向右
+ 259                                                  if(speedUpFlag == 1)
+ 260                                                  {
+ 261                                                          MotorSpeedUp = 0;       
+ 262                                                  }
+ 263                                                  else
+ 264                                                  {
+ 265                                                          MotorSpeedUp = 1;
+ 266                                                  }
+ 267                                                  drivingDirect = GoOutfall;
+ 268                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 269                                                  //displayFlag = 1;
+ 270                                                  A_Down_Steps = 2;
+ 271                                          }
+ 272                                          else
+ 273                                          {
+ 274                                                  displayFlag = 1;
+ 275                                                  A_Down_Steps ++;        
+ 276                                          }       
+ 277                                  }
+ 278                          break;
+ 279                          case 4:
+ 280                                  ManiDown = 0;
+ 281                                  manipulator.manipulaterStatus = GoDown;
+ 282                                  displayFlag = 1;
+ 283                                  A_Down_Steps++;
+ 284                          break;
+ 285                          case 5:         //4：机械臂A向下 
+ 286                                  if(sensorManiBut == 0) //机械臂A底端感应器感应到
+ 287                                  {
+ 288                                          ManiDown = 1;
+ 289                                          manipulator.manipulatorPosition = Bottom;
+ 290                                          manipulator.manipulaterStatus = Stop;
+ 291                                          displayFlag = 1;
+ 292                                          cistern[down_cisternNumber/2].cisternStatus = InCounting;//标记当前槽为满
+ 293                                          cistern[down_cisternNumber/2].currentTime = 0;//清除当前槽计时时间
+ 294                                          A_Down_Steps = 100;
+ 295                                  }
+ 296                          break;
+ 297                          default:
+ 298                                   _nop_();
+ 299                  }
+ 300          }
+ 301          
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 6   
 
- 302          {
- 303                  switch(A_Up_Steps)
- 304                  {
- 305                          case 0:         //0：机械臂初始状态
- 306                                  ManiOperationTimer = 0;
- 307                                  A_Up_Steps ++;
- 308                          break;
- 309                          case 1:         //1：机械臂A定位前等待
- 310                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 311                                  {
- 312                                          if(manipulator.currentPosition > up_cisternNumber) //当前机械臂在cisternNumber号槽右边
- 313                                          {
- 314                                                  MotorLeft = 0; //行车向左
- 315                                                  MotorRight = 1;
- 316                                                  if(speedUpFlag == 1)
- 317                                                  {
- 318                                                          MotorSpeedUp = 0;       
- 319                                                  }
- 320                                                  else
- 321                                                  {
- 322                                                          MotorSpeedUp = 1;
- 323                                                  }
- 324                                                  drivingDirect = DGoEntrance;
- 325                                                  manipulator.manipulaterStatus = GoEntrance;
- 326                                                  //displayFlag = 1;
- 327                                          }
- 328                                          else if(manipulator.currentPosition < up_cisternNumber)
- 329                                          {
- 330                                                  MotorLeft = 1;
- 331                                                  MotorRight = 0; //行车向右
- 332                                                  if(speedUpFlag == 1)
- 333                                                  {
- 334                                                          MotorSpeedUp = 0;       
- 335                                                  }
- 336                                                  else
- 337                                                  {
- 338                                                          MotorSpeedUp = 1;
- 339                                                  }
- 340                                                  drivingDirect = GoOutfall;
- 341                                                  manipulator.manipulaterStatus = DGoOutfall;
- 342                                                  //displayFlag = 1;
- 343                                          }
- 344                                          else
- 345                                          {
- 346                                                  A_Up_Steps++;   
- 347                                          }       
- 348                                  }
- 349                          break;
- 350                          case 2:         //2：机械臂A定位
- 351                                  if(manipulator.currentPosition == up_cisternNumber)
- 352                                  {
- 353                                          ManiOperationTimer = 0;
- 354                                          MotorLeft = 1;
- 355                                          MotorRight = 1;
- 356                                          //drivingDirect = DStop;
- 357                                          manipulator.manipulaterStatus = Stop;
- 358                                          displayFlag = 1;
- 359                                          A_Up_Steps ++;
- 360                                  }
- 361                          break;
- 362                          case 3:         //1：机械臂A定位前等待
- 363                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 7   
+ 302          void A_Up(uchar up_cisternNumber)
+ 303          {
+ 304                  switch(A_Up_Steps)
+ 305                  {
+ 306                          case 0:         //0：机械臂初始状态
+ 307                                  ManiOperationTimer = 0;
+ 308                                  A_Up_Steps ++;
+ 309                          break;
+ 310                          case 1:         //1：机械臂A定位前等待
+ 311                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 312                                  {
+ 313                                          if(manipulator.currentPosition > up_cisternNumber) //当前机械臂在cisternNumber号槽右边
+ 314                                          {
+ 315                                                  MotorLeft = 0; //行车向左
+ 316                                                  MotorRight = 1;
+ 317                                                  if(speedUpFlag == 1)
+ 318                                                  {
+ 319                                                          MotorSpeedUp = 0;       
+ 320                                                  }
+ 321                                                  else
+ 322                                                  {
+ 323                                                          MotorSpeedUp = 1;
+ 324                                                  }
+ 325                                                  drivingDirect = DGoEntrance;
+ 326                                                  manipulator.manipulaterStatus = GoEntrance;
+ 327                                                  //displayFlag = 1;
+ 328                                          }
+ 329                                          else if(manipulator.currentPosition < up_cisternNumber)
+ 330                                          {
+ 331                                                  MotorLeft = 1;
+ 332                                                  MotorRight = 0; //行车向右
+ 333                                                  if(speedUpFlag == 1)
+ 334                                                  {
+ 335                                                          MotorSpeedUp = 0;       
+ 336                                                  }
+ 337                                                  else
+ 338                                                  {
+ 339                                                          MotorSpeedUp = 1;
+ 340                                                  }
+ 341                                                  drivingDirect = GoOutfall;
+ 342                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 343                                                  //displayFlag = 1;
+ 344                                          }
+ 345                                          else
+ 346                                          {
+ 347                                                  A_Up_Steps++;   
+ 348                                          }       
+ 349                                  }
+ 350                          break;
+ 351                          case 2:         //2：机械臂A定位
+ 352                                  if(manipulator.currentPosition == up_cisternNumber)
+ 353                                  {
+ 354                                          ManiOperationTimer = 0;
+ 355                                          MotorLeft = 1;
+ 356                                          MotorRight = 1;
+ 357                                          //drivingDirect = DStop;
+ 358                                          manipulator.manipulaterStatus = Stop;
+ 359                                          displayFlag = 1;
+ 360                                          A_Up_Steps ++;
+ 361                                  }
+ 362                          break;
+ 363                          case 3:         //1：机械臂A定位前等待
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 7   
 
- 364                                  {
- 365                                          if(manipulator.currentPosition > up_cisternNumber) //当前机械臂在cisternNumber号槽右边
- 366                                          {
- 367                                                  MotorLeft = 0; //行车向左
- 368                                                  MotorRight = 1;
- 369                                                  if(speedUpFlag == 1)
- 370                                                  {
- 371                                                          MotorSpeedUp = 0;       
- 372                                                  }
- 373                                                  else
- 374                                                  {
- 375                                                          MotorSpeedUp = 1;
- 376                                                  }
- 377                                                  drivingDirect = DGoEntrance;
- 378                                                  manipulator.manipulaterStatus = GoEntrance;
- 379                                                  //displayFlag = 1;
- 380                                                  A_Up_Steps = 2;
- 381                                          }
- 382                                          else if(manipulator.currentPosition < up_cisternNumber)
- 383                                          {
- 384                                                  MotorLeft = 1;
- 385                                                  MotorRight = 0; //行车向右
- 386                                                  if(speedUpFlag == 1)
- 387                                                  {
- 388                                                          MotorSpeedUp = 0;       
- 389                                                  }
- 390                                                  else
- 391                                                  {
- 392                                                          MotorSpeedUp = 1;
- 393                                                  }
- 394                                                  drivingDirect = GoOutfall;
- 395                                                  manipulator.manipulaterStatus = DGoOutfall;
- 396                                                  //displayFlag = 1;
- 397                                                  A_Up_Steps = 2;
- 398                                          }
- 399                                          else
- 400                                          {
- 401                                                  displayFlag = 1;
- 402                                                  A_Up_Steps ++;  
- 403                                          }       
- 404                                  }
- 405                          break;
- 406                          case 4:
- 407                                  ManiUp = 0;
- 408                                  manipulator.manipulaterStatus = GoUp;
- 409                                  displayFlag = 1;
- 410                                  A_Up_Steps++;
- 411                          break;
- 412                          case 5:         //4：机械臂A向上 
- 413                                  if(sensorManiTop == 0) //机械臂A顶端感应器感应到
- 414                                  {
- 415                                          ManiUp = 1;
- 416                                          manipulator.manipulatorPosition = Top;
- 417                                          manipulator.manipulaterStatus = Stop;
- 418                                          displayFlag = 1;
- 419                                          cistern[up_cisternNumber/2].cisternStatus = Empty;//标记当前槽为满
- 420                                          cistern[up_cisternNumber/2].currentTime = 0;//清除当前槽计时时间
- 421                                          A_Up_Steps = 100;
- 422                                  }
- 423                          break;
- 424                          default:
- 425                                    _nop_();
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 8   
+ 364                                  if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 365                                  {
+ 366                                          if(manipulator.currentPosition > up_cisternNumber) //当前机械臂在cisternNumber号槽右边
+ 367                                          {
+ 368                                                  MotorLeft = 0; //行车向左
+ 369                                                  MotorRight = 1;
+ 370                                                  if(speedUpFlag == 1)
+ 371                                                  {
+ 372                                                          MotorSpeedUp = 0;       
+ 373                                                  }
+ 374                                                  else
+ 375                                                  {
+ 376                                                          MotorSpeedUp = 1;
+ 377                                                  }
+ 378                                                  drivingDirect = DGoEntrance;
+ 379                                                  manipulator.manipulaterStatus = GoEntrance;
+ 380                                                  //displayFlag = 1;
+ 381                                                  A_Up_Steps = 2;
+ 382                                          }
+ 383                                          else if(manipulator.currentPosition < up_cisternNumber)
+ 384                                          {
+ 385                                                  MotorLeft = 1;
+ 386                                                  MotorRight = 0; //行车向右
+ 387                                                  if(speedUpFlag == 1)
+ 388                                                  {
+ 389                                                          MotorSpeedUp = 0;       
+ 390                                                  }
+ 391                                                  else
+ 392                                                  {
+ 393                                                          MotorSpeedUp = 1;
+ 394                                                  }
+ 395                                                  drivingDirect = GoOutfall;
+ 396                                                  manipulator.manipulaterStatus = DGoOutfall;
+ 397                                                  //displayFlag = 1;
+ 398                                                  A_Up_Steps = 2;
+ 399                                          }
+ 400                                          else
+ 401                                          {
+ 402                                                  displayFlag = 1;
+ 403                                                  A_Up_Steps ++;  
+ 404                                          }       
+ 405                                  }
+ 406                          break;
+ 407                          case 4:
+ 408                                  ManiUp = 0;
+ 409                                  manipulator.manipulaterStatus = GoUp;
+ 410                                  displayFlag = 1;
+ 411                                  A_Up_Steps++;
+ 412                          break;
+ 413                          case 5:         //4：机械臂A向上 
+ 414                                  if(sensorManiTop == 0) //机械臂A顶端感应器感应到
+ 415                                  {
+ 416                                          ManiUp = 1;
+ 417                                          manipulator.manipulatorPosition = Top;
+ 418                                          manipulator.manipulaterStatus = Stop;
+ 419                                          displayFlag = 1;
+ 420                                          cistern[up_cisternNumber/2].cisternStatus = Empty;//标记当前槽为满
+ 421                                          cistern[up_cisternNumber/2].currentTime = 0;//清除当前槽计时时间
+ 422                                          A_Up_Steps = 100;
+ 423                                  }
+ 424                          break;
+ 425                          default:
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 8   
 
- 426                  }
- 427          }
- 428          */
- 429          void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
- 430          {
- 431   1              switch(A_Up_Down_Steps)
- 432   1              {
- 433   2                      case 0:         //0：机械臂初始状态
- 434   2                              ManiOperationTimer = 0;
- 435   2                              A_Up_Down_Steps ++;
- 436   2                      break;
- 437   2                      case 1:         //1：机械臂A定位前等待
- 438   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 439   2                              {
- 440   3                                      if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
- 441   3                                      {
- 442   4                                              MotorLeft = 0; //行车向左
- 443   4                                              MotorRight = 1;
- 444   4                                              if(speedUpFlag == 1)
- 445   4                                              {
- 446   5                                                      MotorSpeedUp = 0;       
- 447   5                                              }
- 448   4                                              else
- 449   4                                              {
- 450   5                                                      MotorSpeedUp = 1;
- 451   5                                              }
- 452   4                                              drivingDirect = DGoEntrance;
- 453   4                                              manipulator.manipulaterStatus = GoEntrance;
- 454   4                                              if(displayFlag == 0)
- 455   4                                              {
- 456   5                                                      displayFlag = 2;
- 457   5                                              }
- 458   4                                      }
- 459   3                                      else if(manipulator.currentPosition < upCisternNumber)
- 460   3                                      {
- 461   4                                              MotorLeft = 1;
- 462   4                                              MotorRight = 0; //行车向右
- 463   4                                              if(speedUpFlag == 1)
- 464   4                                              {
- 465   5                                                      MotorSpeedUp = 0;       
- 466   5                                              }
- 467   4                                              else
- 468   4                                              {
- 469   5                                                      MotorSpeedUp = 1;
- 470   5                                              }
- 471   4                                              drivingDirect = GoOutfall;
- 472   4                                              manipulator.manipulaterStatus = DGoOutfall;
- 473   4                                              if(displayFlag == 0)
- 474   4                                              {
- 475   5                                                      displayFlag = 2;
- 476   5                                              }
- 477   4                                      }
- 478   3                                      else
- 479   3                                      {
- 480   4                                              MotorSpeedUp = 1;
- 481   4                                              A_Up_Down_Steps++;      
- 482   4                                      }       
- 483   3                              }
- 484   2                      break;
- 485   2                      case 2:         //2：机械臂A定位
- 486   2                              if(manipulator.currentPosition == upCisternNumber)
- 487   2                              {
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 9   
+ 426                                    _nop_();
+ 427                  }
+ 428          }
+ 429          */
+ 430          void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
+ 431          {
+ 432   1              switch(A_Up_Down_Steps)
+ 433   1              {
+ 434   2                      case 0:         //0：机械臂初始状态
+ 435   2                              ManiOperationTimer = 0;
+ 436   2                              A_Up_Down_Steps ++;
+ 437   2                      break;
+ 438   2                      case 1:         //1：机械臂A定位前等待
+ 439   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 440   2                              {
+ 441   3                                      if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
+ 442   3                                      {
+ 443   4                                              MotorLeft = 0; //行车向左
+ 444   4                                              MotorRight = 1;
+ 445   4                                              if(speedUpFlag == 1)
+ 446   4                                              {
+ 447   5                                                      MotorSpeedUp = 0;       
+ 448   5                                              }
+ 449   4                                              else
+ 450   4                                              {
+ 451   5                                                      MotorSpeedUp = 1;
+ 452   5                                              }
+ 453   4                                              drivingDirect = DGoEntrance;
+ 454   4                                              manipulator.manipulaterStatus = GoEntrance;
+ 455   4                                              if(displayFlag == 0)
+ 456   4                                              {
+ 457   5                                                      displayFlag = 2;
+ 458   5                                              }
+ 459   4                                      }
+ 460   3                                      else if(manipulator.currentPosition < upCisternNumber)
+ 461   3                                      {
+ 462   4                                              MotorLeft = 1;
+ 463   4                                              MotorRight = 0; //行车向右
+ 464   4                                              if(speedUpFlag == 1)
+ 465   4                                              {
+ 466   5                                                      MotorSpeedUp = 0;       
+ 467   5                                              }
+ 468   4                                              else
+ 469   4                                              {
+ 470   5                                                      MotorSpeedUp = 1;
+ 471   5                                              }
+ 472   4                                              drivingDirect = GoOutfall;
+ 473   4                                              manipulator.manipulaterStatus = DGoOutfall;
+ 474   4                                              if(displayFlag == 0)
+ 475   4                                              {
+ 476   5                                                      displayFlag = 2;
+ 477   5                                              }
+ 478   4                                      }
+ 479   3                                      else
+ 480   3                                      {
+ 481   4                                              MotorSpeedUp = 1;
+ 482   4                                              A_Up_Down_Steps++;      
+ 483   4                                      }       
+ 484   3                              }
+ 485   2                      break;
+ 486   2                      case 2:         //2：机械臂A定位
+ 487   2                              if(manipulator.currentPosition == upCisternNumber)
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 9   
 
- 488   3                                      ManiOperationTimer = 0;
- 489   3                                      MotorLeft = 1;
- 490   3                                      MotorRight = 1;
- 491   3                                      //drivingDirect = DStop;
- 492   3                                      manipulator.manipulaterStatus = Stop;
- 493   3                                      if(displayFlag == 0)
- 494   3                                      {
- 495   4                                              displayFlag = 2;
- 496   4                                      }
- 497   3                                      A_Up_Down_Steps ++;
- 498   3                              }
- 499   2                      break;
- 500   2                      case 3:         //1：机械臂A定位前等待
- 501   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 502   2                              {
- 503   3                                      if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
- 504   3                                      {
- 505   4                                              MotorLeft = 0; //行车向左
- 506   4                                              MotorRight = 1;
- 507   4                                              if(speedUpFlag == 1)
- 508   4                                              {
- 509   5                                                      MotorSpeedUp = 0;       
- 510   5                                              }
- 511   4                                              else
- 512   4                                              {
- 513   5                                                      MotorSpeedUp = 1;
- 514   5                                              }
- 515   4                                              drivingDirect = DGoEntrance;
- 516   4                                              manipulator.manipulaterStatus = GoEntrance;
- 517   4                                              if(displayFlag == 0)
- 518   4                                              {
- 519   5                                                      displayFlag = 2;
- 520   5                                              }
- 521   4                                              A_Up_Down_Steps = 2;
- 522   4                                      }
- 523   3                                      else if(manipulator.currentPosition < upCisternNumber)
- 524   3                                      {
- 525   4                                              MotorLeft = 1;
- 526   4                                              MotorRight = 0; //行车向右
- 527   4                                              if(speedUpFlag == 1)
- 528   4                                              {
- 529   5                                                      MotorSpeedUp = 0;       
- 530   5                                              }
- 531   4                                              else
- 532   4                                              {
- 533   5                                                      MotorSpeedUp = 1;
- 534   5                                              }
- 535   4                                              drivingDirect = GoOutfall;
- 536   4                                              manipulator.manipulaterStatus = DGoOutfall;
- 537   4                                              if(displayFlag == 0)
- 538   4                                              {
- 539   5                                                      displayFlag = 2;
- 540   5                                              }
- 541   4                                              A_Up_Down_Steps = 2;
- 542   4                                      }
- 543   3                                      else
- 544   3                                      {
- 545   4                                              MotorSpeedUp = 1;
- 546   4                                              if(displayFlag == 0)
- 547   4                                              {
- 548   5                                                      displayFlag = 2;
- 549   5                                              }
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 10  
+ 488   2                              {
+ 489   3                                      ManiOperationTimer = 0;
+ 490   3                                      MotorLeft = 1;
+ 491   3                                      MotorRight = 1;
+ 492   3                                      //drivingDirect = DStop;
+ 493   3                                      manipulator.manipulaterStatus = Stop;
+ 494   3                                      if(displayFlag == 0)
+ 495   3                                      {
+ 496   4                                              displayFlag = 2;
+ 497   4                                      }
+ 498   3                                      A_Up_Down_Steps ++;
+ 499   3                              }
+ 500   2                      break;
+ 501   2                      case 3:         //1：机械臂A定位前等待
+ 502   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 503   2                              {
+ 504   3                                      if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
+ 505   3                                      {
+ 506   4                                              MotorLeft = 0; //行车向左
+ 507   4                                              MotorRight = 1;
+ 508   4                                              if(speedUpFlag == 1)
+ 509   4                                              {
+ 510   5                                                      MotorSpeedUp = 0;       
+ 511   5                                              }
+ 512   4                                              else
+ 513   4                                              {
+ 514   5                                                      MotorSpeedUp = 1;
+ 515   5                                              }
+ 516   4                                              drivingDirect = DGoEntrance;
+ 517   4                                              manipulator.manipulaterStatus = GoEntrance;
+ 518   4                                              if(displayFlag == 0)
+ 519   4                                              {
+ 520   5                                                      displayFlag = 2;
+ 521   5                                              }
+ 522   4                                              A_Up_Down_Steps = 2;
+ 523   4                                      }
+ 524   3                                      else if(manipulator.currentPosition < upCisternNumber)
+ 525   3                                      {
+ 526   4                                              MotorLeft = 1;
+ 527   4                                              MotorRight = 0; //行车向右
+ 528   4                                              if(speedUpFlag == 1)
+ 529   4                                              {
+ 530   5                                                      MotorSpeedUp = 0;       
+ 531   5                                              }
+ 532   4                                              else
+ 533   4                                              {
+ 534   5                                                      MotorSpeedUp = 1;
+ 535   5                                              }
+ 536   4                                              drivingDirect = GoOutfall;
+ 537   4                                              manipulator.manipulaterStatus = DGoOutfall;
+ 538   4                                              if(displayFlag == 0)
+ 539   4                                              {
+ 540   5                                                      displayFlag = 2;
+ 541   5                                              }
+ 542   4                                              A_Up_Down_Steps = 2;
+ 543   4                                      }
+ 544   3                                      else
+ 545   3                                      {
+ 546   4                                              MotorSpeedUp = 1;
+ 547   4                                              if(displayFlag == 0)
+ 548   4                                              {
+ 549   5                                                      displayFlag = 2;
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 10  
 
- 550   4                                              A_Up_Down_Steps ++;     
- 551   4                                      }       
- 552   3                              }
- 553   2                      break;
- 554   2                      case 4:
- 555   2                              ManiUp = 0;
- 556   2                              manipulator.manipulaterStatus = GoUp;
- 557   2                              if(displayFlag == 0)
- 558   2                              {
- 559   3                                      displayFlag = 2;
- 560   3                              }
- 561   2                              A_Up_Down_Steps++;
- 562   2                      break;
- 563   2                      case 5:         //4：机械臂A向上 
- 564   2                              if(sensorManiTop == 0) //机械臂A顶端感应器感应到
- 565   2                              {
- 566   3                                      ManiUp = 1;
- 567   3                                      manipulator.manipulatorPosition = Top;
- 568   3                                      manipulator.manipulaterStatus = Stop;   
- 569   3                                      cistern[upCisternNumber/2].cisternStatus = Empty;//标记当前槽为满
- 570   3                                      cistern[upCisternNumber/2].currentTime = 0;//清除当前槽计时时间
- 571   3                                      displayFlag = 1;
- 572   3                                      A_Up_Down_Steps ++;
- 573   3                              }
- 574   2                      break;
- 575   2                      case 6:         //0：机械臂初始状态
- 576   2                              ManiOperationTimer = 0;
- 577   2                              A_Up_Down_Steps ++;
- 578   2                      break;
- 579   2                      case 7:         //1：机械臂A定位前等待
- 580   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 581   2                              {
- 582   3                                      if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
- 583   3                                      {
- 584   4                                              MotorLeft = 0; //行车向左
- 585   4                                              MotorRight = 1;
- 586   4                                              if(speedUpFlag == 1)
- 587   4                                              {
- 588   5                                                      MotorSpeedUp = 0;       
- 589   5                                              }
- 590   4                                              else
- 591   4                                              {
- 592   5                                                      MotorSpeedUp = 1;
- 593   5                                              }
- 594   4                                              drivingDirect = DGoEntrance;
- 595   4                                              manipulator.manipulaterStatus = GoEntrance;
- 596   4                                              if(displayFlag == 0)
- 597   4                                              {
- 598   5                                                      displayFlag = 2;
- 599   5                                              }
- 600   4                                      }
- 601   3                                      else if(manipulator.currentPosition < downCisternNumber)
- 602   3                                      {
- 603   4                                              MotorLeft = 1;
- 604   4                                              MotorRight = 0; //行车向右
- 605   4                                              if(speedUpFlag == 1)
- 606   4                                              {
- 607   5                                                      MotorSpeedUp = 0;       
- 608   5                                              }
- 609   4                                              else
- 610   4                                              {
- 611   5                                                      MotorSpeedUp = 1;
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 11  
+ 550   5                                              }
+ 551   4                                              A_Up_Down_Steps ++;     
+ 552   4                                      }       
+ 553   3                              }
+ 554   2                      break;
+ 555   2                      case 4:
+ 556   2                              ManiUp = 0;
+ 557   2                              manipulator.manipulaterStatus = GoUp;
+ 558   2                              if(displayFlag == 0)
+ 559   2                              {
+ 560   3                                      displayFlag = 2;
+ 561   3                              }
+ 562   2                              A_Up_Down_Steps++;
+ 563   2                      break;
+ 564   2                      case 5:         //4：机械臂A向上 
+ 565   2                              if(sensorManiTop == 0) //机械臂A顶端感应器感应到
+ 566   2                              {
+ 567   3                                      ManiUp = 1;
+ 568   3                                      manipulator.manipulatorPosition = Top;
+ 569   3                                      manipulator.manipulaterStatus = Stop;   
+ 570   3                                      cistern[upCisternNumber/2].cisternStatus = Empty;//标记当前槽为满
+ 571   3                                      cistern[upCisternNumber/2].currentTime = 0;//清除当前槽计时时间
+ 572   3                                      displayFlag = 1;
+ 573   3                                      A_Up_Down_Steps ++;
+ 574   3                              }
+ 575   2                      break;
+ 576   2                      case 6:         //0：机械臂初始状态
+ 577   2                              ManiOperationTimer = 0;
+ 578   2                              A_Up_Down_Steps ++;
+ 579   2                      break;
+ 580   2                      case 7:         //1：机械臂A定位前等待
+ 581   2                              if(ManiOperationTimer > timeBetweenOpeartionDry) //定时时间到
+ 582   2                              {
+ 583   3                                      if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
+ 584   3                                      {
+ 585   4                                              MotorLeft = 0; //行车向左
+ 586   4                                              MotorRight = 1;
+ 587   4                                              if(speedUpFlag == 1)
+ 588   4                                              {
+ 589   5                                                      MotorSpeedUp = 0;       
+ 590   5                                              }
+ 591   4                                              else
+ 592   4                                              {
+ 593   5                                                      MotorSpeedUp = 1;
+ 594   5                                              }
+ 595   4                                              drivingDirect = DGoEntrance;
+ 596   4                                              manipulator.manipulaterStatus = GoEntrance;
+ 597   4                                              if(displayFlag == 0)
+ 598   4                                              {
+ 599   5                                                      displayFlag = 2;
+ 600   5                                              }
+ 601   4                                      }
+ 602   3                                      else if(manipulator.currentPosition < downCisternNumber)
+ 603   3                                      {
+ 604   4                                              MotorLeft = 1;
+ 605   4                                              MotorRight = 0; //行车向右
+ 606   4                                              if(speedUpFlag == 1)
+ 607   4                                              {
+ 608   5                                                      MotorSpeedUp = 0;       
+ 609   5                                              }
+ 610   4                                              else
+ 611   4                                              {
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 11  
 
- 612   5                                              }
- 613   4                                              drivingDirect = GoOutfall;
- 614   4                                              manipulator.manipulaterStatus = DGoOutfall;
- 615   4                                              if(displayFlag == 0)
- 616   4                                              {
- 617   5                                                      displayFlag = 2;
- 618   5                                              }
- 619   4                                      }
- 620   3                                      else
- 621   3                                      {
- 622   4                                              MotorSpeedUp = 1;
- 623   4                                              A_Up_Down_Steps++;      
- 624   4                                      }       
- 625   3                              }
- 626   2                      break;
- 627   2                      case 8:         //2：机械臂A定位
- 628   2                              if(manipulator.currentPosition == downCisternNumber)
- 629   2                              {
- 630   3                                      ManiOperationTimer = 0;
- 631   3                                      MotorLeft = 1;
- 632   3                                      MotorRight = 1;
- 633   3                                      //drivingDirect = DStop;
- 634   3                                      manipulator.manipulaterStatus = Stop;
- 635   3                                      if(displayFlag == 0)
- 636   3                                      {
- 637   4                                              displayFlag = 2;
- 638   4                                      }
- 639   3                                      A_Up_Down_Steps ++;
- 640   3                              }
- 641   2                      break;
- 642   2                      case 9:         //1：机械臂A定位前等待
- 643   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 644   2                              {
- 645   3                                      if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
- 646   3                                      {
- 647   4                                              MotorLeft = 0; //行车向左
- 648   4                                              MotorRight = 1;
- 649   4                                              if(speedUpFlag == 1)
- 650   4                                              {
- 651   5                                                      MotorSpeedUp = 0;       
- 652   5                                              }
- 653   4                                              else
- 654   4                                              {
- 655   5                                                      MotorSpeedUp = 1;
- 656   5                                              }
- 657   4                                              drivingDirect = DGoEntrance;
- 658   4                                              manipulator.manipulaterStatus = GoEntrance;
- 659   4                                              if(displayFlag == 0)
- 660   4                                              {
- 661   5                                                      displayFlag = 2;
- 662   5                                              }
- 663   4                                              A_Up_Down_Steps = 8;
- 664   4                                      }
- 665   3                                      else if(manipulator.currentPosition < downCisternNumber)
- 666   3                                      {
- 667   4                                              MotorLeft = 1;
- 668   4                                              MotorRight = 0; //行车向右
- 669   4                                              if(speedUpFlag == 1)
- 670   4                                              {
- 671   5                                                      MotorSpeedUp = 0;       
- 672   5                                              }
- 673   4                                              else
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 12  
+ 612   5                                                      MotorSpeedUp = 1;
+ 613   5                                              }
+ 614   4                                              drivingDirect = GoOutfall;
+ 615   4                                              manipulator.manipulaterStatus = DGoOutfall;
+ 616   4                                              if(displayFlag == 0)
+ 617   4                                              {
+ 618   5                                                      displayFlag = 2;
+ 619   5                                              }
+ 620   4                                      }
+ 621   3                                      else
+ 622   3                                      {
+ 623   4                                              MotorSpeedUp = 1;
+ 624   4                                              A_Up_Down_Steps++;      
+ 625   4                                      }       
+ 626   3                              }
+ 627   2                      break;
+ 628   2                      case 8:         //2：机械臂A定位
+ 629   2                              if(manipulator.currentPosition == downCisternNumber)
+ 630   2                              {
+ 631   3                                      ManiOperationTimer = 0;
+ 632   3                                      MotorLeft = 1;
+ 633   3                                      MotorRight = 1;
+ 634   3                                      //drivingDirect = DStop;
+ 635   3                                      manipulator.manipulaterStatus = Stop;
+ 636   3                                      if(displayFlag == 0)
+ 637   3                                      {
+ 638   4                                              displayFlag = 2;
+ 639   4                                      }
+ 640   3                                      A_Up_Down_Steps ++;
+ 641   3                              }
+ 642   2                      break;
+ 643   2                      case 9:         //1：机械臂A定位前等待
+ 644   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 645   2                              {
+ 646   3                                      if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
+ 647   3                                      {
+ 648   4                                              MotorLeft = 0; //行车向左
+ 649   4                                              MotorRight = 1;
+ 650   4                                              if(speedUpFlag == 1)
+ 651   4                                              {
+ 652   5                                                      MotorSpeedUp = 0;       
+ 653   5                                              }
+ 654   4                                              else
+ 655   4                                              {
+ 656   5                                                      MotorSpeedUp = 1;
+ 657   5                                              }
+ 658   4                                              drivingDirect = DGoEntrance;
+ 659   4                                              manipulator.manipulaterStatus = GoEntrance;
+ 660   4                                              if(displayFlag == 0)
+ 661   4                                              {
+ 662   5                                                      displayFlag = 2;
+ 663   5                                              }
+ 664   4                                              A_Up_Down_Steps = 8;
+ 665   4                                      }
+ 666   3                                      else if(manipulator.currentPosition < downCisternNumber)
+ 667   3                                      {
+ 668   4                                              MotorLeft = 1;
+ 669   4                                              MotorRight = 0; //行车向右
+ 670   4                                              if(speedUpFlag == 1)
+ 671   4                                              {
+ 672   5                                                      MotorSpeedUp = 0;       
+ 673   5                                              }
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 12  
 
- 674   4                                              {
- 675   5                                                      MotorSpeedUp = 1;
- 676   5                                              }
- 677   4                                              drivingDirect = GoOutfall;
- 678   4                                              manipulator.manipulaterStatus = DGoOutfall;
- 679   4                                              if(displayFlag == 0)
- 680   4                                              {
- 681   5                                                      displayFlag = 2;
- 682   5                                              }
- 683   4                                              A_Up_Down_Steps = 8;
- 684   4                                      }
- 685   3                                      else
- 686   3                                      {
- 687   4                                              MotorSpeedUp = 1;
- 688   4                                              if(displayFlag == 0)
- 689   4                                              {
- 690   5                                                      displayFlag = 2;
- 691   5                                              }
- 692   4                                              A_Up_Down_Steps ++;     
- 693   4                                      }       
- 694   3                              }
- 695   2                      break;
- 696   2                      case 10:
- 697   2                              ManiDown = 0;
- 698   2                              manipulator.manipulaterStatus = GoDown;
- 699   2                              if(displayFlag == 0)
- 700   2                              {
- 701   3                                      displayFlag = 2;
- 702   3                              }
- 703   2                              A_Up_Down_Steps++;
- 704   2                      break;
- 705   2                      case 11:                //4：机械臂A向下 
- 706   2                              if(sensorManiBut == 0) //机械臂A底端感应器感应到
- 707   2                              {
- 708   3                                      ManiDown = 1;
- 709   3                                      manipulator.manipulatorPosition = Bottom;
- 710   3                                      manipulator.manipulaterStatus = Stop;   
- 711   3                                      cistern[downCisternNumber/2].cisternStatus = InCounting;//标记当前槽为满
- 712   3                                      cistern[downCisternNumber/2].currentTime = 0;//清除当前槽计时时间
- 713   3                                      displayFlag = 1;
- 714   3                                      A_Up_Down_Steps = 100;
- 715   3                              }
- 716   2                      break;
- 717   2                      default:
- 718   2                                _nop_();
- 719   2              }       
- 720   1      }
- 721          
- 722          void A_Move_Entrance(void)
- 723          {
- 724   1              switch(A_Move_Entrance_Steps)
- 725   1              {
- 726   2                      case 0:         //0：机械臂初始状态
- 727   2                              ManiOperationTimer = 0;
- 728   2                              A_Move_Entrance_Steps ++;
- 729   2                      break;
- 730   2                      case 1:         //1：机械臂A定位前等待
- 731   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 732   2                              {
- 733   3                                      MotorLeft = 0; //行车向左
- 734   3                                      drivingDirect = DGoEntrance;
- 735   3                                      manipulator.manipulaterStatus = GoEntrance;
-C51 COMPILER V7.50   OPERATION                                                             02/27/2014 20:58:59 PAGE 13  
+ 674   4                                              else
+ 675   4                                              {
+ 676   5                                                      MotorSpeedUp = 1;
+ 677   5                                              }
+ 678   4                                              drivingDirect = GoOutfall;
+ 679   4                                              manipulator.manipulaterStatus = DGoOutfall;
+ 680   4                                              if(displayFlag == 0)
+ 681   4                                              {
+ 682   5                                                      displayFlag = 2;
+ 683   5                                              }
+ 684   4                                              A_Up_Down_Steps = 8;
+ 685   4                                      }
+ 686   3                                      else
+ 687   3                                      {
+ 688   4                                              MotorSpeedUp = 1;
+ 689   4                                              if(displayFlag == 0)
+ 690   4                                              {
+ 691   5                                                      displayFlag = 2;
+ 692   5                                              }
+ 693   4                                              A_Up_Down_Steps ++;     
+ 694   4                                      }       
+ 695   3                              }
+ 696   2                      break;
+ 697   2                      case 10:
+ 698   2                              ManiDown = 0;
+ 699   2                              manipulator.manipulaterStatus = GoDown;
+ 700   2                              if(displayFlag == 0)
+ 701   2                              {
+ 702   3                                      displayFlag = 2;
+ 703   3                              }
+ 704   2                              A_Up_Down_Steps++;
+ 705   2                      break;
+ 706   2                      case 11:                //4：机械臂A向下 
+ 707   2                              if(sensorManiBut == 0) //机械臂A底端感应器感应到
+ 708   2                              {
+ 709   3                                      ManiDown = 1;
+ 710   3                                      manipulator.manipulatorPosition = Bottom;
+ 711   3                                      manipulator.manipulaterStatus = Stop;   
+ 712   3                                      cistern[downCisternNumber/2].cisternStatus = InCounting;//标记当前槽为满
+ 713   3                                      cistern[downCisternNumber/2].currentTime = 0;//清除当前槽计时时间
+ 714   3                                      displayFlag = 1;
+ 715   3                                      A_Up_Down_Steps = 100;
+ 716   3                              }
+ 717   2                      break;
+ 718   2                      default:
+ 719   2                                _nop_();
+ 720   2              }       
+ 721   1      }
+ 722          
+ 723          void A_Move_Entrance(void)
+ 724          {
+ 725   1              switch(A_Move_Entrance_Steps)
+ 726   1              {
+ 727   2                      case 0:         //0：机械臂初始状态
+ 728   2                              ManiOperationTimer = 0;
+ 729   2                              A_Move_Entrance_Steps ++;
+ 730   2                      break;
+ 731   2                      case 1:         //1：机械臂A定位前等待
+ 732   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 733   2                              {
+ 734   3                                      MotorLeft = 0; //行车向左
+ 735   3                                      drivingDirect = DGoEntrance;
+C51 COMPILER V7.50   OPERATION                                                             02/27/2014 21:21:41 PAGE 13  
 
- 736   3                                      if(displayFlag == 0)
- 737   3                                      {
- 738   4                                              displayFlag = 2;
- 739   4                                      }
- 740   3                                      A_Move_Entrance_Steps++;
- 741   3                              }
- 742   2                      break;
- 743   2                      case 2:         //2：机械臂A定位
- 744   2                              if(sensorInput == 0)
- 745   2                              {
- 746   3                                      ManiOperationTimer = 0;
- 747   3                                      MotorLeft = 1;
- 748   3                                      MotorRight = 1;
- 749   3                                      drivingDirect = DStop;
- 750   3                                      manipulator.manipulaterStatus = Stop;
- 751   3                                      if(displayFlag == 0)
- 752   3                                      {
- 753   4                                              displayFlag = 2;
- 754   4                                      }
- 755   3                                      manipulator.currentPosition = 0;
- 756   3                                      A_Move_Entrance_Steps ++;
- 757   3                              }
- 758   2                      break;
- 759   2                      case 3:         //2：机械臂A定位
- 760   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
- 761   2                              {
- 762   3                                      ManiOperationTimer = 0;
- 763   3                                      manipulator.currentPosition = 0;
- 764   3                                      A_Move_Entrance_Steps = 100;
- 765   3                              }
- 766   2                      break;
- 767   2                      default:
- 768   2                                _nop_();
- 769   2              }
- 770   1      }
- 771          
- 772          void ManualMode_Operation(void)
- 773          {
- 774   1              MotorLeft = 1;
- 775   1              MotorRight = 1;
- 776   1              ManiUp =  1;
- 777   1              ManiDown =  1;
- 778   1              MotorSpeedUp =  1;      
- 779   1      }
+ 736   3                                      manipulator.manipulaterStatus = GoEntrance;
+ 737   3                                      if(displayFlag == 0)
+ 738   3                                      {
+ 739   4                                              displayFlag = 2;
+ 740   4                                      }
+ 741   3                                      A_Move_Entrance_Steps++;
+ 742   3                              }
+ 743   2                      break;
+ 744   2                      case 2:         //2：机械臂A定位
+ 745   2                              if(sensorInput == 0)
+ 746   2                              {
+ 747   3                                      ManiOperationTimer = 0;
+ 748   3                                      MotorLeft = 1;
+ 749   3                                      MotorRight = 1;
+ 750   3                                      drivingDirect = DStop;
+ 751   3                                      manipulator.manipulaterStatus = Stop;
+ 752   3                                      if(displayFlag == 0)
+ 753   3                                      {
+ 754   4                                              displayFlag = 2;
+ 755   4                                      }
+ 756   3                                      manipulator.currentPosition = 0;
+ 757   3                                      A_Move_Entrance_Steps ++;
+ 758   3                              }
+ 759   2                      break;
+ 760   2                      case 3:         //2：机械臂A定位
+ 761   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
+ 762   2                              {
+ 763   3                                      ManiOperationTimer = 0;
+ 764   3                                      manipulator.currentPosition = 0;
+ 765   3                                      A_Move_Entrance_Steps = 100;
+ 766   3                              }
+ 767   2                      break;
+ 768   2                      default:
+ 769   2                                _nop_();
+ 770   2              }
+ 771   1      }
+ 772          
+ 773          void ManualMode_Operation(void)
+ 774          {
+ 775   1              MotorLeft = 1;
+ 776   1              MotorRight = 1;
+ 777   1              ManiUp =  1;
+ 778   1              ManiDown =  1;
+ 779   1              MotorSpeedUp =  1;      
+ 780   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    952    ----
+   CODE SIZE        =    959    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =      4    ----
+   XDATA SIZE       =      6    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

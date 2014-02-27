@@ -36,12 +36,12 @@ void Key_Scan(void)
 			}
 		break;
 		case 2:
-			if(Key_Out == 0)
+			if(Key_Out == 0 && cistern[7].cisternStatus == InCounting)
 			{
 			   	cistern[7].cisternStatus = Ready;
 				displayFlag = 1;
 			}
-			if(Key_In == 0)
+			if(Key_In == 0  && cistern[0].cisternStatus == InCounting)
 			{
 				cistern[0].cisternStatus = Ready;
 				displayFlag = 1;	

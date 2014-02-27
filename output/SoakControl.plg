@@ -15,50 +15,42 @@ compiling basefunc.c...
 compiling parameter.c...
 compiling eeprom.c...
 compiling timer.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+.\INCLUDE\OPERATION.H(19): error C129: missing ';' before 'timeBetweenOpeartionDry'
 compiling position.c...
 compiling operation.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+C:\KEIL\C51\INC\INTRINS.H(12): error C129: missing ';' before 'extern'
 compiling dispatch.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+C:\KEIL\C51\INC\INTRINS.H(12): error C129: missing ';' before 'extern'
 compiling key.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ONLY_SHOW_PAGE2?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?OR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?NOR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?AND_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_ALL?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?REVERSE_DATA?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?LCD_INV?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_BIAO?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_WORD?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_ROW_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_COLUMN_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RL_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RR_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ENABLE_INTERRPUT_TP?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISABLE_INTERRPUT_TP?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_A_MOVE?OPERATION
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_A_DOWN?OPERATION
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_A_UP?OPERATION
-Program Size: data=17.0 xdata=136 code=12341
-creating hex file from ".\output\SoakControl"...
-".\output\SoakControl" - 0 Error(s), 18 Warning(s).
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling ra8806.c...
+compiling basefunc.c...
+compiling parameter.c...
+compiling eeprom.c...
+compiling timer.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+.\INCLUDE\DISPATCH.H(5): error C129: missing ';' before 'extern'
+compiling position.c...
+compiling operation.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+C:\KEIL\C51\INC\INTRINS.H(12): error C129: missing ';' before 'extern'
+compiling dispatch.c...
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xA3 skipped
+.\INCLUDE\OPERATION.H(19): error C100: unprintable character 0xBB skipped
+C:\KEIL\C51\INC\INTRINS.H(12): error C129: missing ';' before 'extern'
+compiling key.c...
+Target not created
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -72,39 +64,9 @@ compiling operation.c...
 compiling dispatch.c...
 compiling key.c...
 linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ONLY_SHOW_PAGE2?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?OR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?NOR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?AND_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_ALL?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?REVERSE_DATA?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?LCD_INV?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_BIAO?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_WORD?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_ROW_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_COLUMN_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RL_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RR_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ENABLE_INTERRPUT_TP?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISABLE_INTERRPUT_TP?RA8806
-Program Size: data=17.0 xdata=133 code=11368
+Program Size: data=17.0 xdata=105 code=10238
 creating hex file from ".\output\SoakControl"...
-".\output\SoakControl" - 0 Error(s), 15 Warning(s).
+".\output\SoakControl" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -118,35 +80,9 @@ compiling operation.c...
 compiling dispatch.c...
 compiling key.c...
 linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?NOR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?AND_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_ALL?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?REVERSE_DATA?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?LCD_INV?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_BIAO?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_WORD?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_ROW_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_COLUMN_LINE?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RL_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DISPLAY_RR_KUANG?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ENABLE_INTERRPUT_TP?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISABLE_INTERRPUT_TP?RA8806
-Program Size: data=17.0 xdata=133 code=11326
+Program Size: data=17.0 xdata=105 code=10308
 creating hex file from ".\output\SoakControl"...
-".\output\SoakControl" - 0 Error(s), 13 Warning(s).
+".\output\SoakControl" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -160,19 +96,9 @@ compiling operation.c...
 compiling dispatch.c...
 compiling key.c...
 linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?NOR_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?AND_TWO_LAYER?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?DISPLAY_ALL?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?REVERSE_DATA?RA8806
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DROW_POINT?RA8806
-Program Size: data=17.0 xdata=106 code=10436
+Program Size: data=17.0 xdata=105 code=10316
 creating hex file from ".\output\SoakControl"...
-".\output\SoakControl" - 0 Error(s), 5 Warning(s).
+".\output\SoakControl" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
@@ -186,24 +112,6 @@ compiling operation.c...
 compiling dispatch.c...
 compiling key.c...
 linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?LCD_DATAREAD?RA8806
-Program Size: data=17.0 xdata=103 code=10247
-creating hex file from ".\output\SoakControl"...
-".\output\SoakControl" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-assembling STARTUP.A51...
-compiling main.c...
-compiling ra8806.c...
-compiling basefunc.c...
-compiling parameter.c...
-compiling eeprom.c...
-compiling timer.c...
-compiling position.c...
-compiling operation.c...
-compiling dispatch.c...
-compiling key.c...
-linking...
-Program Size: data=17.0 xdata=103 code=10226
+Program Size: data=17.0 xdata=105 code=10316
 creating hex file from ".\output\SoakControl"...
 ".\output\SoakControl" - 0 Error(s), 0 Warning(s).

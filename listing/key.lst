@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   KEY                                                                   02/27/2014 20:59:00 PAGE 1   
+C51 COMPILER V7.50   KEY                                                                   02/27/2014 21:21:42 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE KEY
@@ -46,12 +46,12 @@ line level    source
   36   3                              }
   37   2                      break;
   38   2                      case 2:
-  39   2                              if(Key_Out == 0)
+  39   2                              if(Key_Out == 0 && cistern[7].cisternStatus == InCounting)
   40   2                              {
   41   3                                      cistern[7].cisternStatus = Ready;
   42   3                                      displayFlag = 1;
   43   3                              }
-  44   2                              if(Key_In == 0)
+  44   2                              if(Key_In == 0  && cistern[0].cisternStatus == InCounting)
   45   2                              {
   46   3                                      cistern[0].cisternStatus = Ready;
   47   3                                      displayFlag = 1;        
@@ -62,7 +62,7 @@ line level    source
   52   2                              if(Key_Out == 1 && Key_In == 1)
   53   2                              {
   54   3                                      Key_Scan_Steps = 0;
-C51 COMPILER V7.50   KEY                                                                   02/27/2014 20:59:00 PAGE 2   
+C51 COMPILER V7.50   KEY                                                                   02/27/2014 21:21:42 PAGE 2   
 
   55   3                              }
   56   2                      break;
@@ -73,7 +73,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     92    ----
+   CODE SIZE        =    100    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      1    ----
    PDATA SIZE       =   ----    ----

@@ -116,46 +116,55 @@ void ManiDispatch(void)
 			if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 2;	 
 			}
 			else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 3;
 			}
 			else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = 90;
 				ManiDispatchSteps = 4;
 			}
 			else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 5;
 			}
 			else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = 90;
 				ManiDispatchSteps = 6;
 			}
 			else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = 90;
 				ManiDispatchSteps = 7;
 			}
 			else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 8;
 			}
 			else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 9;
 			}
 			else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
 			{
 				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 10;
 			}
 		break;
