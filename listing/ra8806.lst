@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 1   
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE RA8806
@@ -62,7 +62,7 @@ line level    source
   52          
   53          /***************************************************************************/
   54          // 液晶写入数据函数
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 2   
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 2   
 
   55          // 参数：数据
   56          // 返回值：无   
@@ -108,1384 +108,1416 @@ line level    source
   96          // 参数：无
   97          // 返回值：数据
   98          /***************************************************************************/
-  99          uchar LCD_DataRead()
- 100          {
- 101   1              uchar Data;
- 102   1              lcd_data = 0x00;
- 103   1              WR0 = 1;
- 104   1              CS = 0;
- 105   1              CD  = 0;
- 106   1              RD0 = 0;
- 107   1              Data = lcd_data;
- 108   1              RD0 = 1;        
- 109   1              CS = 1;                 
- 110   1              //CD = 1;
- 111   1              lcd_data = 0xff;
- 112   1              return Data;
- 113   1      }
- 114          
- 115          /***************************************************************************/
- 116          // 液晶初始化函数
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 3   
+  99          /*
+ 100          uchar LCD_DataRead()
+ 101          {
+ 102                  uchar Data;
+ 103                  lcd_data = 0x00;
+ 104                  WR0 = 1;
+ 105                  CS = 0;
+ 106                  CD  = 0;
+ 107                  RD0 = 0;
+ 108                  Data = lcd_data;
+ 109                  RD0 = 1;        
+ 110                  CS = 1;                 
+ 111                  //CD = 1;
+ 112                  lcd_data = 0xff;
+ 113                  return Data;
+ 114          }
+ 115          */
+ 116          
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 3   
 
- 117          // 参数：无
- 118          // 返回值：无
- 119          /***************************************************************************/
- 120          void lcd_inital()
- 121          { 
- 122   1              REST = 0;
- 123   1              delay_ms(50);
- 124   1              REST = 1;
+ 117          /***************************************************************************/
+ 118          // 液晶初始化函数
+ 119          // 参数：无
+ 120          // 返回值：无
+ 121          /***************************************************************************/
+ 122          void lcd_inital()
+ 123          { 
+ 124   1              REST = 0;
  125   1              delay_ms(50);
- 126   1              LCD_CmdWrite(WLCR);             //[00H] , Default --> 0x00
- 127   1              LCD_DataWrite(0x04);
- 128   1              
- 129   1              LCD_CmdWrite(MISC);             //[01H] , Default --> 0x00
- 130   1              LCD_DataWrite(0x08);
- 131   1              
- 132   1              LCD_CmdWrite(ADSR);             //[03H] , Default --> 0x00 
- 133   1              LCD_DataWrite(0x00);
- 134   1              
- 135   1              LCD_CmdWrite(INTR);             //[0FH] , Default --> 0x00
- 136   1              LCD_DataWrite(0x00);
- 137   1              
- 138   1              LCD_CmdWrite(WCCR);             //[10H] , Default --> 0x00
- 139   1              LCD_DataWrite(0x00);
- 140   1              
- 141   1              LCD_CmdWrite(CHWI);             //[11H] , Default --> 0x00
- 142   1              LCD_DataWrite(0x00);
- 143   1              
- 144   1              LCD_CmdWrite(MAMR);             //[12H] , Default --> 0x11 
- 145   1              LCD_DataWrite(0x11);
- 146   1              
- 147   1              LCD_CmdWrite(AWRR);             //[20H] , Default --> 0x27
- 148   1              LCD_DataWrite(39);
- 149   1              
- 150   1              LCD_CmdWrite(DWWR);             //[21H] , Default --> 0x27
- 151   1              LCD_DataWrite(39);
- 152   1              
- 153   1              LCD_CmdWrite(AWBR);             //[30H] , Default --> 0xEF      
- 154   1              LCD_DataWrite(239);
- 155   1              
- 156   1              LCD_CmdWrite(DWHR);             //[31H] , Default --> 0xEF
- 157   1              LCD_DataWrite(239);
- 158   1              
- 159   1              LCD_CmdWrite(AWLR);             //[40H] , Default --> 0x00
- 160   1              LCD_DataWrite(0x00);
- 161   1              
- 162   1              LCD_CmdWrite(AWTR);             //[50H] , Default --> 0x00
- 163   1              LCD_DataWrite(0x00);
- 164   1              
- 165   1              LCD_CmdWrite(CURX);             //[60H] , Default --> 0x00 
- 166   1              LCD_DataWrite(0x00);
- 167   1              
- 168   1              LCD_CmdWrite(BGSG);             //[61H] , Default --> 0x00
- 169   1              LCD_DataWrite(0x00);
- 170   1              
- 171   1              LCD_CmdWrite(EDSG);             //[62H] , Default --> 0x00
- 172   1              LCD_DataWrite(0x00);
- 173   1              
- 174   1              LCD_CmdWrite(CURY);             //[70H] , Default --> 0x00
- 175   1              LCD_DataWrite(0x00);
- 176   1              
- 177   1              LCD_CmdWrite(BGCM);             //[71H] , Default --> 0x00
- 178   1              LCD_DataWrite(0x00);
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 4   
+ 126   1              REST = 1;
+ 127   1              delay_ms(50);
+ 128   1              LCD_CmdWrite(WLCR);             //[00H] , Default --> 0x00
+ 129   1              LCD_DataWrite(0x04);
+ 130   1              
+ 131   1              LCD_CmdWrite(MISC);             //[01H] , Default --> 0x00
+ 132   1              LCD_DataWrite(0x08);
+ 133   1              
+ 134   1              LCD_CmdWrite(ADSR);             //[03H] , Default --> 0x00 
+ 135   1              LCD_DataWrite(0x00);
+ 136   1              
+ 137   1              LCD_CmdWrite(INTR);             //[0FH] , Default --> 0x00
+ 138   1              LCD_DataWrite(0x00);
+ 139   1              
+ 140   1              LCD_CmdWrite(WCCR);             //[10H] , Default --> 0x00
+ 141   1              LCD_DataWrite(0x00);
+ 142   1              
+ 143   1              LCD_CmdWrite(CHWI);             //[11H] , Default --> 0x00
+ 144   1              LCD_DataWrite(0x00);
+ 145   1              
+ 146   1              LCD_CmdWrite(MAMR);             //[12H] , Default --> 0x11 
+ 147   1              LCD_DataWrite(0x11);
+ 148   1              
+ 149   1              LCD_CmdWrite(AWRR);             //[20H] , Default --> 0x27
+ 150   1              LCD_DataWrite(39);
+ 151   1              
+ 152   1              LCD_CmdWrite(DWWR);             //[21H] , Default --> 0x27
+ 153   1              LCD_DataWrite(39);
+ 154   1              
+ 155   1              LCD_CmdWrite(AWBR);             //[30H] , Default --> 0xEF      
+ 156   1              LCD_DataWrite(239);
+ 157   1              
+ 158   1              LCD_CmdWrite(DWHR);             //[31H] , Default --> 0xEF
+ 159   1              LCD_DataWrite(239);
+ 160   1              
+ 161   1              LCD_CmdWrite(AWLR);             //[40H] , Default --> 0x00
+ 162   1              LCD_DataWrite(0x00);
+ 163   1              
+ 164   1              LCD_CmdWrite(AWTR);             //[50H] , Default --> 0x00
+ 165   1              LCD_DataWrite(0x00);
+ 166   1              
+ 167   1              LCD_CmdWrite(CURX);             //[60H] , Default --> 0x00 
+ 168   1              LCD_DataWrite(0x00);
+ 169   1              
+ 170   1              LCD_CmdWrite(BGSG);             //[61H] , Default --> 0x00
+ 171   1              LCD_DataWrite(0x00);
+ 172   1              
+ 173   1              LCD_CmdWrite(EDSG);             //[62H] , Default --> 0x00
+ 174   1              LCD_DataWrite(0x00);
+ 175   1              
+ 176   1              LCD_CmdWrite(CURY);             //[70H] , Default --> 0x00
+ 177   1              LCD_DataWrite(0x00);
+ 178   1              
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 4   
 
- 179   1              
- 180   1              LCD_CmdWrite(EDCM);             //[72H] , Default --> 0x00
- 181   1              LCD_DataWrite(0x00);
- 182   1              
- 183   1              LCD_CmdWrite(BTMR);             //[80H] , Default --> 0x00
- 184   1              LCD_DataWrite(0x00);
- 185   1              
- 186   1              LCD_CmdWrite(ITCR);             //[90H] , Default --> 0x00    需要调整
- 187   1              LCD_DataWrite(0x80);
- 188   1              
- 189   1              LCD_CmdWrite(PNTR);             //[E0H] , Default --> 0x00
- 190   1              LCD_DataWrite(0x00);
- 191   1              
- 192   1              LCD_CmdWrite(FNCR);             //[F0H] , Default --> 0x00
- 193   1              LCD_DataWrite(0x00);
- 194   1              
- 195   1              LCD_CmdWrite(FVHT);             //[F1H] , Default --> 0x00
- 196   1              LCD_DataWrite(0x00);
- 197   1      }
- 198          
- 199          /***************************************************************************/
- 200          // 液晶X,Y坐标定位
- 201          // 参数：x坐标  y坐标
- 202          // 返回值：无
- 203          /***************************************************************************/
- 204          void LCD_GotoXY(uchar xx,uchar yy)
- 205          {
- 206   1              LCD_CmdWrite(CURX); 
- 207   1              LCD_DataWrite(xx);
- 208   1              LCD_CmdWrite(CURY);  
- 209   1              LCD_DataWrite(yy);
- 210   1      }
- 211          
- 212          /***************************************************************************/
- 213          // 液晶绘图模式
- 214          // 参数：无
- 215          // 返回值：无
- 216          /***************************************************************************/
- 217          void LCD_Graphic(void)
- 218          {
- 219   1              uchar temp;
- 220   1              temp=LCD_CmdRead(WLCR);
- 221   1              temp &=0xf7;
- 222   1              LCD_CmdWrite(WLCR);
- 223   1              LCD_DataWrite(temp); 
- 224   1      }
- 225          
- 226          /***************************************************************************/
- 227          // 液晶文字模式
- 228          // 参数：无
- 229          // 返回值：无
- 230          /***************************************************************************/
- 231          void LCD_Text(void)
- 232          {
- 233   1              uchar temp;
- 234   1              temp=LCD_CmdRead(WLCR);
- 235   1              temp |=0x08;
- 236   1              LCD_CmdWrite(WLCR);
- 237   1              LCD_DataWrite(temp); 
- 238   1      }
- 239          
- 240          /***************************************************************************/
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 5   
+ 179   1              LCD_CmdWrite(BGCM);             //[71H] , Default --> 0x00
+ 180   1              LCD_DataWrite(0x00);
+ 181   1              
+ 182   1              LCD_CmdWrite(EDCM);             //[72H] , Default --> 0x00
+ 183   1              LCD_DataWrite(0x00);
+ 184   1              
+ 185   1              LCD_CmdWrite(BTMR);             //[80H] , Default --> 0x00
+ 186   1              LCD_DataWrite(0x00);
+ 187   1              
+ 188   1              LCD_CmdWrite(ITCR);             //[90H] , Default --> 0x00    需要调整
+ 189   1              LCD_DataWrite(0x80);
+ 190   1              
+ 191   1              LCD_CmdWrite(PNTR);             //[E0H] , Default --> 0x00
+ 192   1              LCD_DataWrite(0x00);
+ 193   1              
+ 194   1              LCD_CmdWrite(FNCR);             //[F0H] , Default --> 0x00
+ 195   1              LCD_DataWrite(0x00);
+ 196   1              
+ 197   1              LCD_CmdWrite(FVHT);             //[F1H] , Default --> 0x00
+ 198   1              LCD_DataWrite(0x00);
+ 199   1      }
+ 200          
+ 201          /***************************************************************************/
+ 202          // 液晶X,Y坐标定位
+ 203          // 参数：x坐标  y坐标
+ 204          // 返回值：无
+ 205          /***************************************************************************/
+ 206          void LCD_GotoXY(uchar xx,uchar yy)
+ 207          {
+ 208   1              LCD_CmdWrite(CURX); 
+ 209   1              LCD_DataWrite(xx);
+ 210   1              LCD_CmdWrite(CURY);  
+ 211   1              LCD_DataWrite(yy);
+ 212   1      }
+ 213          
+ 214          /***************************************************************************/
+ 215          // 液晶绘图模式
+ 216          // 参数：无
+ 217          // 返回值：无
+ 218          /***************************************************************************/
+ 219          void LCD_Graphic(void)
+ 220          {
+ 221   1              uchar temp;
+ 222   1              temp=LCD_CmdRead(WLCR);
+ 223   1              temp &=0xf7;
+ 224   1              LCD_CmdWrite(WLCR);
+ 225   1              LCD_DataWrite(temp); 
+ 226   1      }
+ 227          
+ 228          /***************************************************************************/
+ 229          // 液晶文字模式
+ 230          // 参数：无
+ 231          // 返回值：无
+ 232          /***************************************************************************/
+ 233          void LCD_Text(void)
+ 234          {
+ 235   1              uchar temp;
+ 236   1              temp=LCD_CmdRead(WLCR);
+ 237   1              temp |=0x08;
+ 238   1              LCD_CmdWrite(WLCR);
+ 239   1              LCD_DataWrite(temp); 
+ 240   1      }
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 5   
 
- 241          // 液晶DDRAM1 显示
- 242          // 参数：无
- 243          // 返回值：无
- 244          /***************************************************************************/
- 245          void Only_Show_Page1(void)
- 246          {
- 247   1              uchar temp;
- 248   1              temp=LCD_CmdRead(MAMR);
- 249   1              temp &=0x9f;
- 250   1              temp |=0x10;
- 251   1              LCD_CmdWrite(MAMR);
- 252   1              LCD_DataWrite(temp); 
- 253   1      }
- 254          
- 255          /***************************************************************************/
- 256          // 液晶DDRAM2 显示
- 257          // 参数：无
- 258          // 返回值：无
- 259          /***************************************************************************/
- 260          void Only_Show_Page2(void)
- 261          {
- 262   1              uchar temp;
- 263   1              temp=LCD_CmdRead(MAMR);
- 264   1              temp &=0xaf;
- 265   1              temp |=0x20;
- 266   1              LCD_CmdWrite(MAMR);
- 267   1              LCD_DataWrite(temp); 
- 268   1      }
- 269          
- 270          /***************************************************************************/
- 271          // 液晶DDRAM1和DDRAM2 双图层显示
- 272          // 参数：无
- 273          // 返回值：无
+ 241          
+ 242          /***************************************************************************/
+ 243          // 液晶DDRAM1 显示
+ 244          // 参数：无
+ 245          // 返回值：无
+ 246          /***************************************************************************/
+ 247          void Only_Show_Page1(void)
+ 248          {
+ 249   1              uchar temp;
+ 250   1              temp=LCD_CmdRead(MAMR);
+ 251   1              temp &=0x9f;
+ 252   1              temp |=0x10;
+ 253   1              LCD_CmdWrite(MAMR);
+ 254   1              LCD_DataWrite(temp); 
+ 255   1      }
+ 256          
+ 257          /***************************************************************************/
+ 258          // 液晶DDRAM2 显示
+ 259          // 参数：无
+ 260          // 返回值：无
+ 261          /***************************************************************************/
+ 262          /*
+ 263          void Only_Show_Page2(void)
+ 264          {
+ 265                  uchar temp;
+ 266                  temp=LCD_CmdRead(MAMR);
+ 267                  temp &=0xaf;
+ 268                  temp |=0x20;
+ 269                  LCD_CmdWrite(MAMR);
+ 270                  LCD_DataWrite(temp); 
+ 271          }
+ 272          */
+ 273          
  274          /***************************************************************************/
- 275          void Show_Two_Layer(void)
- 276          {
- 277   1              uchar temp;     
- 278   1              temp=LCD_CmdRead(MAMR);
- 279   1              temp &=0xbf;
- 280   1              temp |=0x30;
- 281   1              LCD_CmdWrite(MAMR);
- 282   1              LCD_DataWrite(temp); 
- 283   1      }
- 284          
- 285          /***************************************************************************/
- 286          // 液晶DDRAM1和DDRAM2 OR方式显示
- 287          // 参数：无
- 288          // 返回值：无
+ 275          // 液晶DDRAM1和DDRAM2 双图层显示
+ 276          // 参数：无
+ 277          // 返回值：无
+ 278          /***************************************************************************/
+ 279          void Show_Two_Layer(void)
+ 280          {
+ 281   1              uchar temp;     
+ 282   1              temp=LCD_CmdRead(MAMR);
+ 283   1              temp &=0xbf;
+ 284   1              temp |=0x30;
+ 285   1              LCD_CmdWrite(MAMR);
+ 286   1              LCD_DataWrite(temp); 
+ 287   1      }
+ 288          
  289          /***************************************************************************/
- 290          void OR_Two_Layer(void)
- 291          {
- 292   1              uchar temp;     
- 293   1              temp=LCD_CmdRead(MAMR);
- 294   1              temp &=0xf3;
- 295   1              LCD_CmdWrite(MAMR);
- 296   1              LCD_DataWrite(temp); 
- 297   1      }
- 298          
- 299          /***************************************************************************/
- 300          // 液晶DDRAM1和DDRAM2 XOR方式显示
- 301          // 参数：无
- 302          // 返回值：无
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 6   
+ 290          // 液晶DDRAM1和DDRAM2 OR方式显示
+ 291          // 参数：无
+ 292          // 返回值：无
+ 293          /***************************************************************************/
+ 294          /*
+ 295          void OR_Two_Layer(void)
+ 296          {
+ 297                  uchar temp;     
+ 298                  temp=LCD_CmdRead(MAMR);
+ 299                  temp &=0xf3;
+ 300                  LCD_CmdWrite(MAMR);
+ 301                  LCD_DataWrite(temp); 
+ 302          }
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 6   
 
- 303          /***************************************************************************/
- 304          void XOR_Two_Layer(void)
- 305          {
- 306   1              uchar temp;     
- 307   1              temp=LCD_CmdRead(MAMR);
- 308   1              temp &=0xf7;
- 309   1              temp |=0x04;
- 310   1              LCD_CmdWrite(MAMR);
- 311   1              LCD_DataWrite(temp); 
- 312   1      }
- 313          
- 314          /***************************************************************************/
- 315          // 液晶DDRAM1和DDRAM2 NOR方式显示
- 316          // 参数：无
- 317          // 返回值：无
- 318          /***************************************************************************/
- 319          void NOR_Two_Layer(void)
- 320          {
- 321   1              uchar temp;     
- 322   1              temp=LCD_CmdRead(MAMR);
- 323   1              temp &=0xfb;
- 324   1              temp |=0x08;
- 325   1              LCD_CmdWrite(MAMR);
- 326   1              LCD_DataWrite(temp); 
- 327   1      }
- 328          
- 329          /***************************************************************************/
- 330          // 液晶DDRAM1和DDRAM2 AND方式显示
- 331          // 参数：无
- 332          // 返回值：无
- 333          /***************************************************************************/
- 334          void AND_Two_Layer(void)
- 335          {
- 336   1              uchar temp;     
- 337   1              temp=LCD_CmdRead(MAMR);
- 338   1              temp |=0x0c;
- 339   1              LCD_CmdWrite(MAMR);
- 340   1              LCD_DataWrite(temp); 
- 341   1      }
- 342          
- 343          /***************************************************************************/
- 344          // 液晶存取DDRAM1
- 345          // 参数：无
- 346          // 返回值：无
- 347          /***************************************************************************/
- 348          void Access_Page1(void)
- 349          {
- 350   1              uchar temp;     
- 351   1              temp=LCD_CmdRead(MAMR);
- 352   1              temp &=0xfd;
- 353   1              temp |=0x01;
- 354   1              LCD_CmdWrite(MAMR);
- 355   1              LCD_DataWrite(temp); 
- 356   1      }
- 357          
- 358          /***************************************************************************/
- 359          // 存取DDRAM2
- 360          // 参数：无
- 361          // 返回值：无
- 362          /***************************************************************************/
- 363          void Access_Page2(void)
- 364          {
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 7   
+ 303          */
+ 304          
+ 305          /***************************************************************************/
+ 306          // 液晶DDRAM1和DDRAM2 XOR方式显示
+ 307          // 参数：无
+ 308          // 返回值：无
+ 309          /***************************************************************************/
+ 310          void XOR_Two_Layer(void)
+ 311          {
+ 312   1              uchar temp;     
+ 313   1              temp=LCD_CmdRead(MAMR);
+ 314   1              temp &=0xf7;
+ 315   1              temp |=0x04;
+ 316   1              LCD_CmdWrite(MAMR);
+ 317   1              LCD_DataWrite(temp); 
+ 318   1      }
+ 319          
+ 320          /***************************************************************************/
+ 321          // 液晶DDRAM1和DDRAM2 NOR方式显示
+ 322          // 参数：无
+ 323          // 返回值：无
+ 324          /***************************************************************************/
+ 325          /*
+ 326          void NOR_Two_Layer(void)
+ 327          {
+ 328                  uchar temp;     
+ 329                  temp=LCD_CmdRead(MAMR);
+ 330                  temp &=0xfb;
+ 331                  temp |=0x08;
+ 332                  LCD_CmdWrite(MAMR);
+ 333                  LCD_DataWrite(temp); 
+ 334          }
+ 335          */
+ 336          
+ 337          /***************************************************************************/
+ 338          // 液晶DDRAM1和DDRAM2 AND方式显示
+ 339          // 参数：无
+ 340          // 返回值：无
+ 341          /***************************************************************************/
+ 342          /*
+ 343          void AND_Two_Layer(void)
+ 344          {
+ 345                  uchar temp;     
+ 346                  temp=LCD_CmdRead(MAMR);
+ 347                  temp |=0x0c;
+ 348                  LCD_CmdWrite(MAMR);
+ 349                  LCD_DataWrite(temp); 
+ 350          }
+ 351          */
+ 352          
+ 353          /***************************************************************************/
+ 354          // 液晶存取DDRAM1
+ 355          // 参数：无
+ 356          // 返回值：无
+ 357          /***************************************************************************/
+ 358          void Access_Page1(void)
+ 359          {
+ 360   1              uchar temp;     
+ 361   1              temp=LCD_CmdRead(MAMR);
+ 362   1              temp &=0xfd;
+ 363   1              temp |=0x01;
+ 364   1              LCD_CmdWrite(MAMR);
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 7   
 
- 365   1              uchar temp;     
- 366   1              temp=LCD_CmdRead(MAMR);
- 367   1              temp &=0xfe;
- 368   1              temp |=0x02;
- 369   1              LCD_CmdWrite(MAMR);
- 370   1              LCD_DataWrite(temp); 
- 371   1      }
- 372          
- 373          /***************************************************************************/
- 374          // 液晶清屏
- 375          // 参数：无
- 376          // 返回值：无
- 377          /***************************************************************************/
- 378          void clear(void)
- 379          { 
- 380   1              LCD_Graphic();     //选择绘图模式     
- 381   1              LCD_CmdWrite(PNTR);
- 382   1              LCD_DataWrite(0x00);
- 383   1              LCD_CmdWrite(FNCR);
- 384   1              LCD_DataWrite(0xa8);
- 385   1              //delay_ms(3);
- 386   1      }
- 387          
- 388          
- 389          /***************************************************************************/
- 390          // 液晶满屏显示
- 391          // 参数：无
- 392          // 返回值：无
- 393          /***************************************************************************/
- 394          void display_all()
- 395          {
- 396   1              LCD_Graphic();
- 397   1              LCD_CmdWrite(PNTR);
- 398   1              LCD_DataWrite(0xff);     //全部填0xff
- 399   1              LCD_CmdWrite(FNCR);
- 400   1              LCD_DataWrite(0xa8);
- 401   1              //delay_ms(3);
- 402   1      }
- 403          
- 404          /***************************************************************************/
- 405          // 液晶全屏正常显示
- 406          // 参数：无
- 407          // 返回值：无
- 408          /***************************************************************************/
- 409          void normal_data(void)
- 410          {
- 411   1              uchar temp;
- 412   1              temp=LCD_CmdRead(WLCR);  //读WLCR寄存器数据
- 413   1              temp &=0xfe;
- 414   1              LCD_CmdWrite(WLCR);
- 415   1              LCD_DataWrite(temp);     
- 416   1      }
- 417          
- 418          /***************************************************************************/
- 419          // 液晶全屏反白显示
- 420          // 参数：无
- 421          // 返回值：无
- 422          /***************************************************************************/
- 423          void reverse_data(void)
- 424          {
- 425   1              uchar temp;
- 426   1              temp=LCD_CmdRead(WLCR);  //读WLCR寄存器数据
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 8   
+ 365   1              LCD_DataWrite(temp); 
+ 366   1      }
+ 367          
+ 368          /***************************************************************************/
+ 369          // 存取DDRAM2
+ 370          // 参数：无
+ 371          // 返回值：无
+ 372          /***************************************************************************/
+ 373          void Access_Page2(void)
+ 374          {
+ 375   1              uchar temp;     
+ 376   1              temp=LCD_CmdRead(MAMR);
+ 377   1              temp &=0xfe;
+ 378   1              temp |=0x02;
+ 379   1              LCD_CmdWrite(MAMR);
+ 380   1              LCD_DataWrite(temp); 
+ 381   1      }
+ 382          
+ 383          /***************************************************************************/
+ 384          // 液晶清屏
+ 385          // 参数：无
+ 386          // 返回值：无
+ 387          /***************************************************************************/
+ 388          void clear(void)
+ 389          { 
+ 390   1              LCD_Graphic();     //选择绘图模式     
+ 391   1              LCD_CmdWrite(PNTR);
+ 392   1              LCD_DataWrite(0x00);
+ 393   1              LCD_CmdWrite(FNCR);
+ 394   1              LCD_DataWrite(0xa8);
+ 395   1              //delay_ms(3);
+ 396   1      }
+ 397          
+ 398          
+ 399          /***************************************************************************/
+ 400          // 液晶满屏显示
+ 401          // 参数：无
+ 402          // 返回值：无
+ 403          /***************************************************************************/
+ 404          /*
+ 405          void display_all()
+ 406          {
+ 407                  LCD_Graphic();
+ 408                  LCD_CmdWrite(PNTR);
+ 409                  LCD_DataWrite(0xff);     //全部填0xff
+ 410                  LCD_CmdWrite(FNCR);
+ 411                  LCD_DataWrite(0xa8);
+ 412                  //delay_ms(3);
+ 413          }
+ 414          */
+ 415          
+ 416          /***************************************************************************/
+ 417          // 液晶全屏正常显示
+ 418          // 参数：无
+ 419          // 返回值：无
+ 420          /***************************************************************************/
+ 421          void normal_data(void)
+ 422          {
+ 423   1              uchar temp;
+ 424   1              temp=LCD_CmdRead(WLCR);  //读WLCR寄存器数据
+ 425   1              temp &=0xfe;
+ 426   1              LCD_CmdWrite(WLCR);
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 8   
 
- 427   1              temp |=0x01;
- 428   1              LCD_CmdWrite(WLCR);
- 429   1              LCD_DataWrite(temp);     
- 430   1      }
- 431          
- 432          /***************************************************************************/
- 433          // 液晶数据反白输入
- 434          // 参数：无
- 435          // 返回值：无
- 436          /***************************************************************************/
- 437          void LCD_Inv(void)
- 438          {
- 439   1              uchar temp;     
- 440   1              temp=LCD_CmdRead(0x10);
- 441   1              temp |=0x20;
- 442   1              LCD_CmdWrite(0x10);
- 443   1              LCD_DataWrite(temp); 
- 444   1      }
+ 427   1              LCD_DataWrite(temp);     
+ 428   1      }
+ 429          
+ 430          /***************************************************************************/
+ 431          // 液晶全屏反白显示
+ 432          // 参数：无
+ 433          // 返回值：无
+ 434          /***************************************************************************/
+ 435          /*
+ 436          void reverse_data(void)
+ 437          {
+ 438                  uchar temp;
+ 439                  temp=LCD_CmdRead(WLCR);  //读WLCR寄存器数据
+ 440                  temp |=0x01;
+ 441                  LCD_CmdWrite(WLCR);
+ 442                  LCD_DataWrite(temp);     
+ 443          }
+ 444          */
  445          
  446          /***************************************************************************/
- 447          // 液晶数据正常输入
+ 447          // 液晶数据反白输入
  448          // 参数：无
  449          // 返回值：无
  450          /***************************************************************************/
- 451          void LCD_NoInv(void)
- 452          {
- 453   1              uchar temp;     
- 454   1              temp=LCD_CmdRead(WCCR);
- 455   1              temp &=0xdf;
- 456   1              LCD_CmdWrite(WCCR);
- 457   1              LCD_DataWrite(temp); 
- 458   1      }
- 459          
- 460          /***************************************************************************/
- 461          // 液晶字符放大i倍
- 462          // 参数：放大倍数1~4
- 463          // 返回值：无
- 464          /***************************************************************************/
- 465          void enlarge(uchar i)
- 466          {  
- 467   1              switch(i)
- 468   1              {
- 469   2                      case 0x01:
- 470   2                              LCD_CmdWrite(FVHT);
- 471   2                              LCD_DataWrite(0x00);  
- 472   2                      break;
- 473   2                      case 0x02:
- 474   2                              LCD_CmdWrite(FVHT);
- 475   2                              LCD_DataWrite(0x50);  
- 476   2                      break;
- 477   2                      case 0x03:
- 478   2                              LCD_CmdWrite(FVHT);
- 479   2                              LCD_DataWrite(0xa0); 
- 480   2                      break;
- 481   2                      case 0x04:
- 482   2                              LCD_CmdWrite(FVHT);
- 483   2                              LCD_DataWrite(0xf0); 
- 484   2                      break;
- 485   2              }
- 486   1      }
- 487          
- 488          /***************************************************************************/
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 9   
+ 451          /*
+ 452          void LCD_Inv(void)
+ 453          {
+ 454                  uchar temp;     
+ 455                  temp=LCD_CmdRead(0x10);
+ 456                  temp |=0x20;
+ 457                  LCD_CmdWrite(0x10);
+ 458                  LCD_DataWrite(temp); 
+ 459          }
+ 460          */
+ 461          
+ 462          /***************************************************************************/
+ 463          // 液晶数据正常输入
+ 464          // 参数：无
+ 465          // 返回值：无
+ 466          /***************************************************************************/
+ 467          void LCD_NoInv(void)
+ 468          {
+ 469   1              uchar temp;     
+ 470   1              temp=LCD_CmdRead(WCCR);
+ 471   1              temp &=0xdf;
+ 472   1              LCD_CmdWrite(WCCR);
+ 473   1              LCD_DataWrite(temp); 
+ 474   1      }
+ 475          
+ 476          /***************************************************************************/
+ 477          // 液晶字符放大i倍
+ 478          // 参数：放大倍数1~4
+ 479          // 返回值：无
+ 480          /***************************************************************************/
+ 481          void enlarge(uchar i)
+ 482          {  
+ 483   1              switch(i)
+ 484   1              {
+ 485   2                      case 0x01:
+ 486   2                              LCD_CmdWrite(FVHT);
+ 487   2                              LCD_DataWrite(0x00);  
+ 488   2                      break;
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 9   
 
- 489          // 液晶画一个表格
- 490          // 参数：无
- 491          // 返回值：无
- 492          /***************************************************************************/
- 493          void display_biao(void)
- 494          {
- 495   1              uint n0,n1;
- 496   1              LCD_Graphic();   //选择绘图模式
- 497   1              LCD_GotoXY(0x00,0x00);   //设定X,Y坐标位置
- 498   1              LCD_CmdWrite(MWCR);
- 499   1              for(n0=0;n0<40;n0++)
- 500   1              {
- 501   2                      LCD_DataWrite(0xff);
- 502   2              }
- 503   1              for(n0=0;n0<31;n0++)            
- 504   1              {
- 505   2                      for(n1=0;n1<40;n1++)
- 506   2                      {
- 507   3                              if (n1==0) LCD_DataWrite(0x80);
- 508   3                              else if (n1==39) LCD_DataWrite(0x01);
- 509   3                              else LCD_DataWrite(0x00);
- 510   3                      }
- 511   2              }
- 512   1              for(n0=0;n0<40;n0++)
- 513   1              {
- 514   2                      LCD_DataWrite(0xff);
- 515   2              }
- 516   1              for(n0=0;n0<(125);n0++)         
- 517   1              {
- 518   2                      for(n1=0;n1<40;n1++)
- 519   2                      {
- 520   3                              if (n1==0)          LCD_DataWrite(0x80);
- 521   3                              else if (n1==39) LCD_DataWrite(0x01);
- 522   3                              else                LCD_DataWrite(0x00);
- 523   3                      }
- 524   2              }
- 525   1              for(n0=0;n0<40;n0++)
- 526   1              {
- 527   2                      LCD_DataWrite(0xff);
- 528   2              }
- 529   1      }
- 530          
- 531          /***************************************************************************/
- 532          // 液晶在指定的坐标处显示字符串
- 533          // 参数：x坐标  y坐标  字符串内容
- 534          // 返回值：无
- 535          /***************************************************************************/
- 536          void LCD_ShowStr(uchar xxx,uchar yyy,uchar *text)
- 537          { 
- 538   1              LCD_Text();   //选择文本模式
- 539   1              LCD_GotoXY(xxx,yyy);   //设定X,Y坐标位置 
- 540   1              LCD_CmdWrite(MWCR);
- 541   1              while(*text != '\0')          
- 542   1              {
- 543   2                      LCD_DataWrite(*text++);
- 544   2              }
- 545   1      }
- 546          
- 547          /***************************************************************************/
- 548          // 液晶在指定的坐标处显示字符
- 549          // 参数：x坐标  y坐标  字符
- 550          // 返回值：无
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 10  
+ 489   2                      case 0x02:
+ 490   2                              LCD_CmdWrite(FVHT);
+ 491   2                              LCD_DataWrite(0x50);  
+ 492   2                      break;
+ 493   2                      case 0x03:
+ 494   2                              LCD_CmdWrite(FVHT);
+ 495   2                              LCD_DataWrite(0xa0); 
+ 496   2                      break;
+ 497   2                      case 0x04:
+ 498   2                              LCD_CmdWrite(FVHT);
+ 499   2                              LCD_DataWrite(0xf0); 
+ 500   2                      break;
+ 501   2              }
+ 502   1      }
+ 503          
+ 504          /***************************************************************************/
+ 505          // 液晶画一个表格
+ 506          // 参数：无
+ 507          // 返回值：无
+ 508          /***************************************************************************/
+ 509          /*
+ 510          void display_biao(void)
+ 511          {
+ 512                  uint n0,n1;
+ 513                  LCD_Graphic();   //选择绘图模式
+ 514                  LCD_GotoXY(0x00,0x00);   //设定X,Y坐标位置
+ 515                  LCD_CmdWrite(MWCR);
+ 516                  for(n0=0;n0<40;n0++)
+ 517                  {
+ 518                          LCD_DataWrite(0xff);
+ 519                  }
+ 520                  for(n0=0;n0<31;n0++)            
+ 521                  {
+ 522                          for(n1=0;n1<40;n1++)
+ 523                          {
+ 524                                  if (n1==0) LCD_DataWrite(0x80);
+ 525                                  else if (n1==39) LCD_DataWrite(0x01);
+ 526                                  else LCD_DataWrite(0x00);
+ 527                          }
+ 528                  }
+ 529                  for(n0=0;n0<40;n0++)
+ 530                  {
+ 531                          LCD_DataWrite(0xff);
+ 532                  }
+ 533                  for(n0=0;n0<(125);n0++)         
+ 534                  {
+ 535                          for(n1=0;n1<40;n1++)
+ 536                          {
+ 537                                  if (n1==0)          LCD_DataWrite(0x80);
+ 538                                  else if (n1==39) LCD_DataWrite(0x01);
+ 539                                  else                LCD_DataWrite(0x00);
+ 540                          }
+ 541                  }
+ 542                  for(n0=0;n0<40;n0++)
+ 543                  {
+ 544                          LCD_DataWrite(0xff);
+ 545                  }
+ 546          }
+ 547          */
+ 548          /***************************************************************************/
+ 549          // 液晶在指定的坐标处显示字符串
+ 550          // 参数：x坐标  y坐标  字符串内容
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 10  
 
- 551          /***************************************************************************/
- 552          void LCD_ShowChar(uchar xxx,uchar yyy,uchar text)
- 553          { 
- 554   1              LCD_Text();   //选择文本模式
- 555   1              LCD_GotoXY(xxx,yyy);   //设定X,Y坐标位置 
- 556   1              LCD_CmdWrite(MWCR);
- 557   1              LCD_DataWrite(text);
- 558   1      }
- 559          
- 560          /***************************************************************************/
- 561          // 液晶显示中文字库和字符
- 562          // 参数：
- 563          // 返回值：无
+ 551          // 返回值：无
+ 552          /***************************************************************************/
+ 553          void LCD_ShowStr(uchar xxx,uchar yyy,uchar *text)
+ 554          { 
+ 555   1              LCD_Text();   //选择文本模式
+ 556   1              LCD_GotoXY(xxx,yyy);   //设定X,Y坐标位置 
+ 557   1              LCD_CmdWrite(MWCR);
+ 558   1              while(*text != '\0')          
+ 559   1              {
+ 560   2                      LCD_DataWrite(*text++);
+ 561   2              }
+ 562   1      }
+ 563          
  564          /***************************************************************************/
- 565          void display_word(const uchar *cha, int count )
- 566          {
- 567   1              uint iiii=0;
- 568   1              LCD_Text();  //选择文本模式
- 569   1              LCD_GotoXY(0x00,0x00);   //设定X,Y坐标位置 
- 570   1              LCD_CmdWrite(MWCR); 
- 571   1              for(iiii=0;iiii<count;iiii++)
- 572   1              {
- 573   2                      LCD_DataWrite(*cha++);
- 574   2              }   
+ 565          // 液晶在指定的坐标处显示字符
+ 566          // 参数：x坐标  y坐标  字符
+ 567          // 返回值：无
+ 568          /***************************************************************************/
+ 569          void LCD_ShowChar(uchar xxx,uchar yyy,uchar text)
+ 570          { 
+ 571   1              LCD_Text();   //选择文本模式
+ 572   1              LCD_GotoXY(xxx,yyy);   //设定X,Y坐标位置 
+ 573   1              LCD_CmdWrite(MWCR);
+ 574   1              LCD_DataWrite(text);
  575   1      }
  576          
  577          /***************************************************************************/
- 578          // 显示一行边框
- 579          // 参数：x起始坐标0~39  y起始坐标0~239  宽度  高度 颜色1正常2反白  
+ 578          // 液晶显示中文字库和字符
+ 579          // 参数：
  580          // 返回值：无
  581          /***************************************************************************/
- 582          void display_kuang(uchar x_star,uchar y_star,uchar w,uchar h, uchar color)
- 583          {
- 584   1              uchar width,heigh;      //i表示行,j表示列
- 585   1              LCD_Graphic();   //选择绘图模式
- 586   1              for(heigh=0;heigh<h;heigh++)
- 587   1              {  
- 588   2                      if(heigh==0)
- 589   2                      {
- 590   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置  
- 591   3                              for(width=0;width<w;width++)
- 592   3                              { 
- 593   4                                      LCD_CmdWrite(MWCR); 
- 594   4                                      LCD_DataWrite(0xff);
- 595   4                              }
- 596   3                      }
- 597   2                      else if((heigh>0)&&(heigh<(h-1)))
- 598   2                      {
- 599   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置    
- 600   3                              LCD_CmdWrite(MWCR);   
- 601   3                              if(color)
- 602   3                              {
- 603   4                                      LCD_DataWrite(0x80);
- 604   4                                      for(width=1;width<(w-1);width++)
- 605   4                                      {
- 606   5                                              LCD_DataWrite(0x00);
- 607   5                                      }
- 608   4                                      LCD_DataWrite(0x01);
- 609   4                              }
- 610   3                              else
- 611   3                              {
+ 582          /*
+ 583          void display_word(const uchar *cha, int count )
+ 584          {
+ 585                  uint iiii=0;
+ 586                  LCD_Text();  //选择文本模式
+ 587                  LCD_GotoXY(0x00,0x00);   //设定X,Y坐标位置 
+ 588                  LCD_CmdWrite(MWCR); 
+ 589                  for(iiii=0;iiii<count;iiii++)
+ 590                  {
+ 591                          LCD_DataWrite(*cha++);
+ 592                  }   
+ 593          }
+ 594          */
+ 595          /***************************************************************************/
+ 596          // 显示一行边框
+ 597          // 参数：x起始坐标0~39  y起始坐标0~239  宽度  高度 颜色1正常2反白  
+ 598          // 返回值：无
+ 599          /***************************************************************************/
+ 600          void display_kuang(uchar x_star,uchar y_star,uchar w,uchar h, uchar color)
+ 601          {
+ 602   1              uchar width,heigh;      //i表示行,j表示列
+ 603   1              LCD_Graphic();   //选择绘图模式
+ 604   1              for(heigh=0;heigh<h;heigh++)
+ 605   1              {  
+ 606   2                      if(heigh==0)
+ 607   2                      {
+ 608   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置  
+ 609   3                              for(width=0;width<w;width++)
+ 610   3                              { 
+ 611   4                                      LCD_CmdWrite(MWCR); 
  612   4                                      LCD_DataWrite(0xff);
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 11  
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 11  
 
- 613   4                                      for(width=1;width<(w-1);width++)
- 614   4                                      {
- 615   5                                              LCD_DataWrite(0xff);
- 616   5                                      }
- 617   4                                      LCD_DataWrite(0xff);                            
- 618   4                              }
- 619   3                      }
- 620   2                      else if(heigh==(h-1))
- 621   2                      {
- 622   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置  
- 623   3                              for(width=0;width<w;width++)
- 624   3                              {      
- 625   4                                      LCD_CmdWrite(MWCR);
- 626   4                                      LCD_DataWrite(0xff);
+ 613   4                              }
+ 614   3                      }
+ 615   2                      else if((heigh>0)&&(heigh<(h-1)))
+ 616   2                      {
+ 617   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置    
+ 618   3                              LCD_CmdWrite(MWCR);   
+ 619   3                              if(color)
+ 620   3                              {
+ 621   4                                      LCD_DataWrite(0x80);
+ 622   4                                      for(width=1;width<(w-1);width++)
+ 623   4                                      {
+ 624   5                                              LCD_DataWrite(0x00);
+ 625   5                                      }
+ 626   4                                      LCD_DataWrite(0x01);
  627   4                              }
- 628   3                      }
- 629   2              }
- 630   1      }       
- 631          
- 632          /***************************************************************************/
- 633          // 显示图片
- 634          // 参数：x_star:0~39;y_star:0~239 w:0~39;h:0~239 
- 635          // 返回值：无
- 636          /***************************************************************************/
- 637          void drow_picture(uchar x, uchar y, uchar w, uchar h, uchar *pData)
- 638          {
- 639   1              uchar i, j;
- 640   1              LCD_Graphic(); 
- 641   1              for(i=0;i<h;i++)
- 642   1              {
- 643   2                      for(j=0; j<w; j++)
- 644   2                      {
- 645   3                              LCD_GotoXY(x+j,y+i); 
- 646   3                              LCD_CmdWrite(MWCR);   
- 647   3                              LCD_DataWrite(*pData++); 
- 648   3                      }
- 649   2              }
- 650   1      }
- 651          
- 652          /***************************************************************************/
- 653          // 绘点函数
- 654          // 参数：x坐标 y坐标
- 655          // 返回值：无
- 656          /***************************************************************************/
- 657          void drow_point(uint x, uint y)
- 658          {
- 659   1              uchar temp, temp1= x/8;
- 660   1              LCD_Graphic();
- 661   1              LCD_GotoXY(temp1,y); 
- 662   1              LCD_CmdWrite(MRCR);     //内存读出 
- 663   1              temp = LCD_DataRead();
- 664   1              LCD_GotoXY(temp1,y); 
- 665   1              LCD_CmdWrite(MWCR);   
- 666   1              LCD_DataWrite(temp | (1<<7-x%8)); 
- 667   1      }
- 668          
- 669          /***************************************************************************/
- 670          // 绘横线函数
- 671          // 参数：x起始坐标 y起始坐标 x终止坐标
- 672          // 返回值：无
- 673          /***************************************************************************/
- 674          void drow_row_line(uint x0, uint y0, uint x1)
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 12  
+ 628   3                              else
+ 629   3                              {
+ 630   4                                      LCD_DataWrite(0xff);
+ 631   4                                      for(width=1;width<(w-1);width++)
+ 632   4                                      {
+ 633   5                                              LCD_DataWrite(0xff);
+ 634   5                                      }
+ 635   4                                      LCD_DataWrite(0xff);                            
+ 636   4                              }
+ 637   3                      }
+ 638   2                      else if(heigh==(h-1))
+ 639   2                      {
+ 640   3                              LCD_GotoXY(x_star,y_star+heigh);   //设定X,Y开始坐标位置  
+ 641   3                              for(width=0;width<w;width++)
+ 642   3                              {      
+ 643   4                                      LCD_CmdWrite(MWCR);
+ 644   4                                      LCD_DataWrite(0xff);
+ 645   4                              }
+ 646   3                      }
+ 647   2              }
+ 648   1      }       
+ 649          
+ 650          /***************************************************************************/
+ 651          // 显示图片
+ 652          // 参数：x_star:0~39;y_star:0~239 w:0~39;h:0~239 
+ 653          // 返回值：无
+ 654          /***************************************************************************/
+ 655          void drow_picture(uchar x, uchar y, uchar w, uchar h, uchar *pData)
+ 656          {
+ 657   1              uchar i, j;
+ 658   1              LCD_Graphic(); 
+ 659   1              for(i=0;i<h;i++)
+ 660   1              {
+ 661   2                      for(j=0; j<w; j++)
+ 662   2                      {
+ 663   3                              LCD_GotoXY(x+j,y+i); 
+ 664   3                              LCD_CmdWrite(MWCR);   
+ 665   3                              LCD_DataWrite(*pData++); 
+ 666   3                      }
+ 667   2              }
+ 668   1      }
+ 669          
+ 670          /***************************************************************************/
+ 671          // 绘点函数
+ 672          // 参数：x坐标 y坐标
+ 673          // 返回值：无
+ 674          /***************************************************************************/
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 12  
 
- 675          {
- 676   1              uint temp;
- 677   1              if(x0>x1)
- 678   1              {
- 679   2                      temp = x1;
- 680   2                      x1 = x0;
- 681   2                      x0 = temp;
- 682   2              }
- 683   1              while(x1>=x0)
- 684   1              {
- 685   2                      drow_point(x0, y0);
- 686   2                      x0++;
- 687   2              }
- 688   1      }
- 689          
- 690          /***************************************************************************/
- 691          // 绘竖线函数
- 692          // 参数：x起始坐标 y起始坐标 y终止坐标
- 693          // 返回值：无
- 694          /***************************************************************************/
- 695          void drow_column_line(uint x0, uint y0, uint y1)
+ 675          /*
+ 676          void drow_point(uint x, uint y)
+ 677          {
+ 678                  uchar temp, temp1= x/8;
+ 679                  LCD_Graphic();
+ 680                  LCD_GotoXY(temp1,y); 
+ 681                  LCD_CmdWrite(MRCR);     //内存读出 
+ 682                  temp = LCD_DataRead();
+ 683                  LCD_GotoXY(temp1,y); 
+ 684                  LCD_CmdWrite(MWCR);   
+ 685                  LCD_DataWrite(temp | (1<<7-x%8)); 
+ 686          }
+ 687          */
+ 688          
+ 689          /***************************************************************************/
+ 690          // 绘横线函数
+ 691          // 参数：x起始坐标 y起始坐标 x终止坐标
+ 692          // 返回值：无
+ 693          /***************************************************************************/
+ 694          /*
+ 695          void drow_row_line(uint x0, uint y0, uint x1)
  696          {
- 697   1              uint temp;
- 698   1              if(y0>y1)
- 699   1              {
- 700   2                      temp = y1;
- 701   2                      y1 = y0;
- 702   2                      y0 = temp;
- 703   2              }
- 704   1              do
- 705   1              {
- 706   2                      drow_point(x0, y0);
- 707   2                      y0++;
- 708   2              }
- 709   1              while(y1>=y0);
- 710   1      }
+ 697                  uint temp;
+ 698                  if(x0>x1)
+ 699                  {
+ 700                          temp = x1;
+ 701                          x1 = x0;
+ 702                          x0 = temp;
+ 703                  }
+ 704                  while(x1>=x0)
+ 705                  {
+ 706                          drow_point(x0, y0);
+ 707                          x0++;
+ 708                  }
+ 709          }
+ 710          */
  711          
  712          /***************************************************************************/
- 713          // 绘制圆角矩形
- 714          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
+ 713          // 绘竖线函数
+ 714          // 参数：x起始坐标 y起始坐标 y终止坐标
  715          // 返回值：无
  716          /***************************************************************************/
- 717          void display_r_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
- 718          {
- 719   1              if(color)
- 720   1              {
- 721   2                      display_kuang(x_star,y_star,w,h,1);
- 722   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLB);
- 723   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLB);
- 724   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRB);
- 725   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRB);
- 726   2              }
- 727   1              else
- 728   1              {
- 729   2                      display_kuang(x_star,y_star,w,h,0);
- 730   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLF);
- 731   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLF);
- 732   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRF);
- 733   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRF);         
- 734   2              }
- 735   1      }
- 736          
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 13  
+ 717          /*
+ 718          void drow_column_line(uint x0, uint y0, uint y1)
+ 719          {
+ 720                  uint temp;
+ 721                  if(y0>y1)
+ 722                  {
+ 723                          temp = y1;
+ 724                          y1 = y0;
+ 725                          y0 = temp;
+ 726                  }
+ 727                  do
+ 728                  {
+ 729                          drow_point(x0, y0);
+ 730                          y0++;
+ 731                  }
+ 732                  while(y1>=y0);
+ 733          }
+ 734          */
+ 735          
+ 736          /***************************************************************************/
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 13  
 
- 737          /***************************************************************************/
- 738          // 绘制左侧圆角矩形
- 739          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
- 740          // 返回值：无
- 741          /***************************************************************************/
- 742          void display_rl_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
- 743          {
- 744   1              if(color)
- 745   1              {
- 746   2                      display_kuang(x_star,y_star,w,h,1);
- 747   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLB);
- 748   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLB);
- 749   2              }
- 750   1              else
- 751   1              {
- 752   2                      display_kuang(x_star,y_star,w,h,0);
- 753   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLF);
- 754   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLF);
- 755   2              }
- 756   1      }
- 757          
- 758          /***************************************************************************/
- 759          // 绘制右侧圆角矩形
- 760          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
- 761          // 返回值：无
- 762          /***************************************************************************/
- 763          void display_rr_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
- 764          {
- 765   1              if(color)
- 766   1              {
- 767   2                      display_kuang(x_star,y_star,w,h,1);
- 768   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRB);
- 769   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRB);
- 770   2              }
- 771   1              else
- 772   1              {
- 773   2                      display_kuang(x_star,y_star,w,h,0);
- 774   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRF);
- 775   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRF);         
- 776   2              }
- 777   1      }
- 778          
- 779          /***************************************************************************/
- 780          // 允许触摸屏
- 781          // 参数：无
- 782          // 返回值：无
- 783          /***************************************************************************/
- 784          void Enable_TP(void)
- 785          {
- 786   1              uchar temp;
- 787   1              temp=LCD_CmdRead(TPCR1);
- 788   1              temp|=0x80;
- 789   1              LCD_CmdWrite(TPCR1);
- 790   1              LCD_DataWrite(temp);
- 791   1      }
- 792          
- 793          /***************************************************************************/
- 794          // 允许触摸屏非中断方式
- 795          // 参数：无
- 796          // 返回值：无
- 797          /***************************************************************************/
- 798          void Enable_Maunal_TP(void)
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 14  
+ 737          // 绘制圆角矩形
+ 738          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
+ 739          // 返回值：无
+ 740          /***************************************************************************/
+ 741          void display_r_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
+ 742          {
+ 743   1              if(color)
+ 744   1              {
+ 745   2                      display_kuang(x_star,y_star,w,h,1);
+ 746   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLB);
+ 747   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLB);
+ 748   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRB);
+ 749   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRB);
+ 750   2              }
+ 751   1              else
+ 752   1              {
+ 753   2                      display_kuang(x_star,y_star,w,h,0);
+ 754   2                      drow_picture(x_star, y_star, 1, 8, RoundedTLF);
+ 755   2                      drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLF);
+ 756   2                      drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRF);
+ 757   2                      drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRF);         
+ 758   2              }
+ 759   1      }
+ 760          
+ 761          /***************************************************************************/
+ 762          // 绘制左侧圆角矩形
+ 763          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
+ 764          // 返回值：无
+ 765          /***************************************************************************/
+ 766          /*
+ 767          void display_rl_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
+ 768          {
+ 769                  if(color)
+ 770                  {
+ 771                          display_kuang(x_star,y_star,w,h,1);
+ 772                          drow_picture(x_star, y_star, 1, 8, RoundedTLB);
+ 773                          drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLB);
+ 774                  }
+ 775                  else
+ 776                  {
+ 777                          display_kuang(x_star,y_star,w,h,0);
+ 778                          drow_picture(x_star, y_star, 1, 8, RoundedTLF);
+ 779                          drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLF);
+ 780                  }
+ 781          }
+ 782          */
+ 783          
+ 784          /***************************************************************************/
+ 785          // 绘制右侧圆角矩形
+ 786          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
+ 787          // 返回值：无
+ 788          /***************************************************************************/
+ 789          /*
+ 790          void display_rr_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
+ 791          {
+ 792                  if(color)
+ 793                  {
+ 794                          display_kuang(x_star,y_star,w,h,1);
+ 795                          drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRB);
+ 796                          drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRB);
+ 797                  }
+ 798                  else
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 14  
 
- 799          {
- 800   1              uchar temp;
- 801   1              temp=LCD_CmdRead(TPCR2);
- 802   1              temp|=0x80;
- 803   1              LCD_CmdWrite(TPCR2);
- 804   1              LCD_DataWrite(temp);
- 805   1      }
+ 799                  {
+ 800                          display_kuang(x_star,y_star,w,h,0);
+ 801                          drow_picture(x_star+w-1, y_star, 1, 8, RoundedTRF);
+ 802                          drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRF);         
+ 803                  }
+ 804          }
+ 805          */
  806          
  807          /***************************************************************************/
- 808          // 允许触摸屏中断方式
+ 808          // 允许触摸屏
  809          // 参数：无
  810          // 返回值：无
  811          /***************************************************************************/
- 812          void Enable_interrput_TP(void)
+ 812          void Enable_TP(void)
  813          {
  814   1              uchar temp;
- 815   1              temp=LCD_CmdRead(INTR);
- 816   1              temp|=0x10;
- 817   1              LCD_CmdWrite(INTR);
+ 815   1              temp=LCD_CmdRead(TPCR1);
+ 816   1              temp|=0x80;
+ 817   1              LCD_CmdWrite(TPCR1);
  818   1              LCD_DataWrite(temp);
  819   1      }
  820          
  821          /***************************************************************************/
- 822          // 禁用触摸屏中断
+ 822          // 允许触摸屏非中断方式
  823          // 参数：无
  824          // 返回值：无
  825          /***************************************************************************/
- 826          void Disable_interrput_TP(void)
+ 826          void Enable_Maunal_TP(void)
  827          {
  828   1              uchar temp;
- 829   1              temp=LCD_CmdRead(INTR);
- 830   1              temp&=0xef;
- 831   1              LCD_CmdWrite(INTR);
+ 829   1              temp=LCD_CmdRead(TPCR2);
+ 830   1              temp|=0x80;
+ 831   1              LCD_CmdWrite(TPCR2);
  832   1              LCD_DataWrite(temp);
  833   1      }
  834          
  835          /***************************************************************************/
- 836          // 
+ 836          // 允许触摸屏中断方式
  837          // 参数：无
  838          // 返回值：无
  839          /***************************************************************************/
- 840          void Switch_Latch_X_data(void)
- 841          {
- 842   1              uchar temp;
- 843   1              temp=LCD_CmdRead(TPCR2);
- 844   1              temp&=0xFE;
- 845   1              temp|=0x02;
- 846   1              LCD_CmdWrite(TPCR2);
- 847   1              LCD_DataWrite(temp);
- 848   1      }
- 849          
- 850          /***************************************************************************/
- 851          // 
- 852          // 参数：无
- 853          // 返回值：无
- 854          /***************************************************************************/
- 855          void Switch_Latch_Y_data(void)
- 856          {
- 857   1              uchar temp;
- 858   1              temp=LCD_CmdRead(TPCR2);
- 859   1              temp|=0x01;
- 860   1              temp|=0x02;
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 15  
+ 840          /*
+ 841          void Enable_interrput_TP(void)
+ 842          {
+ 843                  uchar temp;
+ 844                  temp=LCD_CmdRead(INTR);
+ 845                  temp|=0x10;
+ 846                  LCD_CmdWrite(INTR);
+ 847                  LCD_DataWrite(temp);
+ 848          }
+ 849          */
+ 850          
+ 851          /***************************************************************************/
+ 852          // 禁用触摸屏中断
+ 853          // 参数：无
+ 854          // 返回值：无
+ 855          /***************************************************************************/
+ 856          /*
+ 857          void Disable_interrput_TP(void)
+ 858          {
+ 859                  uchar temp;
+ 860                  temp=LCD_CmdRead(INTR);
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 15  
 
- 861   1              LCD_CmdWrite(TPCR2);
- 862   1              LCD_DataWrite(temp);
- 863   1      }
- 864          
- 865          /***************************************************************************/
- 866          // x坐标值转换
- 867          // 参数：无
- 868          // 返回值：无
- 869          /***************************************************************************/
- 870          uint trans_tpx(uint x)
- 871          {
- 872   1              long tp_x;
- 873   1              long temp;
- 874   1              temp=(((long)x)-x_tps0)*320;
- 875   1              tp_x=temp/x_tps;
- 876   1              return tp_x;
- 877   1      }
- 878          
- 879          /***************************************************************************/
- 880          // y坐标值转换
- 881          // 参数：无
- 882          // 返回值：无
- 883          /***************************************************************************/
- 884          uint trans_tpy(uint y)
- 885          {
- 886   1              long tp_y;
- 887   1              long temp;
- 888   1              temp=(((long)y)-y_tps0)*240;
- 889   1              tp_y=temp/y_tps;
- 890   1              return tp_y;
- 891   1      }
- 892          
- 893          /***************************************************************************/
- 894          // 获取触摸屏值
- 895          // 参数：触摸x坐标 触摸y坐标
- 896          // 返回值：result_data
- 897          //                                              0无触摸 
- 898          //                                              1主界面定时设置 
- 899          //                                              2主界面手自动 
- 900          //                                              3主界面下班按键 
- 901          //                                              4主界面关机状态取消下班 
- 902          //                                              5设置界面一号槽选中  
- 903          //                                              6设置界面二号槽选中 
- 904          //                                              7设置界面三号槽选中 
- 905          //                                              8设置界面四号槽选中  
- 906          //                                              9设置界面五号槽选中  
- 907          //                                              10设置界面六号槽选中
- 908          //                                              11设置界面加一分钟
- 909          //                                              12设置界面减一分钟
- 910          //                                              13设置界面保存
- 911          //                                              14设置界面返回
- 912          //                                              15设置取消界面返回
- 913          /***************************************************************************/
- 914          uchar getTP_Value(uint x_temp, uint y_temp)
- 915          {
- 916   1              uchar result_data = 0;
- 917   1              if(displayMode == MainDisplayMode) //主界面正常显示
- 918   1              {
- 919   2                      if(x_temp>0 && x_temp<96 && y_temp>208 && y_temp<240) //定时设置
- 920   2                      {
- 921   3                              if(runMode == ManualMode)
- 922   3                              {
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 16  
+ 861                  temp&=0xef;
+ 862                  LCD_CmdWrite(INTR);
+ 863                  LCD_DataWrite(temp);
+ 864          }
+ 865          */
+ 866          
+ 867          /***************************************************************************/
+ 868          // 
+ 869          // 参数：无
+ 870          // 返回值：无
+ 871          /***************************************************************************/
+ 872          void Switch_Latch_X_data(void)
+ 873          {
+ 874   1              uchar temp;
+ 875   1              temp=LCD_CmdRead(TPCR2);
+ 876   1              temp&=0xFE;
+ 877   1              temp|=0x02;
+ 878   1              LCD_CmdWrite(TPCR2);
+ 879   1              LCD_DataWrite(temp);
+ 880   1      }
+ 881          
+ 882          /***************************************************************************/
+ 883          // 
+ 884          // 参数：无
+ 885          // 返回值：无
+ 886          /***************************************************************************/
+ 887          void Switch_Latch_Y_data(void)
+ 888          {
+ 889   1              uchar temp;
+ 890   1              temp=LCD_CmdRead(TPCR2);
+ 891   1              temp|=0x01;
+ 892   1              temp|=0x02;
+ 893   1              LCD_CmdWrite(TPCR2);
+ 894   1              LCD_DataWrite(temp);
+ 895   1      }
+ 896          
+ 897          /***************************************************************************/
+ 898          // x坐标值转换
+ 899          // 参数：无
+ 900          // 返回值：无
+ 901          /***************************************************************************/
+ 902          uint trans_tpx(uint x)
+ 903          {
+ 904   1              long tp_x;
+ 905   1              long temp;
+ 906   1              temp=(((long)x)-x_tps0)*320;
+ 907   1              tp_x=temp/x_tps;
+ 908   1              return tp_x;
+ 909   1      }
+ 910          
+ 911          /***************************************************************************/
+ 912          // y坐标值转换
+ 913          // 参数：无
+ 914          // 返回值：无
+ 915          /***************************************************************************/
+ 916          uint trans_tpy(uint y)
+ 917          {
+ 918   1              long tp_y;
+ 919   1              long temp;
+ 920   1              temp=(((long)y)-y_tps0)*240;
+ 921   1              tp_y=temp/y_tps;
+ 922   1              return tp_y;
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 16  
 
- 923   4                                      result_data = 1;
- 924   4                              }
- 925   3                      }
- 926   2                      else if(x_temp>104 && x_temp<208 && y_temp>208 && y_temp<240) //手自动
- 927   2                      {
- 928   3                              result_data = 2;
- 929   3                      }
- 930   2                      else if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //下班按键
- 931   2                      {
- 932   3                              if(runMode == AutoMode) //只有自动模式下面才能点击下班按钮
- 933   3                              {
- 934   4                                      result_data = 3;
- 935   4                              }
- 936   3                      }
- 937   2              }
- 938   1              else if(displayMode == PowerOffing) //主界面正在关机
- 939   1              {
- 940   2                      if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //取消下班
- 941   2                      {
- 942   3                              result_data = 4;
- 943   3                      }
- 944   2              }
- 945   1              else if(displayMode == Setting) //设置界面正常显示
- 946   1              {
- 947   2                      if(x_temp>40 && x_temp<72 && y_temp>74 && y_temp<174) //一号槽选中 
- 948   2                      {
- 949   3                              result_data = 5;
- 950   3                      }
- 951   2                      else if(x_temp>80 && x_temp<112 && y_temp>74 && y_temp<174) //二号槽选中 
+ 923   1      }
+ 924          
+ 925          /***************************************************************************/
+ 926          // 获取触摸屏值
+ 927          // 参数：触摸x坐标 触摸y坐标
+ 928          // 返回值：result_data
+ 929          //                                              0无触摸 
+ 930          //                                              1主界面定时设置 
+ 931          //                                              2主界面手自动 
+ 932          //                                              3主界面下班按键 
+ 933          //                                              4主界面关机状态取消下班 
+ 934          //                                              5设置界面一号槽选中  
+ 935          //                                              6设置界面二号槽选中 
+ 936          //                                              7设置界面三号槽选中 
+ 937          //                                              8设置界面四号槽选中  
+ 938          //                                              9设置界面五号槽选中  
+ 939          //                                              10设置界面六号槽选中
+ 940          //                                              11设置界面加一分钟
+ 941          //                                              12设置界面减一分钟
+ 942          //                                              13设置界面保存
+ 943          //                                              14设置界面返回
+ 944          //                                              15设置取消界面返回
+ 945          /***************************************************************************/
+ 946          uchar getTP_Value(uint x_temp, uint y_temp)
+ 947          {
+ 948   1              uchar result_data = 0;
+ 949   1              if(displayMode == MainDisplayMode) //主界面正常显示
+ 950   1              {
+ 951   2                      if(x_temp>0 && x_temp<96 && y_temp>208 && y_temp<240) //定时设置
  952   2                      {
- 953   3                              result_data = 6;
- 954   3                      }
- 955   2                      else if(x_temp>120 && x_temp<152 && y_temp>74 && y_temp<174) //三号槽选中 
- 956   2                      {
- 957   3                              result_data = 7;
- 958   3                      }
- 959   2                      else if(x_temp>160 && x_temp<192 && y_temp>74 && y_temp<174) //四号槽选中  
- 960   2                      {
- 961   3                              result_data = 8;
- 962   3                      }
- 963   2                      else if(x_temp>200 && x_temp<232 && y_temp>74 && y_temp<174) //五号槽选中  
- 964   2                      {
- 965   3                              result_data = 9;
- 966   3                      }
- 967   2                      else if(x_temp>240 && x_temp<272 && y_temp>74 && y_temp<174) //六号槽选中
- 968   2                      {
- 969   3                              result_data = 10;
- 970   3                      }
- 971   2                      else if(x_temp>160 && x_temp<216 && y_temp>12 && y_temp<60) //加一分钟
- 972   2                      {
- 973   3                              result_data = 11;
- 974   3                      }
- 975   2                      else if(x_temp>232 && x_temp<288 && y_temp>12 && y_temp<60) //减一分钟
- 976   2                      {
- 977   3                              result_data = 12;
- 978   3                      }
- 979   2                      else if(x_temp>112 && x_temp<208 && y_temp>208 && y_temp<240) //保存
+ 953   3                              if(runMode == ManualMode)
+ 954   3                              {
+ 955   4                                      result_data = 1;
+ 956   4                              }
+ 957   3                      }
+ 958   2                      else if(x_temp>104 && x_temp<208 && y_temp>208 && y_temp<240) //手自动
+ 959   2                      {
+ 960   3                              result_data = 2;
+ 961   3                      }
+ 962   2                      else if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //下班按键
+ 963   2                      {
+ 964   3                              if(runMode == AutoMode) //只有自动模式下面才能点击下班按钮
+ 965   3                              {
+ 966   4                                      result_data = 3;
+ 967   4                              }
+ 968   3                      }
+ 969   2              }
+ 970   1              else if(displayMode == PowerOffing) //主界面正在关机
+ 971   1              {
+ 972   2                      if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //取消下班
+ 973   2                      {
+ 974   3                              result_data = 4;
+ 975   3                      }
+ 976   2              }
+ 977   1              else if(displayMode == Setting) //设置界面正常显示
+ 978   1              {
+ 979   2                      if(x_temp>40 && x_temp<72 && y_temp>74 && y_temp<174) //一号槽选中 
  980   2                      {
- 981   3                              result_data = 13;
+ 981   3                              result_data = 5;
  982   3                      }
- 983   2                      else if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //返回
+ 983   2                      else if(x_temp>80 && x_temp<112 && y_temp>74 && y_temp<174) //二号槽选中 
  984   2                      {
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 17  
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 17  
 
- 985   3                              result_data = 14;
+ 985   3                              result_data = 6;
  986   3                      }
- 987   2              }
- 988   1              else if(displayMode == SettingSaved)//设置保存成功
- 989   1              {
- 990   2                      if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //返回
- 991   2                      {
- 992   3                              result_data = 15;
- 993   3                      }
- 994   2              }
- 995   1              return result_data;
- 996   1      }
- 997          
- 998          /***************************************************************************/
- 999          // 手动模式轮询测试触摸屏
-1000          // 参数：无
-1001          // 返回值：result_data 
-1002          /***************************************************************************/
-1003          uchar tp_ManualMode()
-1004          {
-1005   1              uchar Touch_Sta_Valid,INT_Sta,count,X1,Y1,X2,Y2,temp,result_data=0;
-1006   1              uint X,Y,x_temp,y_temp;
-1007   1              Touch_Sta_Valid=0;
-1008   1              LCD_CmdWrite(TPCR2);
-1009   1              LCD_DataWrite(0x81);
-1010   1              LCD_CmdWrite(0xff); 
-1011   1              LCD_DataWrite(0xff);  //写这段语句的意思是利用写数据时的判忙来确定此时ra8806是否处于内部工作状态
-1012   1              INT_Sta=LCD_CmdRead(INTR);
-1013   1              if((INT_Sta&0x08)==0x08)
-1014   1              {
-1015   2                      for(count=0;count<50;count++)
+ 987   2                      else if(x_temp>120 && x_temp<152 && y_temp>74 && y_temp<174) //三号槽选中 
+ 988   2                      {
+ 989   3                              result_data = 7;
+ 990   3                      }
+ 991   2                      else if(x_temp>160 && x_temp<192 && y_temp>74 && y_temp<174) //四号槽选中  
+ 992   2                      {
+ 993   3                              result_data = 8;
+ 994   3                      }
+ 995   2                      else if(x_temp>200 && x_temp<232 && y_temp>74 && y_temp<174) //五号槽选中  
+ 996   2                      {
+ 997   3                              result_data = 9;
+ 998   3                      }
+ 999   2                      else if(x_temp>240 && x_temp<272 && y_temp>74 && y_temp<174) //六号槽选中
+1000   2                      {
+1001   3                              result_data = 10;
+1002   3                      }
+1003   2                      else if(x_temp>160 && x_temp<216 && y_temp>12 && y_temp<60) //加一分钟
+1004   2                      {
+1005   3                              result_data = 11;
+1006   3                      }
+1007   2                      else if(x_temp>232 && x_temp<288 && y_temp>12 && y_temp<60) //减一分钟
+1008   2                      {
+1009   3                              result_data = 12;
+1010   3                      }
+1011   2                      else if(x_temp>112 && x_temp<208 && y_temp>208 && y_temp<240) //保存
+1012   2                      {
+1013   3                              result_data = 13;
+1014   3                      }
+1015   2                      else if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //返回
 1016   2                      {
-1017   3                              INT_Sta=LCD_CmdRead(INTR);
-1018   3                              if(INT_Sta==0)
-1019   3                              {
-1020   4                                      Touch_Sta_Valid=0;
-1021   4                                      break;
-1022   4                              }
-1023   3                              if(count==49)
-1024   3                              {
-1025   4                                      Touch_Sta_Valid=1;
-1026   4                              }
-1027   3                      }
-1028   2                      if(Touch_Sta_Valid)
-1029   2                      {
-1030   3                              Switch_Latch_X_data();
-1031   3                              delay_us(100);
-1032   3                              Switch_Latch_Y_data();  
-1033   3                              delay_us(100);
-1034   3                              X1=LCD_CmdRead(TPXR);
-1035   3                              LCD_CmdWrite(0xff); 
-1036   3                              LCD_DataWrite(0xff);
-1037   3                              Y1=LCD_CmdRead(TPYR);
-1038   3                              LCD_CmdWrite(0xff); 
-1039   3                              LCD_DataWrite(0xff);
-1040   3                              X2=LCD_CmdRead(TPZR)&0x03;
-1041   3                              LCD_CmdWrite(0xff); 
-1042   3                              LCD_DataWrite(0xff);
-1043   3                              Y2=LCD_CmdRead(TPZR)&0x0c;
-1044   3                              LCD_CmdWrite(0xff); 
-1045   3                              LCD_DataWrite(0xff);
-1046   3                              X = (((unsigned int)X1&0x00ff)<<2) | ((unsigned int)X2&0x0003);
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 18  
+1017   3                              result_data = 14;
+1018   3                      }
+1019   2              }
+1020   1              else if(displayMode == SettingSaved)//设置保存成功
+1021   1              {
+1022   2                      if(x_temp>216 && x_temp<312 && y_temp>208 && y_temp<240) //返回
+1023   2                      {
+1024   3                              result_data = 15;
+1025   3                      }
+1026   2              }
+1027   1              return result_data;
+1028   1      }
+1029          
+1030          /***************************************************************************/
+1031          // 手动模式轮询测试触摸屏
+1032          // 参数：无
+1033          // 返回值：result_data 
+1034          /***************************************************************************/
+1035          uchar tp_ManualMode()
+1036          {
+1037   1              uchar Touch_Sta_Valid,INT_Sta,count,X1,Y1,X2,Y2,temp,result_data=0;
+1038   1              uint X,Y,x_temp,y_temp;
+1039   1              Touch_Sta_Valid=0;
+1040   1              LCD_CmdWrite(TPCR2);
+1041   1              LCD_DataWrite(0x81);
+1042   1              LCD_CmdWrite(0xff); 
+1043   1              LCD_DataWrite(0xff);  //写这段语句的意思是利用写数据时的判忙来确定此时ra8806是否处于内部工作状态
+1044   1              INT_Sta=LCD_CmdRead(INTR);
+1045   1              if((INT_Sta&0x08)==0x08)
+1046   1              {
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 18  
 
-1047   3                              Y = (((unsigned int)Y1&0x00ff)<<2) | (((unsigned int)Y2&0x000C) >> 2);
-1048   3                              if((X<948)&&(X>94)&&(Y<944)&&(Y>92))
-1049   3                              {
-1050   4                                      x_temp=trans_tpx(X);
-1051   4                                      y_temp=trans_tpy(Y);
-1052   4                                      result_data = getTP_Value(x_temp, y_temp);
-1053   4                              }
-1054   3                      }
-1055   2                      temp=LCD_CmdRead(INTR)&0xfe;
-1056   2                      LCD_CmdWrite(INTR);
-1057   2                      LCD_DataWrite(temp);
-1058   2              }
-1059   1              return result_data;
-1060   1      }
-1061          
-1062          /***************************************************************************/
-1063          // 显示设置界面
-1064          // 参数：0正常设置  1保存成功提示  2保存失败提示 3正在保存提示
-1065          // 返回值：无
-1066          /***************************************************************************/
-1067          void SettingDisplay(uchar settingStatus)
-1068          {       
-1069   1              uchar i, currentTimeCount;
-1070   1              Access_Page2(); //存取DDRAM2
-1071   1              clear(); 
-1072   1              //加减时间按钮
-1073   1              display_r_kuang(20,12,7,48,1);
-1074   1              display_r_kuang(29,12,7,48,1);
-1075   1              //设置槽框
-1076   1              for(i=0; i<8; i++)
-1077   1              {
-1078   2                      if(cistern[i].isCurrentlSetting)
-1079   2                      {
-1080   3                              display_kuang(i*5,74,4,100,0);
-1081   3                      }
-1082   2                      else
-1083   2                      {
-1084   3                              display_kuang(i*5,74,4,100,1);
-1085   3                      }
-1086   2              }
-1087   1              //按建
-1088   1              if(displayMode == Setting)
-1089   1              {
-1090   2                      display_r_kuang(14,208,12,32,1);
-1091   2              }
-1092   1              display_r_kuang(27,208,12,32,1);
-1093   1              //提示框
-1094   1              if(settingStatus)
-1095   1              {
-1096   2                      display_r_kuang(9,72,22,64,1);  //保存成功提示
-1097   2              }
-1098   1      
-1099   1              Access_Page1(); //存取DDRAM1
-1100   1              clear();
-1101   1              normal_data();
-1102   1              LCD_NoInv();
-1103   1              //标题
-1104   1              LCD_ShowStr(1,8,"定时设置:");
-1105   1              //加减时间按钮
-1106   1              LCD_ShowStr(21,18,"加 一");
-1107   1              LCD_ShowStr(21,38,"分 钟");
-1108   1              LCD_ShowStr(30,18,"减 一");
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 19  
+1047   2                      for(count=0;count<50;count++)
+1048   2                      {
+1049   3                              INT_Sta=LCD_CmdRead(INTR);
+1050   3                              if(INT_Sta==0)
+1051   3                              {
+1052   4                                      Touch_Sta_Valid=0;
+1053   4                                      break;
+1054   4                              }
+1055   3                              if(count==49)
+1056   3                              {
+1057   4                                      Touch_Sta_Valid=1;
+1058   4                              }
+1059   3                      }
+1060   2                      if(Touch_Sta_Valid)
+1061   2                      {
+1062   3                              Switch_Latch_X_data();
+1063   3                              delay_us(100);
+1064   3                              Switch_Latch_Y_data();  
+1065   3                              delay_us(100);
+1066   3                              X1=LCD_CmdRead(TPXR);
+1067   3                              LCD_CmdWrite(0xff); 
+1068   3                              LCD_DataWrite(0xff);
+1069   3                              Y1=LCD_CmdRead(TPYR);
+1070   3                              LCD_CmdWrite(0xff); 
+1071   3                              LCD_DataWrite(0xff);
+1072   3                              X2=LCD_CmdRead(TPZR)&0x03;
+1073   3                              LCD_CmdWrite(0xff); 
+1074   3                              LCD_DataWrite(0xff);
+1075   3                              Y2=LCD_CmdRead(TPZR)&0x0c;
+1076   3                              LCD_CmdWrite(0xff); 
+1077   3                              LCD_DataWrite(0xff);
+1078   3                              X = (((unsigned int)X1&0x00ff)<<2) | ((unsigned int)X2&0x0003);
+1079   3                              Y = (((unsigned int)Y1&0x00ff)<<2) | (((unsigned int)Y2&0x000C) >> 2);
+1080   3                              if((X<948)&&(X>94)&&(Y<944)&&(Y>92))
+1081   3                              {
+1082   4                                      x_temp=trans_tpx(X);
+1083   4                                      y_temp=trans_tpy(Y);
+1084   4                                      result_data = getTP_Value(x_temp, y_temp);
+1085   4                              }
+1086   3                      }
+1087   2                      temp=LCD_CmdRead(INTR)&0xfe;
+1088   2                      LCD_CmdWrite(INTR);
+1089   2                      LCD_DataWrite(temp);
+1090   2              }
+1091   1              return result_data;
+1092   1      }
+1093          
+1094          /***************************************************************************/
+1095          // 显示设置界面
+1096          // 参数：0正常设置  1保存成功提示  2保存失败提示 3正在保存提示
+1097          // 返回值：无
+1098          /***************************************************************************/
+1099          void SettingDisplay(uchar settingStatus)
+1100          {       
+1101   1              uchar i, currentTimeCount;
+1102   1              Access_Page2(); //存取DDRAM2
+1103   1              clear(); 
+1104   1              //加减时间按钮
+1105   1              display_r_kuang(20,12,7,48,1);
+1106   1              display_r_kuang(29,12,7,48,1);
+1107   1              //设置槽框
+1108   1              for(i=0; i<8; i++)
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 19  
 
-1109   1              LCD_ShowStr(30,38,"分 钟");
-1110   1              //设置槽框
-1111   1              LCD_ShowStr(1,96,"未");
-1112   1              LCD_ShowStr(1,116,"设");
-1113   1              LCD_ShowStr(1,136,"置");
-1114   1              //设置槽框
-1115   1              for(i=1; i<7; i++)
-1116   1              {
-1117   2                      currentTimeCount = cistern[i].perSettingTime/60;
-1118   2                      LCD_ShowChar(1+5*i,96,currentTimeCount/10+48);
-1119   2                      LCD_ShowChar(2+5*i,96,currentTimeCount%10+48);
-1120   2                      LCD_ShowStr(1+5*i,116,"分");
-1121   2                      LCD_ShowStr(1+5*i,136,"钟");
-1122   2              }
-1123   1              LCD_ShowStr(36,96,"未");
-1124   1              LCD_ShowStr(36,116,"设");
-1125   1              LCD_ShowStr(36,136,"置");
-1126   1              //槽号
-1127   1              LCD_ShowStr(1,180,"进");
-1128   1              LCD_ShowStr(6,180,"1");
-1129   1              LCD_ShowStr(11,180,"2");
-1130   1              LCD_ShowStr(16,180,"3");
-1131   1              LCD_ShowStr(21,180,"4");
-1132   1              LCD_ShowStr(26,180,"5");
-1133   1              LCD_ShowStr(31,180,"6");
-1134   1              LCD_ShowStr(36,180,"出");
-1135   1              //按建
-1136   1              if(displayMode == Setting)
-1137   1              {
-1138   2                      LCD_ShowStr(17,216,"保  存");
-1139   2              }
-1140   1              LCD_ShowStr(30,216,"返  回");
-1141   1              //提示
-1142   1              if(settingStatus)
-1143   1              {
-1144   2                      display_r_kuang(9,72,22,64,0);  //保存成功提示
-1145   2                      display_kuang(10,80,20,48,1);   //保存成功提示
-1146   2                      if(settingStatus == 1)
-1147   2                              LCD_ShowStr(14,96,"保 存 成 功");   //保存成功提示
-1148   2                      else if(settingStatus == 2)
-1149   2                              LCD_ShowStr(14,96,"保 存 失 败");   //保存失败提示
-1150   2                      else
-1151   2                              LCD_ShowStr(14,96,"保 存 中...");   //保存失败提示
-1152   2              }
-1153   1      
-1154   1              XOR_Two_Layer();//DDRAM1 OR DDRAM2
-1155   1              Show_Two_Layer();//DDRAM1与DDRAM2同时显示
-1156   1      }
-1157          
-1158          /***************************************************************************/
-1159          // 开机界面
-1160          // 参数：无
-1161          // 返回值：无
-1162          /***************************************************************************/
-1163          void PowerOnDisplay()
-1164          {
-1165   1              Access_Page2();
-1166   1              LCD_NoInv();
-1167   1              clear();
-1168   1              Access_Page1();
-1169   1              LCD_NoInv();
-1170   1              clear();
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 20  
+1109   1              {
+1110   2                      if(cistern[i].isCurrentlSetting)
+1111   2                      {
+1112   3                              display_kuang(i*5,74,4,100,0);
+1113   3                      }
+1114   2                      else
+1115   2                      {
+1116   3                              display_kuang(i*5,74,4,100,1);
+1117   3                      }
+1118   2              }
+1119   1              //按建
+1120   1              if(displayMode == Setting)
+1121   1              {
+1122   2                      display_r_kuang(14,208,12,32,1);
+1123   2              }
+1124   1              display_r_kuang(27,208,12,32,1);
+1125   1              //提示框
+1126   1              if(settingStatus)
+1127   1              {
+1128   2                      display_r_kuang(9,72,22,64,1);  //保存成功提示
+1129   2              }
+1130   1      
+1131   1              Access_Page1(); //存取DDRAM1
+1132   1              clear();
+1133   1              normal_data();
+1134   1              LCD_NoInv();
+1135   1              //标题
+1136   1              LCD_ShowStr(1,8,"定时设置:");
+1137   1              //加减时间按钮
+1138   1              LCD_ShowStr(21,18,"加 一");
+1139   1              LCD_ShowStr(21,38,"分 钟");
+1140   1              LCD_ShowStr(30,18,"减 一");
+1141   1              LCD_ShowStr(30,38,"分 钟");
+1142   1              //设置槽框
+1143   1              LCD_ShowStr(1,96,"未");
+1144   1              LCD_ShowStr(1,116,"设");
+1145   1              LCD_ShowStr(1,136,"置");
+1146   1              //设置槽框
+1147   1              for(i=1; i<7; i++)
+1148   1              {
+1149   2                      currentTimeCount = cistern[i].perSettingTime/60;
+1150   2                      LCD_ShowChar(1+5*i,96,currentTimeCount/10+48);
+1151   2                      LCD_ShowChar(2+5*i,96,currentTimeCount%10+48);
+1152   2                      LCD_ShowStr(1+5*i,116,"分");
+1153   2                      LCD_ShowStr(1+5*i,136,"钟");
+1154   2              }
+1155   1              LCD_ShowStr(36,96,"未");
+1156   1              LCD_ShowStr(36,116,"设");
+1157   1              LCD_ShowStr(36,136,"置");
+1158   1              //槽号
+1159   1              LCD_ShowStr(1,180,"进");
+1160   1              LCD_ShowStr(6,180,"1");
+1161   1              LCD_ShowStr(11,180,"2");
+1162   1              LCD_ShowStr(16,180,"3");
+1163   1              LCD_ShowStr(21,180,"4");
+1164   1              LCD_ShowStr(26,180,"5");
+1165   1              LCD_ShowStr(31,180,"6");
+1166   1              LCD_ShowStr(36,180,"出");
+1167   1              //按建
+1168   1              if(displayMode == Setting)
+1169   1              {
+1170   2                      LCD_ShowStr(17,216,"保  存");
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 20  
 
-1171   1              Only_Show_Page1();
-1172   1              //enlarge(2);
-1173   1              //LCD_ShowStr(0x02,0x00,"慈溪星越纺机配件厂");
-1174   1              enlarge(1);
-1175   1              LCD_ShowStr(0x04,0x35,"联系人:陆志东");
-1176   1              LCD_ShowStr(0x04,0x53,"联系电话: 13567402367");
-1177   1      }
-1178          
-1179          /***************************************************************************/
-1180          // 显示主界面
-1181          // 参数：0正常显示 1正在关机 2关机成功
-1182          // 返回值：无
-1183          /***************************************************************************/
-1184          void MainDisplay(uchar displayStatus)
-1185          {
-1186   1              uchar i, currentTimeCount;
-1187   1              Access_Page2(); //存取DDRAM2
-1188   1              clear(); 
-1189   1              //状态显示
-1190   1              display_kuang(0,0,8, 32, 1);
-1191   1              display_kuang(8,0,8, 32, 1);
-1192   1              //机械臂位置显示
-1193   1              for(i=0; i<8; i++)
-1194   1              {
-1195   2                      drow_picture(2+i*5, 42, 1, 8, HollowPrism);     
-1196   2                      drow_picture(2+i*5, 58, 1, 8, HollowPrism);     
-1197   2              }
-1198   1              if(manipulator.currentPosition%2 == 0)
-1199   1              {
-1200   2                      if(manipulator.manipulatorPosition == Top)
-1201   2                      {
-1202   3                              drow_picture(2+manipulator.currentPosition/2*5, 42, 1, 8, SolidPrism);
-1203   3                      }
-1204   2                      else if(manipulator.manipulatorPosition == Bottom)
-1205   2                      {
-1206   3                              drow_picture(2+manipulator.currentPosition/2*5, 58, 1, 8, SolidPrism);  
-1207   3                      }
-1208   2              }
-1209   1              else
-1210   1              {
-1211   2                      if(manipulator.manipulatorPosition == Top)
-1212   2                      {
-1213   3                              drow_picture(4+manipulator.currentPosition/2*5, 42, 1, 8, SolidPrism);
-1214   3                      }
-1215   2                      else if(manipulator.manipulatorPosition == Bottom)
-1216   2                      {
-1217   3                              drow_picture(4+manipulator.currentPosition/2*5, 58, 1, 8, SolidPrism);  
-1218   3                      }
-1219   2              }
-1220   1              //槽状态显示
-1221   1              for(i=0; i<8; i++)
-1222   1              {
-1223   2                      if(cistern[i].cisternStatus)
-1224   2                      {
-1225   3                              display_kuang(5*i,74,4,100,0);  
-1226   3                      }
-1227   2                      else
-1228   2                      {
-1229   3                              display_kuang(5*i,74,4,100,1);
-1230   3                      }
-1231   2              }
-1232   1              //按键显示
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 21  
+1171   2              }
+1172   1              LCD_ShowStr(30,216,"返  回");
+1173   1              //提示
+1174   1              if(settingStatus)
+1175   1              {
+1176   2                      display_r_kuang(9,72,22,64,0);  //保存成功提示
+1177   2                      display_kuang(10,80,20,48,1);   //保存成功提示
+1178   2                      if(settingStatus == 1)
+1179   2                              LCD_ShowStr(14,96,"保 存 成 功");   //保存成功提示
+1180   2                      else if(settingStatus == 2)
+1181   2                              LCD_ShowStr(14,96,"保 存 失 败");   //保存失败提示
+1182   2                      else
+1183   2                              LCD_ShowStr(14,96,"保 存 中...");   //保存失败提示
+1184   2              }
+1185   1      
+1186   1              XOR_Two_Layer();//DDRAM1 OR DDRAM2
+1187   1              Show_Two_Layer();//DDRAM1与DDRAM2同时显示
+1188   1      }
+1189          
+1190          /***************************************************************************/
+1191          // 开机界面
+1192          // 参数：无
+1193          // 返回值：无
+1194          /***************************************************************************/
+1195          void PowerOnDisplay()
+1196          {
+1197   1              Access_Page2();
+1198   1              LCD_NoInv();
+1199   1              clear();
+1200   1              Access_Page1();
+1201   1              LCD_NoInv();
+1202   1              clear();
+1203   1              Only_Show_Page1();
+1204   1              //enlarge(2);
+1205   1              //LCD_ShowStr(0x02,0x00,"慈溪星越纺机配件厂");
+1206   1              enlarge(1);
+1207   1              LCD_ShowStr(0x04,0x35,"联系人:陆志东");
+1208   1              LCD_ShowStr(0x04,0x53,"联系电话: 13567402367");
+1209   1      }
+1210          
+1211          /***************************************************************************/
+1212          // 显示主界面
+1213          // 参数：0正常显示 1正在关机 2关机成功
+1214          // 返回值：无
+1215          /***************************************************************************/
+1216          void MainDisplay(uchar displayStatus)
+1217          {
+1218   1              uchar i, currentTimeCount;
+1219   1              Access_Page2(); //存取DDRAM2
+1220   1              clear(); 
+1221   1              //状态显示
+1222   1              display_kuang(0,0,8, 32, 1);
+1223   1              display_kuang(8,0,8, 32, 1);
+1224   1              //机械臂位置显示
+1225   1              for(i=0; i<8; i++)
+1226   1              {
+1227   2                      drow_picture(2+i*5, 42, 1, 8, HollowPrism);     
+1228   2                      drow_picture(2+i*5, 58, 1, 8, HollowPrism);     
+1229   2              }
+1230   1              if(manipulator.currentPosition%2 == 0)
+1231   1              {
+1232   2                      if(manipulator.manipulatorPosition == Top)
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 21  
 
-1233   1              if(displayStatus == 0)
-1234   1              {
-1235   2                      if(runMode == ManualMode)
-1236   2                      {
-1237   3                              display_r_kuang(0,208,12,32,1); 
-1238   3                      }
-1239   2                      display_r_kuang(13,208,13,32,1);
+1233   2                      {
+1234   3                              drow_picture(2+manipulator.currentPosition/2*5, 42, 1, 8, SolidPrism);
+1235   3                      }
+1236   2                      else if(manipulator.manipulatorPosition == Bottom)
+1237   2                      {
+1238   3                              drow_picture(2+manipulator.currentPosition/2*5, 58, 1, 8, SolidPrism);  
+1239   3                      }
 1240   2              }
-1241   1              if(runMode == AutoMode && displayStatus != 2) //只有自动模式下面才能点击下班按钮
+1241   1              else
 1242   1              {
-1243   2                      display_r_kuang(27,208,12,32,1);
-1244   2              }
-1245   1              
-1246   1              //提示信息
-1247   1              if(displayStatus)
-1248   1              {
-1249   2                      display_r_kuang(9,72,22,64,1);
-1250   2              }
-1251   1      
-1252   1              Access_Page1();//存取DDRAM1
-1253   1              clear();
-1254   1              normal_data();
-1255   1              LCD_NoInv();
-1256   1              //状态显示
-1257   1              LCD_ShowStr(2,8,"状态");
-1258   1              if(runMode == AutoMode)
-1259   1                      LCD_ShowStr(10,8,"自动");
-1260   1              else
-1261   1                      LCD_ShowStr(10,8,"手动");
-1262   1      
-1263   1              //机械臂动作显示
-1264   1              LCD_ShowStr(22,8,"机械臂动作:");
-1265   1              switch(manipulator.manipulaterStatus)
+1243   2                      if(manipulator.manipulatorPosition == Top)
+1244   2                      {
+1245   3                              drow_picture(4+manipulator.currentPosition/2*5, 42, 1, 8, SolidPrism);
+1246   3                      }
+1247   2                      else if(manipulator.manipulatorPosition == Bottom)
+1248   2                      {
+1249   3                              drow_picture(4+manipulator.currentPosition/2*5, 58, 1, 8, SolidPrism);  
+1250   3                      }
+1251   2              }
+1252   1              //槽状态显示
+1253   1              for(i=0; i<8; i++)
+1254   1              {
+1255   2                      if(cistern[i].cisternStatus)
+1256   2                      {
+1257   3                              display_kuang(5*i,74,4,100,0);  
+1258   3                      }
+1259   2                      else
+1260   2                      {
+1261   3                              display_kuang(5*i,74,4,100,1);
+1262   3                      }
+1263   2              }
+1264   1              //按键显示
+1265   1              if(displayStatus == 0)
 1266   1              {
-1267   2                      case Stop:
-1268   2                              LCD_ShowStr(34,8,"空闲");
-1269   2                      break;
-1270   2                      case GoEntrance:
-1271   2                              LCD_ShowStr(34,8,"<---");
-1272   2                      break;
-1273   2                      case GoOutfall:
-1274   2                              LCD_ShowStr(34,8,"--->");
-1275   2                      break;
-1276   2                      case GoUp:
-1277   2                              LCD_ShowStr(34,8,"向上");
-1278   2                      break;
-1279   2                      case GoDown:
-1280   2                              LCD_ShowStr(34,8,"向下");
-1281   2                      break;
-1282   2                      default:
-1283   2                              LCD_ShowStr(34,8,"错误");
-1284   2              }
-1285   1              //槽状态显示
-1286   1              for(i=0; i<8; i++)
-1287   1              {
-1288   2                      if(cistern[i].cisternStatus == Empty)
-1289   2                      {
-1290   3                              LCD_ShowStr(1+5*i,100,"空");
-1291   3                              LCD_ShowStr(1+5*i,132,"闲");
-1292   3                      }
-1293   2                      else if(cistern[i].cisternStatus == Ready)
-1294   2                      {
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 22  
+1267   2                      if(runMode == ManualMode)
+1268   2                      {
+1269   3                              display_r_kuang(0,208,12,32,1); 
+1270   3                      }
+1271   2                      display_r_kuang(13,208,13,32,1);
+1272   2              }
+1273   1              if(runMode == AutoMode && displayStatus != 2) //只有自动模式下面才能点击下班按钮
+1274   1              {
+1275   2                      display_r_kuang(27,208,12,32,1);
+1276   2              }
+1277   1              
+1278   1              //提示信息
+1279   1              if(displayStatus)
+1280   1              {
+1281   2                      display_r_kuang(9,72,22,64,1);
+1282   2              }
+1283   1      
+1284   1              Access_Page1();//存取DDRAM1
+1285   1              clear();
+1286   1              normal_data();
+1287   1              LCD_NoInv();
+1288   1              //状态显示
+1289   1              LCD_ShowStr(2,8,"状态");
+1290   1              if(runMode == AutoMode)
+1291   1                      LCD_ShowStr(10,8,"自动");
+1292   1              else
+1293   1                      LCD_ShowStr(10,8,"手动");
+1294   1      
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 22  
 
-1295   3                              LCD_ShowStr(1+5*i,100,"就");
-1296   3                              LCD_ShowStr(1+5*i,132,"绪");
-1297   3                      }
-1298   2                      else
-1299   2                      {       
-1300   3                              if(i != 0 && i != 7)// 进口出口不安时间就绪
-1301   3                              {
-1302   4                                      currentTimeCount = (cistern[i].settingTime - cistern[i].currentTime)/60;
-1303   4                                      LCD_ShowChar(1+5*i,96,currentTimeCount/10+48);
-1304   4                                      LCD_ShowChar(2+5*i,96,currentTimeCount%10+48);
-1305   4                                      LCD_ShowStr(1+5*i,116,"分");
-1306   4                                      LCD_ShowStr(1+5*i,136,"钟");    
-1307   4                              }
-1308   3                              else
-1309   3                              {
-1310   4                                      LCD_ShowStr(1+5*i,100,"忙");
-1311   4                                      LCD_ShowStr(1+5*i,132,"碌");
-1312   4                              }               
-1313   3                      }
-1314   2              }
-1315   1              LCD_ShowStr(1,180,"进");
-1316   1              LCD_ShowStr(6,180,"1");
-1317   1              LCD_ShowStr(11,180,"2");
-1318   1              LCD_ShowStr(16,180,"3");
-1319   1              LCD_ShowStr(21,180,"4");
-1320   1              LCD_ShowStr(26,180,"5");
-1321   1              LCD_ShowStr(31,180,"6");
-1322   1              LCD_ShowStr(36,180,"出");
-1323   1              //按键显示
-1324   1              if(displayStatus == 0)
-1325   1              {
-1326   2                      if(runMode == ManualMode)
-1327   2                      {
-1328   3                              LCD_ShowStr(2,216,"定时设置");
+1295   1              //机械臂动作显示
+1296   1              LCD_ShowStr(22,8,"机械臂动作:");
+1297   1              switch(manipulator.manipulaterStatus)
+1298   1              {
+1299   2                      case Stop:
+1300   2                              LCD_ShowStr(34,8,"空闲");
+1301   2                      break;
+1302   2                      case GoEntrance:
+1303   2                              LCD_ShowStr(34,8,"<---");
+1304   2                      break;
+1305   2                      case GoOutfall:
+1306   2                              LCD_ShowStr(34,8,"--->");
+1307   2                      break;
+1308   2                      case GoUp:
+1309   2                              LCD_ShowStr(34,8,"向上");
+1310   2                      break;
+1311   2                      case GoDown:
+1312   2                              LCD_ShowStr(34,8,"向下");
+1313   2                      break;
+1314   2                      default:
+1315   2                              LCD_ShowStr(34,8,"错误");
+1316   2              }
+1317   1              //槽状态显示
+1318   1              for(i=0; i<8; i++)
+1319   1              {
+1320   2                      if(cistern[i].cisternStatus == Empty)
+1321   2                      {
+1322   3                              LCD_ShowStr(1+5*i,100,"空");
+1323   3                              LCD_ShowStr(1+5*i,132,"闲");
+1324   3                      }
+1325   2                      else if(cistern[i].cisternStatus == Ready)
+1326   2                      {
+1327   3                              LCD_ShowStr(1+5*i,100,"就");
+1328   3                              LCD_ShowStr(1+5*i,132,"绪");
 1329   3                      }
-1330   2                      LCD_ShowStr(15,216,"手动/自动");
-1331   2              }
-1332   1              if(displayStatus == 1)
-1333   1              {
-1334   2                      LCD_ShowStr(29,216,"取消下班");
-1335   2              }
-1336   1              else if(displayStatus == 0 && runMode == AutoMode)//只有自动模式下面才能点击下班按钮
-1337   1              {
-1338   2                      LCD_ShowStr(29,216,"下班按键");
-1339   2              }
-1340   1              //提示信息
-1341   1              if(displayStatus)
-1342   1              {
-1343   2                      display_r_kuang(9,72,22,64,0);
-1344   2                      display_kuang(10,80,20,48,1);
-1345   2                      if(displayStatus == 1)
-1346   2                              LCD_ShowStr(14,96,"关 机 中...");
-1347   2                      else
-1348   2                              LCD_ShowStr(14,96,"关 机 成 功"); 
-1349   2              }
-1350   1      
-1351   1              XOR_Two_Layer();//DDRAM1 OR DDRAM2
-1352   1              Show_Two_Layer();//DDRAM1与DDRAM2同时显示
-1353   1      }
-1354          
-1355          /***************************************************************************/
-1356          // 机械臂状态刷新
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 23  
+1330   2                      else
+1331   2                      {       
+1332   3                              if(i != 0 && i != 7)// 进口出口不安时间就绪
+1333   3                              {
+1334   4                                      currentTimeCount = (cistern[i].settingTime - cistern[i].currentTime)/60;
+1335   4                                      LCD_ShowChar(1+5*i,96,currentTimeCount/10+48);
+1336   4                                      LCD_ShowChar(2+5*i,96,currentTimeCount%10+48);
+1337   4                                      LCD_ShowStr(1+5*i,116,"分");
+1338   4                                      LCD_ShowStr(1+5*i,136,"钟");    
+1339   4                              }
+1340   3                              else
+1341   3                              {
+1342   4                                      LCD_ShowStr(1+5*i,100,"忙");
+1343   4                                      LCD_ShowStr(1+5*i,132,"碌");
+1344   4                              }               
+1345   3                      }
+1346   2              }
+1347   1              LCD_ShowStr(1,180,"进");
+1348   1              LCD_ShowStr(6,180,"1");
+1349   1              LCD_ShowStr(11,180,"2");
+1350   1              LCD_ShowStr(16,180,"3");
+1351   1              LCD_ShowStr(21,180,"4");
+1352   1              LCD_ShowStr(26,180,"5");
+1353   1              LCD_ShowStr(31,180,"6");
+1354   1              LCD_ShowStr(36,180,"出");
+1355   1              //按键显示
+1356   1              if(displayStatus == 0)
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 23  
 
-1357          // 参数：无
-1358          // 返回值：无
-1359          /**************************************************************************/
-1360          void ManipulatorStatusDisplay(void)
-1361          {
-1362   1              Access_Page1();//存取DDRAM1
-1363   1              normal_data();
-1364   1              LCD_NoInv();
-1365   1              //机械臂动作显示
-1366   1              switch(manipulator.manipulaterStatus)
-1367   1              {
-1368   2                      case Stop:
-1369   2                              LCD_ShowStr(34,8,"空闲");
-1370   2                      break;
-1371   2                      case GoEntrance:
-1372   2                              LCD_ShowStr(34,8,"<---");
-1373   2                      break;
-1374   2                      case GoOutfall:
-1375   2                              LCD_ShowStr(34,8,"--->");
-1376   2                      break;
-1377   2                      case GoUp:
-1378   2                              LCD_ShowStr(34,8,"向上");
-1379   2                      break;
-1380   2                      case GoDown:
-1381   2                              LCD_ShowStr(34,8,"向下");
-1382   2                      break;
-1383   2                      default:
-1384   2                              LCD_ShowStr(34,8,"错误");
-1385   2              }
-1386   1      }
-1387          
-1388          /***************************************************************************/
-1389          // 触摸按钮反显函数
-1390          // 参数：触摸值
-1391          // 返回值：无
-1392          /***************************************************************************/
-1393          void TP_Response(uchar tpValue)
-1394          {
-1395   1              Access_Page2(); //存取DDRAM2    
-1396   1              switch(tpValue)
-1397   1              {
-1398   2                      case 1:
-1399   2                              display_r_kuang(0,208,12,32,0); 
-1400   2                      break;
-1401   2                      case 2:
-1402   2                              display_r_kuang(13,208,13,32,0);
-1403   2                      break;
-1404   2                      case 3:
-1405   2                              display_r_kuang(27,208,12,32,0);
-1406   2                      break;
-1407   2                      case 4:
-1408   2                              display_r_kuang(27,208,12,32,0);
-1409   2                      break;
-1410   2                      case 11:
-1411   2                              display_r_kuang(20,12,7,48,0);
-1412   2                      break;
-1413   2                      case 12:
-1414   2                              display_r_kuang(29,12,7,48,0);
-1415   2                      break;
-1416   2                      case 13:
-1417   2                              display_r_kuang(14,208,12,32,0);
-1418   2                      break;
-C51 COMPILER V7.50   RA8806                                                                02/25/2014 21:09:09 PAGE 24  
+1357   1              {
+1358   2                      if(runMode == ManualMode)
+1359   2                      {
+1360   3                              LCD_ShowStr(2,216,"定时设置");
+1361   3                      }
+1362   2                      LCD_ShowStr(15,216,"手动/自动");
+1363   2              }
+1364   1              if(displayStatus == 1)
+1365   1              {
+1366   2                      LCD_ShowStr(29,216,"取消下班");
+1367   2              }
+1368   1              else if(displayStatus == 0 && runMode == AutoMode)//只有自动模式下面才能点击下班按钮
+1369   1              {
+1370   2                      LCD_ShowStr(29,216,"下班按键");
+1371   2              }
+1372   1              //提示信息
+1373   1              if(displayStatus)
+1374   1              {
+1375   2                      display_r_kuang(9,72,22,64,0);
+1376   2                      display_kuang(10,80,20,48,1);
+1377   2                      if(displayStatus == 1)
+1378   2                              LCD_ShowStr(14,96,"关 机 中...");
+1379   2                      else
+1380   2                              LCD_ShowStr(14,96,"关 机 成 功"); 
+1381   2              }
+1382   1      
+1383   1              XOR_Two_Layer();//DDRAM1 OR DDRAM2
+1384   1              Show_Two_Layer();//DDRAM1与DDRAM2同时显示
+1385   1      }
+1386          
+1387          /***************************************************************************/
+1388          // 机械臂状态刷新
+1389          // 参数：无
+1390          // 返回值：无
+1391          /**************************************************************************/
+1392          void ManipulatorStatusDisplay(void)
+1393          {
+1394   1              Access_Page1();//存取DDRAM1
+1395   1              normal_data();
+1396   1              LCD_NoInv();
+1397   1              //机械臂动作显示
+1398   1              switch(manipulator.manipulaterStatus)
+1399   1              {
+1400   2                      case Stop:
+1401   2                              LCD_ShowStr(34,8,"空闲");
+1402   2                      break;
+1403   2                      case GoEntrance:
+1404   2                              LCD_ShowStr(34,8,"<---");
+1405   2                      break;
+1406   2                      case GoOutfall:
+1407   2                              LCD_ShowStr(34,8,"--->");
+1408   2                      break;
+1409   2                      case GoUp:
+1410   2                              LCD_ShowStr(34,8,"向上");
+1411   2                      break;
+1412   2                      case GoDown:
+1413   2                              LCD_ShowStr(34,8,"向下");
+1414   2                      break;
+1415   2                      default:
+1416   2                              LCD_ShowStr(34,8,"错误");
+1417   2              }
+1418   1      }
+C51 COMPILER V7.50   RA8806                                                                02/27/2014 20:58:56 PAGE 24  
 
-1419   2                      case 14:
-1420   2                              display_r_kuang(27,208,12,32,0);
-1421   2                      break;
-1422   2                      case 15:
-1423   2                              display_r_kuang(27,208,12,32,0);
-1424   2                      break;
-1425   2              }
-1426   1      }
+1419          
+1420          /***************************************************************************/
+1421          // 触摸按钮反显函数
+1422          // 参数：触摸值
+1423          // 返回值：无
+1424          /***************************************************************************/
+1425          void TP_Response(uchar tpValue)
+1426          {
+1427   1              Access_Page2(); //存取DDRAM2    
+1428   1              switch(tpValue)
+1429   1              {
+1430   2                      case 1:
+1431   2                              display_r_kuang(0,208,12,32,0); 
+1432   2                      break;
+1433   2                      case 2:
+1434   2                              display_r_kuang(13,208,13,32,0);
+1435   2                      break;
+1436   2                      case 3:
+1437   2                              display_r_kuang(27,208,12,32,0);
+1438   2                      break;
+1439   2                      case 4:
+1440   2                              display_r_kuang(27,208,12,32,0);
+1441   2                      break;
+1442   2                      case 11:
+1443   2                              display_r_kuang(20,12,7,48,0);
+1444   2                      break;
+1445   2                      case 12:
+1446   2                              display_r_kuang(29,12,7,48,0);
+1447   2                      break;
+1448   2                      case 13:
+1449   2                              display_r_kuang(14,208,12,32,0);
+1450   2                      break;
+1451   2                      case 14:
+1452   2                              display_r_kuang(27,208,12,32,0);
+1453   2                      break;
+1454   2                      case 15:
+1455   2                              display_r_kuang(27,208,12,32,0);
+1456   2                      break;
+1457   2              }
+1458   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   5615    ----
+   CODE SIZE        =   4473    ----
    CONSTANT SIZE    =    764    ----
-   XDATA SIZE       =   ----      62
+   XDATA SIZE       =   ----      32
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

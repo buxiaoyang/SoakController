@@ -16,7 +16,7 @@ sbit sensorManiTop = P3^1; //机械臂在顶端位置感应
 sbit sensorManiBut = P3^2; //机械臂在低端位置感应
 sbit sensorOutput = P3^3; //出位置感应
 
-
+/*
 void A_Move(uchar move_cisternNumber); 		//机械臂A移动到cisternNumber号槽位置
 uchar A_Move_Steps = 100; 				//0：机械臂初始状态
 										//1：机械臂A定位前等待
@@ -39,7 +39,7 @@ uchar A_Up_Steps = 100; 				//0：机械臂初始状态
 										//3：机械臂A向上前等待
 										//4：机械臂A向上
 										//100：机械臂空操作
-
+*/
 void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber); //机械臂提起upCisternNumber槽里面框放到downCisternNumber槽
 uchar A_Up_Down_Steps = 100;		   	//0：机械臂初始状态
 										//1：机械臂提起upCisternNumber槽中的框
@@ -59,7 +59,7 @@ void ManualMode_Operation(void);  //手动模式
 										
 uint ManiOperationTimer = 0; //机械臂操作定时器
 
-
+/*
 void A_Move(uchar move_cisternNumber)
 {
 	switch(A_Move_Steps)
@@ -425,7 +425,7 @@ void A_Up(uchar up_cisternNumber)
 			  _nop_();
 	}
 }
-
+*/
 void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 {
 	switch(A_Up_Down_Steps)

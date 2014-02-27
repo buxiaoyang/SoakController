@@ -96,6 +96,7 @@ uchar LCD_CmdRead(uchar Addr)
 // 参数：无
 // 返回值：数据
 /***************************************************************************/
+/*
 uchar LCD_DataRead()
 {
 	uchar Data;
@@ -111,6 +112,7 @@ uchar LCD_DataRead()
 	lcd_data = 0xff;
 	return Data;
 }
+*/
 
 /***************************************************************************/
 // 液晶初始化函数
@@ -257,6 +259,7 @@ void Only_Show_Page1(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void Only_Show_Page2(void)
 {
 	uchar temp;
@@ -266,6 +269,7 @@ void Only_Show_Page2(void)
 	LCD_CmdWrite(MAMR);
 	LCD_DataWrite(temp); 
 }
+*/
 
 /***************************************************************************/
 // 液晶DDRAM1和DDRAM2 双图层显示
@@ -287,6 +291,7 @@ void Show_Two_Layer(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void OR_Two_Layer(void)
 {
 	uchar temp;	
@@ -295,6 +300,7 @@ void OR_Two_Layer(void)
 	LCD_CmdWrite(MAMR);
 	LCD_DataWrite(temp); 
 }
+*/
 
 /***************************************************************************/
 // 液晶DDRAM1和DDRAM2 XOR方式显示
@@ -316,6 +322,7 @@ void XOR_Two_Layer(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void NOR_Two_Layer(void)
 {
 	uchar temp;	
@@ -325,12 +332,14 @@ void NOR_Two_Layer(void)
 	LCD_CmdWrite(MAMR);
 	LCD_DataWrite(temp); 
 }
+*/
 
 /***************************************************************************/
 // 液晶DDRAM1和DDRAM2 AND方式显示
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void AND_Two_Layer(void)
 {
 	uchar temp;	
@@ -339,6 +348,7 @@ void AND_Two_Layer(void)
 	LCD_CmdWrite(MAMR);
 	LCD_DataWrite(temp); 
 }
+*/
 
 /***************************************************************************/
 // 液晶存取DDRAM1
@@ -391,6 +401,7 @@ void clear(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void display_all()
 {
 	LCD_Graphic();
@@ -400,6 +411,7 @@ void display_all()
 	LCD_DataWrite(0xa8);
 	//delay_ms(3);
 }
+*/
 
 /***************************************************************************/
 // 液晶全屏正常显示
@@ -420,6 +432,7 @@ void normal_data(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void reverse_data(void)
 {
 	uchar temp;
@@ -428,12 +441,14 @@ void reverse_data(void)
 	LCD_CmdWrite(WLCR);
 	LCD_DataWrite(temp);     
 }
+*/
 
 /***************************************************************************/
 // 液晶数据反白输入
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void LCD_Inv(void)
 {
 	uchar temp;	
@@ -442,6 +457,7 @@ void LCD_Inv(void)
 	LCD_CmdWrite(0x10);
 	LCD_DataWrite(temp); 
 }
+*/
 
 /***************************************************************************/
 // 液晶数据正常输入
@@ -490,6 +506,7 @@ void enlarge(uchar i)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void display_biao(void)
 {
 	uint n0,n1;
@@ -527,7 +544,7 @@ void display_biao(void)
 		LCD_DataWrite(0xff);
 	}
 }
-
+*/
 /***************************************************************************/
 // 液晶在指定的坐标处显示字符串
 // 参数：x坐标  y坐标  字符串内容
@@ -562,6 +579,7 @@ void LCD_ShowChar(uchar xxx,uchar yyy,uchar text)
 // 参数：
 // 返回值：无
 /***************************************************************************/
+/*
 void display_word(const uchar *cha, int count )
 {
 	uint iiii=0;
@@ -573,7 +591,7 @@ void display_word(const uchar *cha, int count )
 		LCD_DataWrite(*cha++);
 	}   
 }
-
+*/
 /***************************************************************************/
 // 显示一行边框
 // 参数：x起始坐标0~39  y起始坐标0~239  宽度  高度 颜色1正常2反白  
@@ -654,6 +672,7 @@ void drow_picture(uchar x, uchar y, uchar w, uchar h, uchar *pData)
 // 参数：x坐标 y坐标
 // 返回值：无
 /***************************************************************************/
+/*
 void drow_point(uint x, uint y)
 {
 	uchar temp, temp1= x/8;
@@ -665,12 +684,14 @@ void drow_point(uint x, uint y)
 	LCD_CmdWrite(MWCR);   
 	LCD_DataWrite(temp | (1<<7-x%8)); 
 }
+*/
 
 /***************************************************************************/
 // 绘横线函数
 // 参数：x起始坐标 y起始坐标 x终止坐标
 // 返回值：无
 /***************************************************************************/
+/*
 void drow_row_line(uint x0, uint y0, uint x1)
 {
 	uint temp;
@@ -686,12 +707,14 @@ void drow_row_line(uint x0, uint y0, uint x1)
 		x0++;
 	}
 }
+*/
 
 /***************************************************************************/
 // 绘竖线函数
 // 参数：x起始坐标 y起始坐标 y终止坐标
 // 返回值：无
 /***************************************************************************/
+/*
 void drow_column_line(uint x0, uint y0, uint y1)
 {
 	uint temp;
@@ -708,6 +731,7 @@ void drow_column_line(uint x0, uint y0, uint y1)
 	}
 	while(y1>=y0);
 }
+*/
 
 /***************************************************************************/
 // 绘制圆角矩形
@@ -739,6 +763,7 @@ void display_r_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
 // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
 // 返回值：无
 /***************************************************************************/
+/*
 void display_rl_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
 {
 	if(color)
@@ -754,12 +779,14 @@ void display_rl_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
 		drow_picture(x_star,  y_star+h-8, 1, 8, RoundedBLF);
 	}
 }
+*/
 
 /***************************************************************************/
 // 绘制右侧圆角矩形
 // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
 // 返回值：无
 /***************************************************************************/
+/*
 void display_rr_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
 {
 	if(color)
@@ -775,6 +802,7 @@ void display_rr_kuang(uchar x_star,uchar y_star,uchar w,uchar h,uchar color)
 		drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRF);		
 	}
 }
+*/
 
 /***************************************************************************/
 // 允许触摸屏
@@ -809,6 +837,7 @@ void Enable_Maunal_TP(void)
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void Enable_interrput_TP(void)
 {
 	uchar temp;
@@ -817,12 +846,14 @@ void Enable_interrput_TP(void)
 	LCD_CmdWrite(INTR);
 	LCD_DataWrite(temp);
 }
+*/
 
 /***************************************************************************/
 // 禁用触摸屏中断
 // 参数：无
 // 返回值：无
 /***************************************************************************/
+/*
 void Disable_interrput_TP(void)
 {
 	uchar temp;
@@ -831,6 +862,7 @@ void Disable_interrput_TP(void)
 	LCD_CmdWrite(INTR);
 	LCD_DataWrite(temp);
 }
+*/
 
 /***************************************************************************/
 // 
