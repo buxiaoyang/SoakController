@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:12:18 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:18:38 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   3                              if(cistern[i].currentTime >= cistern[i].settingTime)
   53   3                              {
   54   4                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
-C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:12:18 PAGE 2   
+C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:18:38 PAGE 2   
 
   55   4                                      {
   56   5                                              cistern[i].cisternStatus = Ready;
@@ -126,7 +126,7 @@ line level    source
  114          /* timer_init program */
  115          void timer_init()
  116          {
-C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:12:18 PAGE 3   
+C51 COMPILER V7.50   TIMER                                                                 03/25/2014 21:18:38 PAGE 3   
 
  117   1          AUXR = 0x80|0x40;                    //timer0 work in 1T mode
  118   1          TMOD = 0x01|0x10;                    //set timer0 as mode1 (16-bit)

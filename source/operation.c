@@ -93,17 +93,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else if(manipulator.currentPosition < upCisternNumber)
 				{
-					MotorLeft = 1;		
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorRight = 1;	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorRight = 0; //行车向右
-					}
+					MotorLeft = 1;	
+					MotorRight = 0; //行车向右	
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -160,16 +151,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				else if(manipulator.currentPosition < upCisternNumber)
 				{
 					MotorLeft = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorRight = 1; //行车向右	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorRight = 0; //行车向右
-					}
+					MotorRight = 0; //行车向右
+
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -240,16 +223,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				else if(manipulator.currentPosition < downCisternNumber)
 				{
 					MotorLeft = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorRight = 1; //行车向右	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorRight = 0; //行车向右
-					}
+					MotorRight = 0; //行车向右
+
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -306,16 +281,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				else if(manipulator.currentPosition < downCisternNumber)
 				{
 					MotorLeft = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorRight = 1; //行车向右	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorRight = 0; //行车向右
-					}
+					MotorRight = 0; //行车向右
+
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
