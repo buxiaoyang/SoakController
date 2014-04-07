@@ -76,7 +76,7 @@ void tm0_isr() interrupt 1 using 1  //1ms
     TH0 = T1MS >> 8;                //reload timer0 high byte
 //	TEST_LED = ! TEST_LED;
 	countManiPosition ++;
-	if(countManiPosition > 5)
+	if(countManiPosition > 50)
 	{
 		maniPosition();
 		countManiPosition = 0;
