@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:41:32 PAGE 1   
+C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:50:48 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE EEPROM
@@ -62,7 +62,7 @@ line level    source
   52   2          }
   53   1      }
   54          
-C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:41:32 PAGE 2   
+C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:50:48 PAGE 2   
 
   55          /*----------------------------
   56          Disable ISP/IAP/EEPROM function
@@ -126,7 +126,7 @@ line level    source
  114          void IapEraseSector(WORD addr)
  115          {
  116   1          IAP_CONTR = ENABLE_IAP;         //Open IAP function, and set wait time
-C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:41:32 PAGE 3   
+C51 COMPILER V7.50   EEPROM                                                                04/07/2014 23:50:48 PAGE 3   
 
  117   1          IAP_CMD = CMD_ERASE;            //Set ISP/IAP/EEPROM ERASE command
  118   1          IAP_ADDRL = addr;               //Set ISP/IAP/EEPROM address low

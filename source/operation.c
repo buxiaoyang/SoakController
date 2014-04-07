@@ -118,12 +118,40 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 3: 	//1：机械臂A定位前等待
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
+				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
+				{
+					MotorLeft = 0; //行车向左
+					MotorRight = 1;
+					drivingDirect = DGoEntrance;
+					manipulator.manipulaterStatus = GoEntrance;
+					if(displayFlag == 0)
+					{
+						displayFlag = 2;
+					}
+					A_Up_Down_Steps = 2;
+				}
+				else if(manipulator.currentPosition < upCisternNumber)
+				{
+					MotorLeft = 1;
+					MotorRight = 0; //行车向右
+
+					drivingDirect = GoOutfall;
+					manipulator.manipulaterStatus = DGoOutfall;
+					if(displayFlag == 0)
+					{
+						displayFlag = 2;
+					}
+					A_Up_Down_Steps = 2;
+				}
+				else
+				{
 					MotorSpeedUp = 1;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
 					}
 					A_Up_Down_Steps ++;	
+				}	
 			}
 		break;
 		case 4:
@@ -202,12 +230,40 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 9: 	//1：机械臂A定位前等待
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
+				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
+				{
+					MotorLeft = 0; //行车向左
+					MotorRight = 1;
+					drivingDirect = DGoEntrance;
+					manipulator.manipulaterStatus = GoEntrance;
+					if(displayFlag == 0)
+					{
+						displayFlag = 2;
+					}
+					A_Up_Down_Steps = 8;
+				}
+				else if(manipulator.currentPosition < downCisternNumber)
+				{
+					MotorLeft = 1;
+					MotorRight = 0; //行车向右
+
+					drivingDirect = GoOutfall;
+					manipulator.manipulaterStatus = DGoOutfall;
+					if(displayFlag == 0)
+					{
+						displayFlag = 2;
+					}
+					A_Up_Down_Steps = 8;
+				}
+				else
+				{
 					MotorSpeedUp = 1;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
 					}
 					A_Up_Down_Steps ++;	
+				}	
 			}
 		break;
 		case 10:
