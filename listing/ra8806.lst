@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 1   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE RA8806
@@ -62,7 +62,7 @@ line level    source
   52          
   53          /***************************************************************************/
   54          // 液晶写入数据函数
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 2   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 2   
 
   55          // 参数：数据
   56          // 返回值：无   
@@ -126,7 +126,7 @@ line level    source
  114          }
  115          */
  116          
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 3   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 3   
 
  117          /***************************************************************************/
  118          // 液晶初始化函数
@@ -190,7 +190,7 @@ line level    source
  176   1              LCD_CmdWrite(CURY);             //[70H] , Default --> 0x00
  177   1              LCD_DataWrite(0x00);
  178   1              
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 4   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 4   
 
  179   1              LCD_CmdWrite(BGCM);             //[71H] , Default --> 0x00
  180   1              LCD_DataWrite(0x00);
@@ -254,7 +254,7 @@ line level    source
  238   1              LCD_CmdWrite(WLCR);
  239   1              LCD_DataWrite(temp); 
  240   1      }
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 5   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 5   
 
  241          
  242          /***************************************************************************/
@@ -318,7 +318,7 @@ line level    source
  300                  LCD_CmdWrite(MAMR);
  301                  LCD_DataWrite(temp); 
  302          }
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 6   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 6   
 
  303          */
  304          
@@ -382,7 +382,7 @@ line level    source
  362   1              temp &=0xfd;
  363   1              temp |=0x01;
  364   1              LCD_CmdWrite(MAMR);
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 7   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 7   
 
  365   1              LCD_DataWrite(temp); 
  366   1      }
@@ -446,7 +446,7 @@ line level    source
  424   1              temp=LCD_CmdRead(WLCR);  //读WLCR寄存器数据
  425   1              temp &=0xfe;
  426   1              LCD_CmdWrite(WLCR);
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 8   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 8   
 
  427   1              LCD_DataWrite(temp);     
  428   1      }
@@ -510,7 +510,7 @@ line level    source
  486   2                              LCD_CmdWrite(FVHT);
  487   2                              LCD_DataWrite(0x00);  
  488   2                      break;
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 9   
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 9   
 
  489   2                      case 0x02:
  490   2                              LCD_CmdWrite(FVHT);
@@ -574,7 +574,7 @@ line level    source
  548          /***************************************************************************/
  549          // 液晶在指定的坐标处显示字符串
  550          // 参数：x坐标  y坐标  字符串内容
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 10  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 10  
 
  551          // 返回值：无
  552          /***************************************************************************/
@@ -638,7 +638,7 @@ line level    source
  610   3                              { 
  611   4                                      LCD_CmdWrite(MWCR); 
  612   4                                      LCD_DataWrite(0xff);
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 11  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 11  
 
  613   4                              }
  614   3                      }
@@ -702,7 +702,7 @@ line level    source
  672          // 参数：x坐标 y坐标
  673          // 返回值：无
  674          /***************************************************************************/
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 12  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 12  
 
  675          /*
  676          void drow_point(uint x, uint y)
@@ -766,7 +766,7 @@ line level    source
  734          */
  735          
  736          /***************************************************************************/
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 13  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 13  
 
  737          // 绘制圆角矩形
  738          // 参数：x起始坐标 y起始坐标 宽度 高度 颜色1正常2反白
@@ -830,7 +830,7 @@ line level    source
  796                          drow_picture(x_star+w-1, y_star+h-8, 1, 8, RoundedBRB);
  797                  }
  798                  else
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 14  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 14  
 
  799                  {
  800                          display_kuang(x_star,y_star,w,h,0);
@@ -894,7 +894,7 @@ line level    source
  858          {
  859                  uchar temp;
  860                  temp=LCD_CmdRead(INTR);
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 15  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 15  
 
  861                  temp&=0xef;
  862                  LCD_CmdWrite(INTR);
@@ -958,7 +958,7 @@ line level    source
  920   1              temp=(((long)y)-y_tps0)*240;
  921   1              tp_y=temp/y_tps;
  922   1              return tp_y;
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 16  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 16  
 
  923   1      }
  924          
@@ -1022,7 +1022,7 @@ line level    source
  982   3                      }
  983   2                      else if(x_temp>80 && x_temp<112 && y_temp>74 && y_temp<174) //二号槽选中 
  984   2                      {
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 17  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 17  
 
  985   3                              result_data = 6;
  986   3                      }
@@ -1086,7 +1086,7 @@ line level    source
 1044   1              INT_Sta=LCD_CmdRead(INTR);
 1045   1              if((INT_Sta&0x08)==0x08)
 1046   1              {
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 18  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 18  
 
 1047   2                      for(count=0;count<50;count++)
 1048   2                      {
@@ -1150,7 +1150,7 @@ line level    source
 1106   1              display_r_kuang(29,12,7,48,1);
 1107   1              //设置槽框
 1108   1              for(i=0; i<8; i++)
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 19  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 19  
 
 1109   1              {
 1110   2                      if(cistern[i].isCurrentlSetting)
@@ -1214,7 +1214,7 @@ line level    source
 1168   1              if(displayMode == Setting)
 1169   1              {
 1170   2                      LCD_ShowStr(17,216,"保  存");
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 20  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 20  
 
 1171   2              }
 1172   1              LCD_ShowStr(30,216,"返  回");
@@ -1278,7 +1278,7 @@ line level    source
 1230   1              if(manipulator.currentPosition%2 == 0)
 1231   1              {
 1232   2                      if(manipulator.manipulatorPosition == Top)
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 21  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 21  
 
 1233   2                      {
 1234   3                              drow_picture(2+manipulator.currentPosition/2*5, 42, 1, 8, SolidPrism);
@@ -1342,7 +1342,7 @@ line level    source
 1292   1              else
 1293   1                      LCD_ShowStr(10,8,"手动");
 1294   1      
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 22  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 22  
 
 1295   1              //机械臂动作显示
 1296   1              LCD_ShowStr(22,8,"机械臂动作:");
@@ -1406,7 +1406,7 @@ line level    source
 1354   1              LCD_ShowStr(36,180,"出");
 1355   1              //按键显示
 1356   1              if(displayStatus == 0)
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 23  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 23  
 
 1357   1              {
 1358   2                      if(runMode == ManualMode)
@@ -1470,7 +1470,7 @@ line level    source
 1416   2                              LCD_ShowStr(34,8,"错误");
 1417   2              }
 1418   1      }
-C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:01:24 PAGE 24  
+C51 COMPILER V7.50   RA8806                                                                04/07/2014 23:41:28 PAGE 24  
 
 1419          
 1420          /***************************************************************************/
