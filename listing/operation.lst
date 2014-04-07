@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -62,7 +62,7 @@ line level    source
   51          
   52          void A_Move_Entrance(void);             //机械臂A移动到进口槽位置
   53          uchar A_Move_Entrance_Steps = 100;              //0：机械臂初始状态
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 2   
 
   54                                                                                          //1：机械臂A定位前等待
   55                                                                                          //2：机械臂A定位
@@ -126,7 +126,7 @@ line level    source
  113   4                                              displayFlag = 2;
  114   4                                      }
  115   3                                      A_Up_Down_Steps ++;
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 3   
 
  116   3                              }
  117   2                      break;
@@ -190,7 +190,7 @@ line level    source
  175   3                                      A_Up_Down_Steps ++;
  176   3                              }
  177   2                      break;
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 4   
 
  178   2                      case 6:         //0：机械臂初始状态
  179   2                              ManiOperationTimer = 0;
@@ -254,7 +254,7 @@ line level    source
  237   4                                              drivingDirect = DGoEntrance;
  238   4                                              manipulator.manipulaterStatus = GoEntrance;
  239   4                                              if(displayFlag == 0)
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 5   
 
  240   4                                              {
  241   5                                                      displayFlag = 2;
@@ -318,7 +318,7 @@ line level    source
  299   2                      case 0:         //0：机械臂初始状态
  300   2                              ManiOperationTimer = 0;
  301   2                              A_Move_Entrance_Steps ++;
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 6   
 
  302   2                      break;
  303   2                      case 1:         //1：机械臂A定位前等待
@@ -383,7 +383,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
-C51 COMPILER V7.50   OPERATION                                                             04/07/2014 12:45:19 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 23:01:25 PAGE 7   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
