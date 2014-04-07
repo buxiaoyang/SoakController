@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 04/07/2014 11:15:58 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 04/07/2014 12:35:20 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   3                              //cistern[i].currentTime += 60;
   53   3                              if(cistern[i].currentTime >= cistern[i].settingTime)
   54   3                              {
-C51 COMPILER V7.50   TIMER                                                                 04/07/2014 11:15:58 PAGE 2   
+C51 COMPILER V7.50   TIMER                                                                 04/07/2014 12:35:20 PAGE 2   
 
   55   4                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
   56   4                                      {
@@ -88,7 +88,7 @@ line level    source
   76   1          TH0 = T1MS >> 8;                //reload timer0 high byte
   77   1      //      TEST_LED = ! TEST_LED;
   78   1              countManiPosition ++;
-  79   1              if(countManiPosition > 2)
+  79   1              if(countManiPosition > 5)
   80   1              {
   81   2                      maniPosition();
   82   2                      countManiPosition = 0;
@@ -126,7 +126,7 @@ line level    source
  114   4                              }
  115   3                              else
  116   3                              {
-C51 COMPILER V7.50   TIMER                                                                 04/07/2014 11:15:58 PAGE 3   
+C51 COMPILER V7.50   TIMER                                                                 04/07/2014 12:35:20 PAGE 3   
 
  117   4                                      ManualDispatch();
  118   4                              }
