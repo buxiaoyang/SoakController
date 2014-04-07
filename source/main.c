@@ -327,6 +327,12 @@ void main()
 				delay_ms(10);
 			}			
 		}
+		else if(displayFlag == 3) //复位液晶并初始化显示
+		{
+			lcd_inital();
+			switchDisplay();
+			displayFlag = 0;	
+		}
 	}   
 }
 

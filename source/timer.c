@@ -33,6 +33,7 @@ sfr AUXR = 0x8e;                    //Auxiliary register
 /* define variables */
 //-----------------------------------------------
 BYTE count1s; // 1s时间计数
+BYTE countRestDisplay; //液晶屏定时复位计数器
 BYTE count5ms; // 5ms时间计数
 
 /***************************************************************************/
@@ -93,6 +94,13 @@ void tm1_isr() interrupt 3 using 1  //5ms
 			cisternCount();
 //			TEST_LED1 = ! TEST_LED1;      //work LED flash
 			ManiOperationTimer ++; //机械臂操作定时器
+			//液晶定时复位操作
+			countRestDisplay ++;
+			if(countRestDisplay == 5)
+			{
+				displayFlag = 3; //初始化液晶并刷新显示
+				countRestDisplay = 0;	
+			}
 		}
 		if(count1s%2==0) //10ms
 		{
