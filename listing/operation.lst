@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -62,7 +62,7 @@ line level    source
   51          
   52          void A_Move_Entrance(void);             //机械臂A移动到进口槽位置
   53          uchar A_Move_Entrance_Steps = 100;              //0：机械臂初始状态
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 2   
 
   54                                                                                          //1：机械臂A定位前等待
   55                                                                                          //2：机械臂A定位
@@ -126,7 +126,7 @@ line level    source
  113   2                              if(manipulator.currentPosition == upCisternNumber)
  114   2                              {
  115   3                                      ManiOperationTimer = 0;
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 3   
 
  116   3                                      MotorLeft = 1;
  117   3                                      MotorRight = 1;
@@ -190,7 +190,7 @@ line level    source
  175   2                      case 4:
  176   2                              ManiUp = 0;
  177   2                              manipulator.manipulaterStatus = GoUp;
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 4   
 
  178   2                              if(displayFlag == 0)
  179   2                              {
@@ -254,7 +254,7 @@ line level    source
  237   4                                              MotorSpeedUp = 1;
  238   4                                              A_Up_Down_Steps++;      
  239   4                                      }       
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 5   
 
  240   3                              }
  241   2                      break;
@@ -318,7 +318,7 @@ line level    source
  299   5                                                      displayFlag = 2;
  300   5                                              }
  301   4                                              A_Up_Down_Steps ++;     
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 6   
 
  302   4                                      }       
  303   3                              }
@@ -382,7 +382,7 @@ line level    source
  361   3                                      {
  362   4                                              displayFlag = 2;
  363   4                                      }
-C51 COMPILER V7.50   OPERATION                                                             04/06/2014 20:12:02 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             04/07/2014 10:05:02 PAGE 7   
 
  364   3                                      manipulator.currentPosition = 0;
  365   3                                      A_Move_Entrance_Steps ++;

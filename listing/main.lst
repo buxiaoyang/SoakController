@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   2              }       
   53   1      }
   54          
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 2   
 
   55          /***************************************************************************/
   56          // 设置页面初始化函数
@@ -126,7 +126,7 @@ line level    source
  114   2                      {
  115   3                              cistern[cisternNum].perSettingTime = 60;
  116   3                      }
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 3   
 
  117   2              }
  118   1      }
@@ -190,7 +190,7 @@ line level    source
  176   3                                      delay_ms(100);
  177   3                                      touchPadSetChooseCistern(1);
  178   3                                      SettingDisplay(0);
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 4   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 4   
 
  179   3                              }
  180   2                      break;
@@ -254,7 +254,7 @@ line level    source
  238   3                                      TP_Response(tpValue);
  239   3                                      delay_ms(70);
  240   3                                      settingOperationTime(1);
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 5   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 5   
 
  241   3                                      SettingDisplay(0);
  242   3                              }
@@ -318,7 +318,7 @@ line level    source
  300          void main()
  301          {
  302   1              lcd_inital();
-C51 COMPILER V7.50   MAIN                                                                  04/06/2014 20:11:59 PAGE 6   
+C51 COMPILER V7.50   MAIN                                                                  04/07/2014 10:04:50 PAGE 6   
 
  303   1              PowerOnDisplay();
  304   1              delay_ms(2000);
@@ -347,20 +347,26 @@ line level    source
  327   4                                      delay_ms(10);
  328   4                              }                       
  329   3                      }
- 330   2              }   
- 331   1      }
- 332          
- 333          
- 334          
- 335          
- 336          
- 337          
+ 330   2                      else if(displayFlag == 3) //复位液晶并初始化显示
+ 331   2                      {
+ 332   3                              lcd_inital();
+ 333   3                              switchDisplay();
+ 334   3                              displayFlag = 0;        
+ 335   3                      }
+ 336   2              }   
+ 337   1      }
  338          
  339          
+ 340          
+ 341          
+ 342          
+ 343          
+ 344          
+ 345          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1173    ----
+   CODE SIZE        =   1193    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      1       1
    PDATA SIZE       =   ----    ----

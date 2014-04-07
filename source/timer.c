@@ -96,7 +96,7 @@ void tm1_isr() interrupt 3 using 1  //5ms
 			ManiOperationTimer ++; //机械臂操作定时器
 			//液晶定时复位操作
 			countRestDisplay ++;
-			if(countRestDisplay == 5)
+			if(countRestDisplay == 120)
 			{
 				displayFlag = 3; //初始化液晶并刷新显示
 				countRestDisplay = 0;	
@@ -138,6 +138,7 @@ void timer_init()
 
 	count1s = 0;
 	count5ms = 0;
+	countRestDisplay = 0;
 }
 
 
