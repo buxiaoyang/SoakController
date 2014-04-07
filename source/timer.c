@@ -34,7 +34,7 @@ sfr AUXR = 0x8e;                    //Auxiliary register
 //-----------------------------------------------
 BYTE count1s; // 1s时间计数
 BYTE countRestDisplay; //液晶屏定时复位计数器
-BYTE count5ms; // 5ms时间计数
+BYTE countManiPosition; //机械表位置检测有效时间
 
 /***************************************************************************/
 // 槽计时函数 每秒调用一次
@@ -75,8 +75,12 @@ void tm0_isr() interrupt 1 using 1  //1ms
     TL0 = T1MS;                     //reload timer0 low byte
     TH0 = T1MS >> 8;                //reload timer0 high byte
 //	TEST_LED = ! TEST_LED;
-	count5ms ++;
-	maniPosition();
+	countManiPosition ++;
+	if(countManiPosition > 2)
+	{
+		maniPosition();
+		countManiPosition = 0;
+	}
 }
 
 /* Timer1 interrupt routine */
@@ -96,7 +100,7 @@ void tm1_isr() interrupt 3 using 1  //5ms
 			ManiOperationTimer ++; //机械臂操作定时器
 			//液晶定时复位操作
 			countRestDisplay ++;
-			if(countRestDisplay == 120)
+			if(countRestDisplay == 5)
 			{
 				displayFlag = 3; //初始化液晶并刷新显示
 				countRestDisplay = 0;	
@@ -137,7 +141,7 @@ void timer_init()
     EA = 1;                         //open global interrupt switch
 
 	count1s = 0;
-	count5ms = 0;
+	countManiPosition = 0;
 	countRestDisplay = 0;
 }
 
