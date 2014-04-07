@@ -73,17 +73,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			{
 				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(speedUpFlag == 1)//开启加速模式
-					{
-						MotorLeft = 1; //行车向左
-						MotorSpeedUp = 0;	
-					}
-					else
-					{
-						MotorLeft = 0; //行车向左
-						MotorSpeedUp = 1;
-					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -128,18 +119,9 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
 				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
-				{					
+				{
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorLeft = 1; //行车向左
-						MotorSpeedUp = 0;	
-					}
-					else
-					{
-						MotorLeft = 0; //行车向左
-						MotorSpeedUp = 1;
-					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -202,17 +184,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			{
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorLeft = 1; //行车向左	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorLeft = 0; //行车向左
-					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -259,17 +232,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			{
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(speedUpFlag == 1)
-					{
-						MotorSpeedUp = 0;
-						MotorLeft = 1; //行车向左	
-					}
-					else
-					{
-						MotorSpeedUp = 1;
-						MotorLeft = 0; //行车向左
-					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
