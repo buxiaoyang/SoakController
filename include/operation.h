@@ -18,6 +18,6 @@ extern void ManualMode_Operation(void);
 extern unsigned int ManiOperationTimer;
 extern unsigned int timeBetweenOpeartionDry;
 
-#define timeBetweenOpeartion 2  //两个机械臂直接的切换动作等待时间
+#define timeBetweenOpeartion 3  //两个机械臂直接的切换动作等待时间
 
 #endif
