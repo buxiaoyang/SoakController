@@ -46,8 +46,8 @@ void cisternCount()
 	unsigned char i;
 	for(i=0; i<8; i++)
 	{
-		if(cistern[i].cisternStatus == InCounting)
-		{
+		//if(cistern[i].cisternStatus == InCounting)
+		//{
 			cistern[i].currentTime ++;
 			//cistern[i].currentTime += 60;
 			if(cistern[i].currentTime >= cistern[i].settingTime)
@@ -65,7 +65,7 @@ void cisternCount()
 			{
 				displayFlag = 1;
 			}
-		}
+		//}
 	}
 }
 

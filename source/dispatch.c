@@ -18,6 +18,8 @@ uchar ManiDispatchSteps = 0; 	//0：开机状态（机械臂在最下面，槽1为空）
 								//6：3号槽空，并且2号就绪
 								//7：3号槽空，并且1号就绪
 								//8：2号槽空，并且入口就绪
+								//9：1号槽空，并且入口就绪
+								//10：10：入口空，并且出口就绪
 								//20：检测空槽
 								//100：空操作
 
@@ -137,17 +139,35 @@ void ManiDispatch(void)
 				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 5;
 			}
-			else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
+			else if(cistern[3].cisternStatus == Empty)
 			{
-				A_Up_Down_Steps = 0;
-				timeBetweenOpeartionDry = 90;
-				ManiDispatchSteps = 6;
-			}
-			else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
-			{
-				A_Up_Down_Steps = 0;
-				timeBetweenOpeartionDry = 90;
-				ManiDispatchSteps = 7;
+				if(cistern[2].cisternStatus == Ready && cistern[1].cisternStatus == InCounting)	//二号槽就绪
+				{
+					A_Up_Down_Steps = 0;
+					timeBetweenOpeartionDry = 90;
+					ManiDispatchSteps = 6;
+				}
+				else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == InCounting) //一号槽就绪
+				{
+					A_Up_Down_Steps = 0;
+					timeBetweenOpeartionDry = 90;
+					ManiDispatchSteps = 7;
+				}
+				else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == Ready) //一号二号都就绪
+				{
+					if(cistern[1].currentTime > cistern[2].currentTime)
+					{
+						A_Up_Down_Steps = 0;
+						timeBetweenOpeartionDry = 90;
+						ManiDispatchSteps = 7;	
+					}
+					else
+					{
+						A_Up_Down_Steps = 0;
+						timeBetweenOpeartionDry = 90;
+						ManiDispatchSteps = 6;	
+					}
+				}
 			}
 			else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
 			{
