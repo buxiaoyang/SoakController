@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 22:05:25 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -28,176 +28,196 @@ line level    source
   18                                                                          //6：3号槽空，并且2号就绪
   19                                                                          //7：3号槽空，并且1号就绪
   20                                                                          //8：2号槽空，并且入口就绪
-  21                                                                          //20：检测空槽
-  22                                                                          //100：空操作
-  23          
-  24          uchar ManualDispatchSteps = 0;
+  21                                                                          //9：1号槽空，并且入口就绪
+  22                                                                          //10：10：入口空，并且出口就绪
+  23                                                                          //20：检测空槽
+  24                                                                          //100：空操作
   25          
-  26          uint ManiDispatchTimer = 0; //机械臂调度定时器                                                  
-  27          uchar ManiDispatchCurrent = 0; //当前操作的框
-  28          
-  29          
-  30          void ManiDispatch(void)
-  31          {
-  32   1              switch(ManiDispatchSteps)
-  33   1              {
-  34   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
-  35   2                              A_Move_Entrance_Steps = 0;
-  36   2                              ManiDispatchSteps = 1;
-  37   2                      break;
-  38   2                      case 1: //1：机械臂移动到进口位置
-  39   2                              A_Move_Entrance();
-  40   2                              if(A_Move_Entrance_Steps == 100)
-  41   2                              {
-  42   3                                      ManiDispatchSteps = 20;
-  43   3                              }
-  44   2                      break;
-  45   2                      case 2:  //2：出口空，并且6号槽就绪
-  46   2                              A_Up_Down(12,14);
-  47   2                              if(A_Up_Down_Steps == 100)
-  48   2                              {
-  49   3                                      ManiDispatchSteps = 20;
-  50   3                              } 
-  51   2                      break;
-  52   2                      case 3:  //3：6号槽空，并且5号就绪
-  53   2                              A_Up_Down(10,12);
-  54   2                              if(A_Up_Down_Steps == 100)
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 2   
+  26          uchar ManualDispatchSteps = 0;
+  27          
+  28          uint ManiDispatchTimer = 0; //机械臂调度定时器                                                  
+  29          uchar ManiDispatchCurrent = 0; //当前操作的框
+  30          
+  31          
+  32          void ManiDispatch(void)
+  33          {
+  34   1              switch(ManiDispatchSteps)
+  35   1              {
+  36   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
+  37   2                              A_Move_Entrance_Steps = 0;
+  38   2                              ManiDispatchSteps = 1;
+  39   2                      break;
+  40   2                      case 1: //1：机械臂移动到进口位置
+  41   2                              A_Move_Entrance();
+  42   2                              if(A_Move_Entrance_Steps == 100)
+  43   2                              {
+  44   3                                      ManiDispatchSteps = 20;
+  45   3                              }
+  46   2                      break;
+  47   2                      case 2:  //2：出口空，并且6号槽就绪
+  48   2                              A_Up_Down(12,14);
+  49   2                              if(A_Up_Down_Steps == 100)
+  50   2                              {
+  51   3                                      ManiDispatchSteps = 20;
+  52   3                              } 
+  53   2                      break;
+  54   2                      case 3:  //3：6号槽空，并且5号就绪
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 22:05:25 PAGE 2   
 
-  55   2                              {
-  56   3                                      ManiDispatchSteps = 20;
-  57   3                              }
-  58   2                      break;
-  59   2                      case 4:  //4：5号槽空，并且4号就绪
-  60   2                              A_Up_Down(8,10);
-  61   2                              if(A_Up_Down_Steps == 100)
-  62   2                              {
-  63   3                                      ManiDispatchSteps = 20;
-  64   3                              }
-  65   2                      break;
-  66   2                      case 5:  //5：4号槽空，并且3号就绪
-  67   2                              A_Up_Down(6,8);
-  68   2                              if(A_Up_Down_Steps == 100)
-  69   2                              {
-  70   3                                      ManiDispatchSteps = 20;
-  71   3                              }
-  72   2                      break;
-  73   2                      case 6:  //6：3号槽空，并且2号就绪
-  74   2                              A_Up_Down(4,6);
-  75   2                              if(A_Up_Down_Steps == 100)
-  76   2                              {
-  77   3                                      ManiDispatchSteps = 20;
-  78   3                              }
-  79   2                      break;
-  80   2                      case 7:  //7：3号槽空，并且1号就绪
-  81   2                              A_Up_Down(2,6);
-  82   2                              if(A_Up_Down_Steps == 100)
-  83   2                              {
-  84   3                                      ManiDispatchSteps = 20;
-  85   3                                      //下班检测
-  86   3                                      if(displayMode == PowerOffing)
-  87   3                                      {
-  88   4                                              displayMode = PowerOffed;
-  89   4                                      }
-  90   3                              }
-  91   2                      break;
-  92   2                      case 8:  //8：2号槽空，并且入口就绪
-  93   2                              A_Up_Down(0,4);
-  94   2                              if(A_Up_Down_Steps == 100)
-  95   2                              {
-  96   3                                      ManiDispatchSteps = 20;
-  97   3                              }
-  98   2                      break;
-  99   2                      case 9:  //9：1号槽空，并且入口就绪
- 100   2                              A_Up_Down(0,2);
- 101   2                              if(A_Up_Down_Steps == 100)
- 102   2                              {
- 103   3                                      ManiDispatchSteps = 20;
- 104   3                              }
- 105   2                      break;
- 106   2                      case 10: //10：入口空，并且出口就绪
- 107   2                              speedUpFlag = 1; //开启加速模式
- 108   2                              A_Up_Down(14,0);
- 109   2                              if(A_Up_Down_Steps == 100)
- 110   2                              {
- 111   3                                      speedUpFlag = 0;   //关闭加速模式
- 112   3                                      ManiDispatchSteps = 20;
- 113   3                              }
- 114   2                      break;
- 115   2                      case 20:
- 116   2                              if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 3   
+  55   2                              A_Up_Down(10,12);
+  56   2                              if(A_Up_Down_Steps == 100)
+  57   2                              {
+  58   3                                      ManiDispatchSteps = 20;
+  59   3                              }
+  60   2                      break;
+  61   2                      case 4:  //4：5号槽空，并且4号就绪
+  62   2                              A_Up_Down(8,10);
+  63   2                              if(A_Up_Down_Steps == 100)
+  64   2                              {
+  65   3                                      ManiDispatchSteps = 20;
+  66   3                              }
+  67   2                      break;
+  68   2                      case 5:  //5：4号槽空，并且3号就绪
+  69   2                              A_Up_Down(6,8);
+  70   2                              if(A_Up_Down_Steps == 100)
+  71   2                              {
+  72   3                                      ManiDispatchSteps = 20;
+  73   3                              }
+  74   2                      break;
+  75   2                      case 6:  //6：3号槽空，并且2号就绪
+  76   2                              A_Up_Down(4,6);
+  77   2                              if(A_Up_Down_Steps == 100)
+  78   2                              {
+  79   3                                      ManiDispatchSteps = 20;
+  80   3                              }
+  81   2                      break;
+  82   2                      case 7:  //7：3号槽空，并且1号就绪
+  83   2                              A_Up_Down(2,6);
+  84   2                              if(A_Up_Down_Steps == 100)
+  85   2                              {
+  86   3                                      ManiDispatchSteps = 20;
+  87   3                                      //下班检测
+  88   3                                      if(displayMode == PowerOffing)
+  89   3                                      {
+  90   4                                              displayMode = PowerOffed;
+  91   4                                      }
+  92   3                              }
+  93   2                      break;
+  94   2                      case 8:  //8：2号槽空，并且入口就绪
+  95   2                              A_Up_Down(0,4);
+  96   2                              if(A_Up_Down_Steps == 100)
+  97   2                              {
+  98   3                                      ManiDispatchSteps = 20;
+  99   3                              }
+ 100   2                      break;
+ 101   2                      case 9:  //9：1号槽空，并且入口就绪
+ 102   2                              A_Up_Down(0,2);
+ 103   2                              if(A_Up_Down_Steps == 100)
+ 104   2                              {
+ 105   3                                      ManiDispatchSteps = 20;
+ 106   3                              }
+ 107   2                      break;
+ 108   2                      case 10: //10：入口空，并且出口就绪
+ 109   2                              speedUpFlag = 1; //开启加速模式
+ 110   2                              A_Up_Down(14,0);
+ 111   2                              if(A_Up_Down_Steps == 100)
+ 112   2                              {
+ 113   3                                      speedUpFlag = 0;   //关闭加速模式
+ 114   3                                      ManiDispatchSteps = 20;
+ 115   3                              }
+ 116   2                      break;
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 22:05:25 PAGE 3   
 
- 117   2                              {
- 118   3                                      A_Up_Down_Steps = 0;
- 119   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 120   3                                      ManiDispatchSteps = 2;   
- 121   3                              }
- 122   2                              else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
- 123   2                              {
- 124   3                                      A_Up_Down_Steps = 0;
- 125   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 126   3                                      ManiDispatchSteps = 3;
- 127   3                              }
- 128   2                              else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
- 129   2                              {
- 130   3                                      A_Up_Down_Steps = 0;
- 131   3                                      timeBetweenOpeartionDry = 90;
- 132   3                                      ManiDispatchSteps = 4;
- 133   3                              }
- 134   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
- 135   2                              {
- 136   3                                      A_Up_Down_Steps = 0;
- 137   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 138   3                                      ManiDispatchSteps = 5;
- 139   3                              }
- 140   2                              else if(cistern[3].cisternStatus == Empty && cistern[2].cisternStatus == Ready)
- 141   2                              {
- 142   3                                      A_Up_Down_Steps = 0;
- 143   3                                      timeBetweenOpeartionDry = 90;
- 144   3                                      ManiDispatchSteps = 6;
- 145   3                              }
- 146   2                              else if(cistern[3].cisternStatus == Empty && cistern[1].cisternStatus == Ready)
- 147   2                              {
- 148   3                                      A_Up_Down_Steps = 0;
- 149   3                                      timeBetweenOpeartionDry = 90;
- 150   3                                      ManiDispatchSteps = 7;
- 151   3                              }
- 152   2                              else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
- 153   2                              {
- 154   3                                      A_Up_Down_Steps = 0;
- 155   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 156   3                                      ManiDispatchSteps = 8;
- 157   3                              }
- 158   2                              else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
- 159   2                              {
- 160   3                                      A_Up_Down_Steps = 0;
- 161   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 162   3                                      ManiDispatchSteps = 9;
- 163   3                              }
- 164   2                              else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
- 165   2                              {
- 166   3                                      A_Up_Down_Steps = 0;
- 167   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
- 168   3                                      ManiDispatchSteps = 10;
- 169   3                              }
- 170   2                      break;
- 171   2                      default:
- 172   2                               _nop_();
- 173   2              }
- 174   1      }
- 175          
- 176          void ManualDispatch(void)
- 177          {
- 178   1              ManiDispatchSteps = 20;
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 4   
+ 117   2                      case 20:
+ 118   2                              if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
+ 119   2                              {
+ 120   3                                      A_Up_Down_Steps = 0;
+ 121   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 122   3                                      ManiDispatchSteps = 2;   
+ 123   3                              }
+ 124   2                              else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
+ 125   2                              {
+ 126   3                                      A_Up_Down_Steps = 0;
+ 127   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 128   3                                      ManiDispatchSteps = 3;
+ 129   3                              }
+ 130   2                              else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
+ 131   2                              {
+ 132   3                                      A_Up_Down_Steps = 0;
+ 133   3                                      timeBetweenOpeartionDry = 90;
+ 134   3                                      ManiDispatchSteps = 4;
+ 135   3                              }
+ 136   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
+ 137   2                              {
+ 138   3                                      A_Up_Down_Steps = 0;
+ 139   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 140   3                                      ManiDispatchSteps = 5;
+ 141   3                              }
+ 142   2                              else if(cistern[3].cisternStatus == Empty)
+ 143   2                              {
+ 144   3                                      if(cistern[2].cisternStatus == Ready && cistern[1].cisternStatus == InCounting) //二号槽就绪
+ 145   3                                      {
+ 146   4                                              A_Up_Down_Steps = 0;
+ 147   4                                              timeBetweenOpeartionDry = 90;
+ 148   4                                              ManiDispatchSteps = 6;
+ 149   4                                      }
+ 150   3                                      else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == InCounting) //一号槽就绪
+ 151   3                                      {
+ 152   4                                              A_Up_Down_Steps = 0;
+ 153   4                                              timeBetweenOpeartionDry = 90;
+ 154   4                                              ManiDispatchSteps = 7;
+ 155   4                                      }
+ 156   3                                      else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == Ready) //一号二号都就绪
+ 157   3                                      {
+ 158   4                                              if(cistern[1].currentTime > cistern[2].currentTime)
+ 159   4                                              {
+ 160   5                                                      A_Up_Down_Steps = 0;
+ 161   5                                                      timeBetweenOpeartionDry = 90;
+ 162   5                                                      ManiDispatchSteps = 7;  
+ 163   5                                              }
+ 164   4                                              else
+ 165   4                                              {
+ 166   5                                                      A_Up_Down_Steps = 0;
+ 167   5                                                      timeBetweenOpeartionDry = 90;
+ 168   5                                                      ManiDispatchSteps = 6;  
+ 169   5                                              }
+ 170   4                                      }
+ 171   3                              }
+ 172   2                              else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+ 173   2                              {
+ 174   3                                      A_Up_Down_Steps = 0;
+ 175   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 176   3                                      ManiDispatchSteps = 8;
+ 177   3                              }
+ 178   2                              else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 22:05:25 PAGE 4   
 
- 179   1              ManualMode_Operation();
- 180   1      }
+ 179   2                              {
+ 180   3                                      A_Up_Down_Steps = 0;
+ 181   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 182   3                                      ManiDispatchSteps = 9;
+ 183   3                              }
+ 184   2                              else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
+ 185   2                              {
+ 186   3                                      A_Up_Down_Steps = 0;
+ 187   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
+ 188   3                                      ManiDispatchSteps = 10;
+ 189   3                              }
+ 190   2                      break;
+ 191   2                      default:
+ 192   2                               _nop_();
+ 193   2              }
+ 194   1      }
+ 195          
+ 196          void ManualDispatch(void)
+ 197          {
+ 198   1              ManiDispatchSteps = 20;
+ 199   1              ManualMode_Operation();
+ 200   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    592    ----
+   CODE SIZE        =    649    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      5    ----
    PDATA SIZE       =   ----    ----

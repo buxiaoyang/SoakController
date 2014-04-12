@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 04/12/2014 21:18:14 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 04/12/2014 22:05:24 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -56,28 +56,28 @@ line level    source
   46   1              unsigned char i;
   47   1              for(i=0; i<8; i++)
   48   1              {
-  49   2                      if(cistern[i].cisternStatus == InCounting)
-  50   2                      {
-  51   3                              cistern[i].currentTime ++;
-  52   3                              //cistern[i].currentTime += 60;
-  53   3                              if(cistern[i].currentTime >= cistern[i].settingTime)
-  54   3                              {
-C51 COMPILER V7.50   TIMER                                                                 04/12/2014 21:18:14 PAGE 2   
+  49   2                      //if(cistern[i].cisternStatus == InCounting)
+  50   2                      //{
+  51   2                              cistern[i].currentTime ++;
+  52   2                              //cistern[i].currentTime += 60;
+  53   2                              if(cistern[i].currentTime >= cistern[i].settingTime)
+  54   2                              {
+C51 COMPILER V7.50   TIMER                                                                 04/12/2014 22:05:24 PAGE 2   
 
-  55   4                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
-  56   4                                      {
-  57   5                                              cistern[i].cisternStatus = Ready;
-  58   5                                      }
-  59   4                                      else
-  60   4                                      {
-  61   5                                              cistern[i].currentTime = 0;
-  62   5                                      }
-  63   4                              }
-  64   3                              if(cistern[i].currentTime % 60 == 0)
-  65   3                              {
-  66   4                                      displayFlag = 1;
-  67   4                              }
-  68   3                      }
+  55   3                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
+  56   3                                      {
+  57   4                                              cistern[i].cisternStatus = Ready;
+  58   4                                      }
+  59   3                                      else
+  60   3                                      {
+  61   4                                              cistern[i].currentTime = 0;
+  62   4                                      }
+  63   3                              }
+  64   2                              if(cistern[i].currentTime % 60 == 0)
+  65   2                              {
+  66   3                                      displayFlag = 1;
+  67   3                              }
+  68   2                      //}
   69   2              }
   70   1      }
   71          
@@ -126,7 +126,7 @@ line level    source
  114   4                              }
  115   3                              else
  116   3                              {
-C51 COMPILER V7.50   TIMER                                                                 04/12/2014 21:18:14 PAGE 3   
+C51 COMPILER V7.50   TIMER                                                                 04/12/2014 22:05:24 PAGE 3   
 
  117   4                                      ManualDispatch();
  118   4                              }
@@ -163,7 +163,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    371    ----
+   CODE SIZE        =    349    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      3    ----
    PDATA SIZE       =   ----    ----
