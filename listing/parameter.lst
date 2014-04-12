@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:09:42 PAGE 1   
+C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:18:11 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
@@ -62,7 +62,7 @@ line level    source
   51   1      }
   52          
   53          /***************************************************************************/
-C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:09:42 PAGE 2   
+C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:18:11 PAGE 2   
 
   54          // 参数初始化函数
   55          // 参数：无
@@ -79,73 +79,74 @@ line level    source
   66   2                      cistern[i].currentTime = 0;
   67   2              }
   68   1              cistern[1].cisternStatus = Empty; //初始状态一号槽空
-  69   1              if(!parameter_read())
-  70   1              {
-  71   2                      cistern[0].settingTime = 1800;
-  72   2                      cistern[1].settingTime = 720;
-  73   2                      cistern[2].settingTime = 720;
-  74   2                      cistern[3].settingTime = 300;
-  75   2                      cistern[4].settingTime = 300;
-  76   2                      cistern[5].settingTime = 300;
-  77   2                      cistern[6].settingTime = 300;
-  78   2                      cistern[7].settingTime = 1800;
-  79   2              }
-  80   1              manipulator.manipulaterStatus = Stop;
-  81   1              manipulator.manipulatorPosition = Bottom;
-  82   1              manipulator.currentPosition = 0;
-  83   1              drivingDirect = DStop;
-  84   1              displayFlag = 0;
-  85   1              speedUpFlag = 0;
-  86   1      }
-  87          
-  88          /***************************************************************************/
-  89          // 参数保存到eeprom
-  90          // 参数：无
-  91          // 返回值：0失败 1成功  
-  92          /***************************************************************************/
-  93          unsigned char parameter_save()
-  94          {
-  95   1              WORD i, result = 1;
-  96   1              Delay(10);
-  97   1          IapEraseSector(IAP_ADDRESS); //拆除EEPROM
-  98   1          for (i=0; i<512; i++)           //检测是否擦除成功
-  99   1          {
- 100   2              if (IapReadByte(IAP_ADDRESS+i) != 0xff)
- 101   2                  result = 0;
- 102   2          }
- 103   1          Delay(10);                      //Delay
- 104   1              for(i=0; i<8; i++) //写入EEPROM
- 105   1              {
- 106   2                      IapProgramByte(IAP_ADDRESS+(i*2), (BYTE)(cistern[i].perSettingTime>>8));
- 107   2                      IapProgramByte(IAP_ADDRESS+(i*2+1), (BYTE)cistern[i].perSettingTime);
- 108   2              }
- 109   1              IapProgramByte(IAP_ADDRESS+256, 0xEE); //写入标志位
- 110   1          Delay(10);
- 111   1              for(i=0; i<8; i++)  //校验保存值
- 112   1              {
- 113   2                      if(IapReadByte(IAP_ADDRESS+(i*2)) != (BYTE)(cistern[i].perSettingTime>>8))
- 114   2                      {
- 115   3                              result = 0;
-C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:09:42 PAGE 3   
+  69   1              cistern[2].cisternStatus = Empty; //初始状态二号槽空
+  70   1              if(!parameter_read())
+  71   1              {
+  72   2                      cistern[0].settingTime = 1800;
+  73   2                      cistern[1].settingTime = 720;
+  74   2                      cistern[2].settingTime = 720;
+  75   2                      cistern[3].settingTime = 300;
+  76   2                      cistern[4].settingTime = 300;
+  77   2                      cistern[5].settingTime = 300;
+  78   2                      cistern[6].settingTime = 300;
+  79   2                      cistern[7].settingTime = 1800;
+  80   2              }
+  81   1              manipulator.manipulaterStatus = Stop;
+  82   1              manipulator.manipulatorPosition = Bottom;
+  83   1              manipulator.currentPosition = 0;
+  84   1              drivingDirect = DStop;
+  85   1              displayFlag = 0;
+  86   1              speedUpFlag = 0;
+  87   1      }
+  88          
+  89          /***************************************************************************/
+  90          // 参数保存到eeprom
+  91          // 参数：无
+  92          // 返回值：0失败 1成功  
+  93          /***************************************************************************/
+  94          unsigned char parameter_save()
+  95          {
+  96   1              WORD i, result = 1;
+  97   1              Delay(10);
+  98   1          IapEraseSector(IAP_ADDRESS); //拆除EEPROM
+  99   1          for (i=0; i<512; i++)           //检测是否擦除成功
+ 100   1          {
+ 101   2              if (IapReadByte(IAP_ADDRESS+i) != 0xff)
+ 102   2                  result = 0;
+ 103   2          }
+ 104   1          Delay(10);                      //Delay
+ 105   1              for(i=0; i<8; i++) //写入EEPROM
+ 106   1              {
+ 107   2                      IapProgramByte(IAP_ADDRESS+(i*2), (BYTE)(cistern[i].perSettingTime>>8));
+ 108   2                      IapProgramByte(IAP_ADDRESS+(i*2+1), (BYTE)cistern[i].perSettingTime);
+ 109   2              }
+ 110   1              IapProgramByte(IAP_ADDRESS+256, 0xEE); //写入标志位
+ 111   1          Delay(10);
+ 112   1              for(i=0; i<8; i++)  //校验保存值
+ 113   1              {
+ 114   2                      if(IapReadByte(IAP_ADDRESS+(i*2)) != (BYTE)(cistern[i].perSettingTime>>8))
+ 115   2                      {
+C51 COMPILER V7.50   PARAMETER                                                             04/12/2014 21:18:11 PAGE 3   
 
- 116   3                      }
- 117   2                      if(IapReadByte(IAP_ADDRESS+(i*2+1)) != (BYTE)cistern[i].perSettingTime)
- 118   2                      {
- 119   3                              result = 0;
- 120   3                      }
- 121   2              }
- 122   1              for(i=0; i<8; i++) //设置值为界面值
- 123   1              {
- 124   2                      cistern[i].settingTime = cistern[i].perSettingTime;
- 125   2              }
- 126   1              return result;
- 127   1      }
- 128          
+ 116   3                              result = 0;
+ 117   3                      }
+ 118   2                      if(IapReadByte(IAP_ADDRESS+(i*2+1)) != (BYTE)cistern[i].perSettingTime)
+ 119   2                      {
+ 120   3                              result = 0;
+ 121   3                      }
+ 122   2              }
+ 123   1              for(i=0; i<8; i++) //设置值为界面值
+ 124   1              {
+ 125   2                      cistern[i].settingTime = cistern[i].perSettingTime;
+ 126   2              }
+ 127   1              return result;
+ 128   1      }
  129          
+ 130          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    799    ----
+   CODE SIZE        =    803    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =     72       8
    PDATA SIZE       =   ----    ----

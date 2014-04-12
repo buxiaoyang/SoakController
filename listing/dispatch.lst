@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:09:51 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   2                      case 3:  //3£º6ºÅ²Û¿Õ£¬²¢ÇÒ5ºÅ¾ÍÐ÷
   53   2                              A_Up_Down(10,12);
   54   2                              if(A_Up_Down_Steps == 100)
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:09:51 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 2   
 
   55   2                              {
   56   3                                      ManiDispatchSteps = 20;
@@ -126,7 +126,7 @@ line level    source
  114   2                      break;
  115   2                      case 20:
  116   2                              if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:09:51 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 3   
 
  117   2                              {
  118   3                                      A_Up_Down_Steps = 0;
@@ -190,7 +190,7 @@ line level    source
  176          void ManualDispatch(void)
  177          {
  178   1              ManiDispatchSteps = 20;
-C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:09:51 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              04/12/2014 21:18:17 PAGE 4   
 
  179   1              ManualMode_Operation();
  180   1      }

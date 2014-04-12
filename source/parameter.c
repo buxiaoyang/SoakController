@@ -66,6 +66,7 @@ void parameter_init()
 		cistern[i].currentTime = 0;
 	}
 	cistern[1].cisternStatus = Empty; //³õÊ¼×´Ì¬Ò»ºÅ²Û¿Õ
+	cistern[2].cisternStatus = Empty; //³õÊ¼×´Ì¬¶şºÅ²Û¿Õ
 	if(!parameter_read())
 	{
 		cistern[0].settingTime = 1800;

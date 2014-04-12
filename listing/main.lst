@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   2              }       
   53   1      }
   54          
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 2   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 2   
 
   55          /***************************************************************************/
   56          // 设置页面初始化函数
@@ -126,7 +126,7 @@ line level    source
  114   2                      {
  115   3                              cistern[cisternNum].perSettingTime = 60;
  116   3                      }
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 3   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 3   
 
  117   2              }
  118   1      }
@@ -190,7 +190,7 @@ line level    source
  176   3                                      delay_ms(100);
  177   3                                      touchPadSetChooseCistern(1);
  178   3                                      SettingDisplay(0);
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 4   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 4   
 
  179   3                              }
  180   2                      break;
@@ -254,7 +254,7 @@ line level    source
  238   3                                      TP_Response(tpValue);
  239   3                                      delay_ms(70);
  240   3                                      settingOperationTime(1);
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 5   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 5   
 
  241   3                                      SettingDisplay(0);
  242   3                              }
@@ -318,7 +318,7 @@ line level    source
  300          void main()
  301          {
  302   1              lcd_inital();
-C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:09:39 PAGE 6   
+C51 COMPILER V7.50   MAIN                                                                  04/12/2014 21:18:06 PAGE 6   
 
  303   1              PowerOnDisplay();
  304   1              delay_ms(2000);
