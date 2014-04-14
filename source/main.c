@@ -332,6 +332,7 @@ void main()
 			lcd_inital();
 			Enable_TP();
 			Enable_Maunal_TP();
+			MainDisplay(0);
 			switchDisplay();
 			displayFlag = 0;	
 		}
