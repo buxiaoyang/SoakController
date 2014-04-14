@@ -46,10 +46,9 @@ void cisternCount()
 	unsigned char i;
 	for(i=0; i<8; i++)
 	{
-		//if(cistern[i].cisternStatus == InCounting)
-		//{
+		if(cistern[i].cisternStatus == InCounting || cistern[i].cisternStatus == Ready)
+		{
 			cistern[i].currentTime ++;
-			//cistern[i].currentTime += 60;
 			if(cistern[i].currentTime >= cistern[i].settingTime)
 			{
 				if(i != 0 && i != 7)// 进口出口不安时间就绪
@@ -65,7 +64,7 @@ void cisternCount()
 			{
 				displayFlag = 1;
 			}
-		//}
+		}
 	}
 }
 
