@@ -106,11 +106,9 @@ void ManiDispatch(void)
 			}
 		break;
 		case 10: //10：入口空，并且出口就绪
-			speedUpFlag = 1; //开启加速模式
 			A_Up_Down(14,0);
 			if(A_Up_Down_Steps == 100)
 			{
-				speedUpFlag = 0;   //关闭加速模式
 				ManiDispatchSteps = 20;
 			}
 		break;
