@@ -113,31 +113,49 @@ void ManiDispatch(void)
 			}
 		break;
 		case 20:
-			if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready)
+			if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)	 //8：2号槽空，并且入口就绪
+			{
+				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
+				ManiDispatchSteps = 8;
+			}
+			else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)	 //9：1号槽空，并且入口就绪
+			{
+				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
+				ManiDispatchSteps = 9;
+			}
+			else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)	 //10：入口空，并且出口就绪
+			{
+				A_Up_Down_Steps = 0;
+				timeBetweenOpeartionDry = timeBetweenOpeartion;
+				ManiDispatchSteps = 10;
+			}
+			else if(cistern[7].cisternStatus == Empty && cistern[6].cisternStatus == Ready) //2：出口空，并且6号槽就绪
 			{
 				A_Up_Down_Steps = 0;
 				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 2;	 
 			}
-			else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)
+			else if(cistern[6].cisternStatus == Empty && cistern[5].cisternStatus == Ready)	  //3：6号槽空，并且5号就绪
 			{
 				A_Up_Down_Steps = 0;
 				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 3;
 			}
-			else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)
+			else if(cistern[5].cisternStatus == Empty && cistern[4].cisternStatus == Ready)	//4：5号槽空，并且4号就绪
 			{
 				A_Up_Down_Steps = 0;
 				timeBetweenOpeartionDry = 90;
 				ManiDispatchSteps = 4;
 			}
-			else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)
+			else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)	  //5：4号槽空，并且3号就绪
 			{
 				A_Up_Down_Steps = 0;
 				timeBetweenOpeartionDry = timeBetweenOpeartion;
 				ManiDispatchSteps = 5;
 			}
-			else if(cistern[3].cisternStatus == Empty)
+			else if(cistern[3].cisternStatus == Empty)	  //3号槽空，并且1号或者2号就绪
 			{
 				if(cistern[2].cisternStatus == Ready && cistern[1].cisternStatus == InCounting)	//二号槽就绪
 				{
@@ -166,24 +184,6 @@ void ManiDispatch(void)
 						ManiDispatchSteps = 6;	
 					}
 				}
-			}
-			else if(cistern[2].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
-			{
-				A_Up_Down_Steps = 0;
-				timeBetweenOpeartionDry = timeBetweenOpeartion;
-				ManiDispatchSteps = 8;
-			}
-			else if(cistern[1].cisternStatus == Empty && cistern[0].cisternStatus == Ready)
-			{
-				A_Up_Down_Steps = 0;
-				timeBetweenOpeartionDry = timeBetweenOpeartion;
-				ManiDispatchSteps = 9;
-			}
-			else if(cistern[0].cisternStatus == Empty && cistern[7].cisternStatus == Ready)
-			{
-				A_Up_Down_Steps = 0;
-				timeBetweenOpeartionDry = timeBetweenOpeartion;
-				ManiDispatchSteps = 10;
 			}
 		break;
 		default:
