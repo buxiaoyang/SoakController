@@ -48,6 +48,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			A_Up_Down_Steps ++;
 		break;
 		case 1: 	//1：机械臂A定位前等待
+			TargetCisternNumber =  upCisternNumber;	//设置本次机械臂运行的目标槽位
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
 				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
@@ -200,6 +201,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			A_Up_Down_Steps ++;
 		break;
 		case 7: 	//1：机械臂A定位前等待
+			TargetCisternNumber =  downCisternNumber;	//设置本次机械臂运行的目标槽位
 			if(ManiOperationTimer > timeBetweenOpeartionDry) //定时时间到
 			{
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边

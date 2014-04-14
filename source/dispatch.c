@@ -31,6 +31,25 @@ uchar ManiDispatchCurrent = 0; //当前操作的框
 
 void ManiDispatch(void)
 {
+	//设置机械臂速度等级
+	uchar distanceBetweenManiAndTarget = 0;
+	if(TargetCisternNumber > manipulator.currentPosition)
+	{
+		distanceBetweenManiAndTarget = 	TargetCisternNumber - manipulator.currentPosition;
+	}
+	else
+	{
+		distanceBetweenManiAndTarget = 	manipulator.currentPosition - TargetCisternNumber;
+	}
+	if(distanceBetweenManiAndTarget > 2)
+	{
+		MotorSpeedFlag = 1;
+	}
+	else
+	{
+		MotorSpeedFlag = 0;
+	}
+	//机械臂调度状态机
 	switch(ManiDispatchSteps)
 	{
 		case 0:	//0：开机状态（机械臂在最下面，槽1为空）

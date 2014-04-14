@@ -71,7 +71,8 @@ extern enum DrivingDirect drivingDirect;
 extern struct Cistern cistern[8];
 extern struct Manipulator manipulator; 
 
-extern unsigned char displayFlag;
-extern unsigned char speedUpFlag;
+extern unsigned char displayFlag;  //刷新显示标志位  0不刷新 1刷新主页面 2刷新机械臂动作刷新  3复位液晶并初始化显示
+extern unsigned char MotorSpeedFlag;  //加速标志位	 0正常速度 1电机加速 2电机减速
+extern unsigned char TargetCisternNumber; //机械臂运行目标槽位
 
 #endif
