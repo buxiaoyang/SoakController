@@ -9,14 +9,12 @@ sbit MotorLeft = P2^0; //机械臂向进口移动电机
 sbit MotorRight = P2^1; //机械臂向出口移动电机
 sbit ManiUp =  P1^0; //机械臂向上移动电机
 sbit ManiDown =  P1^1; //机械臂向下移动电机
-sbit MotorSpeedUp =  P1^2; //辅助输出（电机加速）
-sbit MotorSlowDown = P1^3; //辅助输出（电机减速）
+sbit MotorSpeedUp =  P1^2; //出口到进口空槽机械臂加速
 
 sbit sensorInput = P3^0; //进口位置感应
 sbit sensorManiTop = P3^1; //机械臂在顶端位置感应
 sbit sensorManiBut = P3^2; //机械臂在低端位置感应
 sbit sensorOutput = P3^3; //出位置感应
-
 
 void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber); //机械臂提起upCisternNumber槽里面框放到downCisternNumber槽
 uchar A_Up_Down_Steps = 100;		   	//0：机械臂初始状态
@@ -38,7 +36,6 @@ void ManualMode_Operation(void);  //手动模式
 										
 uint ManiOperationTimer = 0; //机械臂操作定时器
 
-
 void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 {
 	switch(A_Up_Down_Steps)
@@ -54,22 +51,14 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(MotorSpeedFlag == 1) //电机加速
+					if(speedUpFlag == 1)
 					{
-					   	MotorSpeedUp = 0;
-						MotorSlowDown = 1;
+						MotorSpeedUp = 0;	
 					}
-					else if(MotorSpeedFlag == 2) //电机减速
-					{
-						MotorSpeedUp = 1;
-						MotorSlowDown = 0;
-					}
-					else //正常速度
+					else
 					{
 						MotorSpeedUp = 1;
-						MotorSlowDown = 1;
 					}
-
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -81,20 +70,13 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 1;
 					MotorRight = 0; //行车向右
-					if(MotorSpeedFlag == 1) //电机加速
+					if(speedUpFlag == 1)
 					{
-					   	MotorSpeedUp = 0;
-						MotorSlowDown = 1;
+						MotorSpeedUp = 0;	
 					}
-					else if(MotorSpeedFlag == 2) //电机减速
+					else
 					{
 						MotorSpeedUp = 1;
-						MotorSlowDown = 0;
-					}
-					else //正常速度
-					{
-						MotorSpeedUp = 1;
-						MotorSlowDown = 1;
 					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
@@ -105,10 +87,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
-					MotorLeft = 1;
-					MotorRight = 1;
 					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
 					A_Up_Down_Steps++;	
 				}	
 			}
@@ -117,6 +96,9 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			if(manipulator.currentPosition == upCisternNumber)
 			{
 				ManiOperationTimer = 0;
+				MotorLeft = 1;
+				MotorRight = 1;
+				//drivingDirect = DStop;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
 				{
@@ -124,20 +106,22 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				A_Up_Down_Steps ++;
 			}
-			else
-			{
-				A_Up_Down_Steps ++;
-			}
 		break;
-		case 3: 	//1：机械臂A定位前等待（过冲保护）
+		case 3: 	//1：机械臂A定位前等待
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
 				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
-					MotorLeft = 0;	//行车向左 
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
+					if(speedUpFlag == 1)
+					{
+						MotorSpeedUp = 0;	
+					}
+					else
+					{
+						MotorSpeedUp = 1;
+					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -150,8 +134,14 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 1;
 					MotorRight = 0; //行车向右
-					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
+					if(speedUpFlag == 1)
+					{
+						MotorSpeedUp = 0;	
+					}
+					else
+					{
+						MotorSpeedUp = 1;
+					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -162,10 +152,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
-					MotorLeft = 1;
-					MotorRight = 1;
 					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
@@ -206,20 +193,13 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					if(MotorSpeedFlag == 1) //电机加速
+					if(speedUpFlag == 1)
 					{
-					   	MotorSpeedUp = 0;
-						MotorSlowDown = 1;
+						MotorSpeedUp = 0;	
 					}
-					else if(MotorSpeedFlag == 2) //电机减速
+					else
 					{
 						MotorSpeedUp = 1;
-						MotorSlowDown = 0;
-					}
-					else //正常速度
-					{
-						MotorSpeedUp = 1;
-						MotorSlowDown = 1;
 					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
@@ -232,20 +212,13 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 1;
 					MotorRight = 0; //行车向右
-					if(MotorSpeedFlag == 1) //电机加速
+					if(speedUpFlag == 1)
 					{
-					   	MotorSpeedUp = 0;
-						MotorSlowDown = 1;
+						MotorSpeedUp = 0;	
 					}
-					else if(MotorSpeedFlag == 2) //电机减速
+					else
 					{
 						MotorSpeedUp = 1;
-						MotorSlowDown = 0;
-					}
-					else //正常速度
-					{
-						MotorSpeedUp = 1;
-						MotorSlowDown = 1;
 					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
@@ -256,10 +229,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
-					MotorLeft = 1;
-					MotorRight = 1;
 					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
 					A_Up_Down_Steps++;	
 				}	
 			}
@@ -268,6 +238,9 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			if(manipulator.currentPosition == downCisternNumber)
 			{
 				ManiOperationTimer = 0;
+				MotorLeft = 1;
+				MotorRight = 1;
+				//drivingDirect = DStop;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
 				{
@@ -275,20 +248,22 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				A_Up_Down_Steps ++;
 			}
-			else
-			{
-				A_Up_Down_Steps ++;
-			}
 		break;
-		case 9: 	//1：机械臂A定位前等待（过冲保护）
+		case 9: 	//1：机械臂A定位前等待
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
-					MotorLeft = 0; //行车向左 
+					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
+					if(speedUpFlag == 1)
+					{
+						MotorSpeedUp = 0;	
+					}
+					else
+					{
+						MotorSpeedUp = 1;
+					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -300,9 +275,15 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				else if(manipulator.currentPosition < downCisternNumber)
 				{
 					MotorLeft = 1;
-					MotorRight = 0;	 //行车向右
-					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
+					MotorRight = 0; //行车向右
+					if(speedUpFlag == 1)
+					{
+						MotorSpeedUp = 0;	
+					}
+					else
+					{
+						MotorSpeedUp = 1;
+					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -313,10 +294,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
-					MotorLeft = 1;
-					MotorRight = 1;
 					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
