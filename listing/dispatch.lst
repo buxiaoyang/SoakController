@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              04/14/2014 23:39:34 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 00:09:04 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   1              //机械臂调度状态机
   53   1              switch(ManiDispatchSteps)
   54   1              {
-C51 COMPILER V7.50   DISPATCH                                                              04/14/2014 23:39:34 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 00:09:04 PAGE 2   
 
   55   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
   56   2                              A_Move_Entrance_Steps = 0;
@@ -126,7 +126,7 @@ line level    source
  114   2                              A_Up_Down(0,4);
  115   2                              if(A_Up_Down_Steps == 100)
  116   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/14/2014 23:39:34 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 00:09:04 PAGE 3   
 
  117   3                                      ManiDispatchSteps = 20;
  118   3                              }
@@ -190,7 +190,7 @@ line level    source
  171   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)   //5：4号槽空，并且3号
              -就绪
  172   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/14/2014 23:39:34 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 00:09:04 PAGE 4   
 
  173   3                                      A_Up_Down_Steps = 0;
  174   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;

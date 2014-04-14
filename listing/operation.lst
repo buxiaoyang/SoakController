@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -62,7 +62,7 @@ line level    source
   51   2                              TargetCisternNumber =  upCisternNumber; //设置本次机械臂运行的目标槽位
   52   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
   53   2                              {
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 2   
 
   54   3                                      if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
   55   3                                      {
@@ -126,7 +126,7 @@ line level    source
  113   4                                              A_Up_Down_Steps++;      
  114   4                                      }       
  115   3                              }
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 3   
 
  116   2                      break;
  117   2                      case 2:         //2：机械臂A定位
@@ -190,7 +190,7 @@ line level    source
  175   4                                      }       
  176   3                              }
  177   2                      break;
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 4   
 
  178   2                      case 4:
  179   2                              ManiUp = 0;
@@ -254,7 +254,7 @@ line level    source
  237   4                                              if(MotorSpeedFlag == 1) //电机加速
  238   4                                              {
  239   5                                                      MotorSpeedUp = 0;
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 5   
 
  240   5                                                      MotorSlowDown = 1;
  241   5                                              }
@@ -318,7 +318,7 @@ line level    source
  299   5                                              }
  300   4                                              A_Up_Down_Steps = 8;
  301   4                                      }
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 6   
 
  302   3                                      else if(manipulator.currentPosition < downCisternNumber)
  303   3                                      {
@@ -382,7 +382,7 @@ line level    source
  361   2                              ManiOperationTimer = 0;
  362   2                              A_Move_Entrance_Steps ++;
  363   2                      break;
-C51 COMPILER V7.50   OPERATION                                                             04/14/2014 23:39:32 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             04/15/2014 00:09:04 PAGE 7   
 
  364   2                      case 1:         //1：机械臂A定位前等待
  365   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
