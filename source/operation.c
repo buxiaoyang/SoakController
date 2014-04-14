@@ -78,6 +78,10 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
+					MotorLeft = 1;
+					MotorRight = 1;
+					MotorSpeedUp = 1;
+					MotorSlowDown = 1;
 					A_Up_Down_Steps++;	
 				}	
 			}
@@ -86,10 +90,6 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			if(manipulator.currentPosition == upCisternNumber)
 			{
 				ManiOperationTimer = 0;
-				MotorLeft = 1;
-				MotorRight = 1;
-				MotorSpeedUp = 1;
-				MotorSlowDown = 1;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
 				{
@@ -199,7 +199,10 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				else
 				{
+					MotorLeft = 1;
+					MotorRight = 1;
 					MotorSpeedUp = 1;
+					MotorSlowDown = 1;
 					A_Up_Down_Steps++;	
 				}	
 			}
@@ -208,10 +211,6 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 			if(manipulator.currentPosition == downCisternNumber)
 			{
 				ManiOperationTimer = 0;
-				MotorLeft = 1;
-				MotorRight = 1;
-				MotorSpeedUp = 1;
-				MotorSlowDown = 1;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
 				{
