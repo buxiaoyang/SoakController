@@ -330,6 +330,8 @@ void main()
 		else if(displayFlag == 3) //复位液晶并初始化显示
 		{
 			lcd_inital();
+			Enable_TP();
+			Enable_Maunal_TP();
 			switchDisplay();
 			displayFlag = 0;	
 		}

@@ -117,6 +117,10 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 2: 	//2：机械臂A定位
 			if(manipulator.currentPosition == upCisternNumber)
 			{
+				MotorLeft = 1;
+				MotorRight = 1;
+				MotorSpeedUp = 1;
+				MotorSlowDown = 1;
 				ManiOperationTimer = 0;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
@@ -269,6 +273,10 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 8: 	//2：机械臂A定位
 			if(manipulator.currentPosition == downCisternNumber)
 			{
+				MotorLeft = 1;
+				MotorRight = 1;
+				MotorSpeedUp = 1;
+				MotorSlowDown = 1;
 				ManiOperationTimer = 0;
 				manipulator.manipulaterStatus = Stop;
 				if(displayFlag == 0)
@@ -318,7 +326,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 					MotorLeft = 1;
 					MotorRight = 1;
 					MotorSpeedUp = 1;
-					MotorSlowDown = 0; //电机减速
+					MotorSlowDown = 1;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;

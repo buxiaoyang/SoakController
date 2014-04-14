@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 04/14/2014 16:43:26 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 04/14/2014 21:43:36 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   2                              //cistern[i].currentTime += 60;
   53   2                              if(cistern[i].currentTime >= cistern[i].settingTime)
   54   2                              {
-C51 COMPILER V7.50   TIMER                                                                 04/14/2014 16:43:26 PAGE 2   
+C51 COMPILER V7.50   TIMER                                                                 04/14/2014 21:43:36 PAGE 2   
 
   55   3                                      if(i != 0 && i != 7)// 进口出口不安时间就绪
   56   3                                      {
@@ -126,7 +126,7 @@ line level    source
  114   4                              }
  115   3                              else
  116   3                              {
-C51 COMPILER V7.50   TIMER                                                                 04/14/2014 16:43:26 PAGE 3   
+C51 COMPILER V7.50   TIMER                                                                 04/14/2014 21:43:36 PAGE 3   
 
  117   4                                      ManualDispatch();
  118   4                              }
