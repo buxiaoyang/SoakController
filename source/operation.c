@@ -53,8 +53,21 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
+					if(speedUpFlag == 1) //电机加速
+					{
+					   	MotorSpeedUp = 0;
+						MotorSlowDown = 1;
+					}
+					else if(speedUpFlag == 2) //电机减速
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 0;
+					}
+					else //正常速度
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 1;
+					}
 
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
@@ -67,8 +80,21 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 1;
 					MotorRight = 0; //行车向右
-					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
+					if(speedUpFlag == 1) //电机加速
+					{
+					   	MotorSpeedUp = 0;
+						MotorSlowDown = 1;
+					}
+					else if(speedUpFlag == 2) //电机减速
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 0;
+					}
+					else //正常速度
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 1;
+					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
@@ -179,8 +205,21 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 0; //行车向左
 					MotorRight = 1;
-					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
+					if(speedUpFlag == 1) //电机加速
+					{
+					   	MotorSpeedUp = 0;
+						MotorSlowDown = 1;
+					}
+					else if(speedUpFlag == 2) //电机减速
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 0;
+					}
+					else //正常速度
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 1;
+					}
 					drivingDirect = DGoEntrance;
 					manipulator.manipulaterStatus = GoEntrance;
 					if(displayFlag == 0)
@@ -192,8 +231,21 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					MotorLeft = 1;
 					MotorRight = 0; //行车向右
-					MotorSpeedUp = 1;
-					MotorSlowDown = 1;
+					if(speedUpFlag == 1) //电机加速
+					{
+					   	MotorSpeedUp = 0;
+						MotorSlowDown = 1;
+					}
+					else if(speedUpFlag == 2) //电机减速
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 0;
+					}
+					else //正常速度
+					{
+						MotorSpeedUp = 1;
+						MotorSlowDown = 1;
+					}
 					drivingDirect = GoOutfall;
 					manipulator.manipulaterStatus = DGoOutfall;
 					if(displayFlag == 0)
