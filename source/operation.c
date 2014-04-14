@@ -129,10 +129,6 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				}
 				A_Up_Down_Steps ++;
 			}
-			else
-			{
-				A_Up_Down_Steps ++;
-			}
 		break;
 		case 3: 	//1：机械臂A定位前等待（过冲保护）
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
@@ -283,10 +279,6 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 				{
 					displayFlag = 2;
 				}
-				A_Up_Down_Steps ++;
-			}
-			else
-			{
 				A_Up_Down_Steps ++;
 			}
 		break;
