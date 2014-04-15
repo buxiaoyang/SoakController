@@ -75,11 +75,15 @@ void tm0_isr() interrupt 1 using 1  //1ms
     TH0 = T1MS >> 8;                //reload timer0 high byte
 //	TEST_LED = ! TEST_LED;
 	countManiPosition ++;
-	//if(countManiPosition == 100)
-	//{
-		maniPosition();
-	//	countManiPosition = 0;
-	//}
+	if(countManiPosition == 10)
+	{
+		if(drivingDirect == DGoOutfall || drivingDirect == DGoEntrance)	  
+		{
+			//只有机械臂向出口或者向进口方向移动的时候才检测P3.4信号
+			maniPosition();
+		}
+		countManiPosition = 0;
+	}
 }
 
 /* Timer1 interrupt routine */
