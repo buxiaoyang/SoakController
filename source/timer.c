@@ -77,11 +77,11 @@ void tm0_isr() interrupt 1 using 1  //1ms
 	countManiPosition ++;
 	if(countManiPosition == 10)
 	{
-		if(drivingDirect == DGoOutfall || drivingDirect == DGoEntrance)	  
-		{
+		//if(drivingDirect == DGoOutfall || drivingDirect == DGoEntrance)	  
+		//{
 			//只有机械臂向出口或者向进口方向移动的时候才检测P3.4信号
 			maniPosition();
-		}
+		//}
 		countManiPosition = 0;
 	}
 }
