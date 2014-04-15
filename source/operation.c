@@ -12,6 +12,8 @@ sbit ManiDown =  P1^1; //机械臂向下移动电机
 sbit MotorSpeedUp =  P1^2; //辅助输出（电机加速）
 sbit MotorSlowDown = P1^3; //辅助输出（电机减速）
 
+sbit SystemError = P1^4; //系统出错指示灯
+
 sbit sensorInput = P3^0; //进口位置感应
 sbit sensorManiTop = P3^1; //机械臂在顶端位置感应
 sbit sensorManiBut = P3^2; //机械臂在低端位置感应
@@ -45,7 +47,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 	{
 		case 0: 	//0：机械臂初始状态
 			ManiOperationTimer = 0;
-			A_Up_Down_Steps ++;
+			SystemError = 1;
+			A_Up_Down_Steps ++;	
 		break;
 		case 1: 	//1：机械臂A定位前等待
 			TargetCisternNumber =  upCisternNumber;	//设置本次机械臂运行的目标槽位
@@ -133,6 +136,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 3: 	//1：机械臂A定位前等待（过冲保护）
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
+				/*
 				if(manipulator.currentPosition > upCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
 					MotorLeft = 0;	//行车向左 
@@ -161,8 +165,14 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 					}
 					A_Up_Down_Steps = 2;
 				}
+				*/
+				if(manipulator.currentPosition != upCisternNumber)
+				{
+					SystemError = 0;
+				}
 				else
 				{
+					SystemError = 1;
 					MotorLeft = 1;
 					MotorRight = 1;
 					MotorSpeedUp = 1;
@@ -285,6 +295,7 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 		case 9: 	//1：机械臂A定位前等待（过冲保护）
 			if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
 			{
+				/*
 				if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
 				{
 					MotorLeft = 0; //行车向左 
@@ -313,8 +324,14 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 					}
 					A_Up_Down_Steps = 8;
 				}
+				*/
+				if(manipulator.currentPosition != downCisternNumber)
+				{
+					SystemError = 0;
+				}
 				else
 				{
+					SystemError = 1;
 					MotorLeft = 1;
 					MotorRight = 1;
 					MotorSpeedUp = 1;
