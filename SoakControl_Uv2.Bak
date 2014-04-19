@@ -41,7 +41,7 @@ Options 1,0,0  // Target 'Target 1'
  EnvLib ()
  EnvReg ()
  OrgReg ()
- TgStat=16
+ TgStat=25
  OutDir (.\output\)
  OutName (SoakControl)
  GenApp=1
@@ -49,7 +49,7 @@ Options 1,0,0  // Target 'Target 1'
  GenHex=1
  Debug=1
  Browse=1
- LstDir (.\)
+ LstDir (.\listing\)
  HexSel=0
  MG32K=0
  TGMORE=0
