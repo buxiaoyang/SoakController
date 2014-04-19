@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -62,7 +62,7 @@ line level    source
   51   2                              A_Up_Down_Steps ++;
   52   2                      break;
   53   2                      case 1:         //1：机械臂A定位前等待
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 2   
 
   54   2                              TargetCisternNumber =  upCisternNumber; //设置本次机械臂运行的目标槽位
   55   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
@@ -126,7 +126,7 @@ line level    source
  113   4                                              MotorRight = 1;
  114   4                                              MotorSpeedUp = 1;
  115   4                                              MotorSlowDown = 1;
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 3   
 
  116   4                                              A_Up_Down_Steps++;      
  117   4                                      }       
@@ -190,7 +190,7 @@ line level    source
  175   5                                                      displayFlag = 2;
  176   5                                              }
  177   4                                              A_Up_Down_Steps ++;     
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 4   
 
  178   4                                      }       
  179   3                              }
@@ -254,7 +254,7 @@ line level    source
  237   3                                      {
  238   4                                              MotorLeft = 1;
  239   4                                              MotorRight = 0; //行车向右
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 5   
 
  240   4                                              if(MotorSpeedFlag == 1) //电机加速
  241   4                                              {
@@ -318,7 +318,7 @@ line level    source
  299   4                                              if(displayFlag == 0)
  300   4                                              {
  301   5                                                      displayFlag = 2;
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 6   
 
  302   5                                              }
  303   4                                              A_Up_Down_Steps = 8;
@@ -382,7 +382,7 @@ line level    source
  361   1              switch(A_Move_Entrance_Steps)
  362   1              {
  363   2                      case 0:         //0：机械臂初始状态
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 7   
 
  364   2                              ManiOperationTimer = 0;
  365   2                              A_Move_Entrance_Steps ++;
@@ -446,7 +446,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
-C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:01:34 PAGE 8   
+C51 COMPILER V7.50   OPERATION                                                             04/19/2014 13:07:34 PAGE 8   
 
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

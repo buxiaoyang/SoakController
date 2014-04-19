@@ -58,7 +58,6 @@ uchar getPositonBySensor() //根据传感器获取机械臂位置
 
 void maniPosition(void) //机械臂定位
 {
-	uchar  getPositonBySensorValue = 0;
 	//机械臂A位置检测
 	if(sensorPosiCheck==0)
 	{
