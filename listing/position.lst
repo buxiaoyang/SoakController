@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   POSITION                                                              04/19/2014 13:07:33 PAGE 1   
+C51 COMPILER V7.50   POSITION                                                              04/15/2014 14:20:20 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE POSITION
@@ -13,134 +13,97 @@ line level    source
    3          #include <parameter.h>
    4          #include <basefunc.h>
    5          
-   6          //sbit sensorPositon = P3^4; //机械臂定位传感器
-   7          //机械臂定位传感器
-   8          #define sensorPositon P3
-   9          
-  10          
-  11          uchar sensorPosiCheck = 0; //机械臂A位置检测标志位 
-  12                                                                  //0：没有感应器没有低电位状态
-  13                                                                  //1：检测到低电位进入延迟状态
-  14                                                                  //2：等待低电位释放进入延时
-  15                                                                  //3：检测低电位确实释放 
-  16          
-  17          uchar getPositonBySensor() //根据传感器获取机械臂位置
-  18          {
-  19   1              if(sensorPositon == 0xFE)       //进口
-  20   1              {
-  21   2                      return  0;
-  22   2              }
-  23   1              else if(sensorPositon == 0xFD) //一号槽
-  24   1              {
-  25   2                      return  2;
-  26   2              }
-  27   1              else if(sensorPositon == 0xFB)   //二号槽
-  28   1              {
-  29   2                      return  4;
-  30   2              }
-  31   1              else if(sensorPositon == 0xF7)  //三号槽
-  32   1              {
-  33   2                      return  6;
-  34   2              }
-  35   1              else if(sensorPositon == 0xEF)   //四号槽
-  36   1              {
-  37   2                      return  8;
-  38   2              }
-  39   1              else if(sensorPositon == 0xDF)    //五号槽
-  40   1              {
-  41   2                      return  10;
-  42   2              }
-  43   1              else if(sensorPositon == 0xBF)   //六号槽
-  44   1              {
-  45   2                      return  12;
-  46   2              }
-  47   1              else if(sensorPositon == 0x7F)  //出口
-  48   1              {
-  49   2                      return  14;
-  50   2              }
-  51   1              else
-  52   1              {
-  53   2                      //传感器错误
-  54   2                      runMode = ManualMode;
-C51 COMPILER V7.50   POSITION                                                              04/19/2014 13:07:33 PAGE 2   
+   6          sbit sensorPositon = P3^4; //机械臂定位传感器
+   7          
+   8          uchar sensorPosiCheck = 0; //机械臂A位置检测标志位 
+   9                                                                  //0：没有感应器没有低电位状态
+  10                                                                  //1：检测到低电位进入延迟状态
+  11                                                                  //2：等待低电位释放进入延时
+  12                                                                  //3：检测低电位确实释放
+  13          
+  14          void maniPosition(void) //机械臂定位
+  15          {
+  16   1              //机械臂A位置检测
+  17   1              if(sensorPosiCheck==0)
+  18   1              {
+  19   2                      if(sensorPositon == 0)
+  20   2                      {
+  21   3                              sensorPosiCheck = 1;
+  22   3                      }
+  23   2              }
+  24   1              else if(sensorPosiCheck==1)
+  25   1              {
+  26   2                      if(sensorPositon == 0)
+  27   2                      {
+  28   3                              if(drivingDirect == DGoOutfall)
+  29   3                              {
+  30   4                                      //向右机械臂位置加一
+  31   4                                      manipulator.currentPosition++;
+  32   4                                      displayFlag = 1;
+  33   4                                      if(manipulator.currentPosition>14)
+  34   4                                      {
+  35   5                                              manipulator.currentPosition = 14;
+  36   5                                      }
+  37   4                              }
+  38   3                              else if (drivingDirect == DGoEntrance)
+  39   3                              {
+  40   4                                      //向右机械臂位置减一
+  41   4                                      manipulator.currentPosition--;
+  42   4                                      displayFlag = 1;
+  43   4                                      if(manipulator.currentPosition>200)
+  44   4                                      {
+  45   5                                              manipulator.currentPosition = 0;
+  46   5                                      }       
+  47   4                              }
+  48   3                              sensorPosiCheck = 2;
+  49   3                      }
+  50   2                      else
+  51   2                      {
+  52   3                              //干扰信号直接释放
+  53   3                              sensorPosiCheck = 0;
+  54   3                      }
+C51 COMPILER V7.50   POSITION                                                              04/15/2014 14:20:20 PAGE 2   
 
-  55   2                      return 100;
-  56   2              }       
-  57   1      }
-  58          
-  59          void maniPosition(void) //机械臂定位
-  60          {
-  61   1              //机械臂A位置检测
-  62   1              if(sensorPosiCheck==0)
-  63   1              {
-  64   2                      if(sensorPositon != 0xFF)
-  65   2                      {
-  66   3                              sensorPosiCheck = 1;
-  67   3                      }
-  68   2              }
-  69   1              else if(sensorPosiCheck==1)
-  70   1              {
-  71   2                      if(sensorPositon != 0xFF)
-  72   2                      {
-  73   3                              if(drivingDirect == DGoOutfall)
-  74   3                              {
-  75   4                                      //向右机械臂位置加一
-  76   4                                      manipulator.currentPosition = getPositonBySensor();
-  77   4                              }
-  78   3                              else if (drivingDirect == DGoEntrance)
-  79   3                              {
-  80   4                                      //向右机械臂位置减一
-  81   4                                      manipulator.currentPosition = getPositonBySensor();     
-  82   4                              }
-  83   3                              sensorPosiCheck = 2;
-  84   3                      }
-  85   2                      else
-  86   2                      {
-  87   3                              //干扰信号直接释放
-  88   3                              sensorPosiCheck = 0;
-  89   3                      }
-  90   2              }
-  91   1              else if(sensorPosiCheck==2)
-  92   1              {
-  93   2                      if(sensorPositon == 0xFF)
-  94   2                      {
-  95   3                              sensorPosiCheck = 3;
-  96   3                      }       
-  97   2              }
-  98   1              else
-  99   1              {
- 100   2                      if(sensorPositon == 0xFF)
- 101   2                      {
- 102   3                              if(drivingDirect == DGoOutfall)
- 103   3                              {
- 104   4                                      //向右机械臂位置加一
- 105   4                                      manipulator.currentPosition++;
- 106   4                                      displayFlag = 1;
- 107   4                                      if(manipulator.currentPosition>14)
- 108   4                                      {
- 109   5                                              manipulator.currentPosition = 14;
- 110   5                                      }
- 111   4                              }
- 112   3                              else if (drivingDirect == DGoEntrance)
- 113   3                              {
- 114   4                                      //向右机械臂位置减一
- 115   4                                      manipulator.currentPosition--;
- 116   4                                      displayFlag = 1;
-C51 COMPILER V7.50   POSITION                                                              04/19/2014 13:07:33 PAGE 3   
-
- 117   4                                      if(manipulator.currentPosition>200)
- 118   4                                      {
- 119   5                                              manipulator.currentPosition = 0;
- 120   5                                      }       
- 121   4                              }
- 122   3                              sensorPosiCheck = 0;
- 123   3                      }
- 124   2              }
- 125   1      }
+  55   2              }
+  56   1              else if(sensorPosiCheck==2)
+  57   1              {
+  58   2                      if(sensorPositon == 1)
+  59   2                      {
+  60   3                              sensorPosiCheck = 3;
+  61   3                      }       
+  62   2              }
+  63   1              else
+  64   1              {
+  65   2                      if(sensorPositon == 1)
+  66   2                      {
+  67   3                              if(drivingDirect == DGoOutfall)
+  68   3                              {
+  69   4                                      //向右机械臂位置加一
+  70   4                                      manipulator.currentPosition++;
+  71   4                                      displayFlag = 1;
+  72   4                                      if(manipulator.currentPosition>14)
+  73   4                                      {
+  74   5                                              manipulator.currentPosition = 14;
+  75   5                                      }
+  76   4                              }
+  77   3                              else if (drivingDirect == DGoEntrance)
+  78   3                              {
+  79   4                                      //向右机械臂位置减一
+  80   4                                      manipulator.currentPosition--;
+  81   4                                      displayFlag = 1;
+  82   4                                      if(manipulator.currentPosition>200)
+  83   4                                      {
+  84   5                                              manipulator.currentPosition = 0;
+  85   5                                      }       
+  86   4                              }
+  87   3                              sensorPosiCheck = 0;
+  88   3                      }
+  89   2              }
+  90   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    219    ----
+   CODE SIZE        =    178    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      1    ----
    PDATA SIZE       =   ----    ----
