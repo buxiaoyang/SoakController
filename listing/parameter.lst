@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   PARAMETER                                                             04/15/2014 14:20:16 PAGE 1   
+C51 COMPILER V7.50   PARAMETER                                                             04/19/2014 22:59:29 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
@@ -62,7 +62,7 @@ line level    source
   51   1              return result;
   52   1      }
   53          
-C51 COMPILER V7.50   PARAMETER                                                             04/15/2014 14:20:16 PAGE 2   
+C51 COMPILER V7.50   PARAMETER                                                             04/19/2014 22:59:29 PAGE 2   
 
   54          /***************************************************************************/
   55          // 参数初始化函数
@@ -126,7 +126,7 @@ line level    source
  113   1          Delay(10);
  114   1              for(i=0; i<8; i++)  //校验保存值
  115   1              {
-C51 COMPILER V7.50   PARAMETER                                                             04/15/2014 14:20:16 PAGE 3   
+C51 COMPILER V7.50   PARAMETER                                                             04/19/2014 22:59:29 PAGE 3   
 
  116   2                      if(IapReadByte(IAP_ADDRESS+(i*2)) != (BYTE)(cistern[i].perSettingTime>>8))
  117   2                      {

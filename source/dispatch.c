@@ -47,7 +47,7 @@ void ManiDispatch(void)
 	}
 	else
 	{
-		MotorSpeedFlag = 0;
+		MotorSpeedFlag = 2;
 	}
 	//机械臂调度状态机
 	switch(ManiDispatchSteps)
