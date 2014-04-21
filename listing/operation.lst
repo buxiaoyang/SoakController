@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 1   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE OPERATION
@@ -62,7 +62,7 @@ line level    source
   51   2                              A_Up_Down_Steps ++;     
   52   2                      break;
   53   2                      case 1:         //1：机械臂A定位前等待
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 2   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 2   
 
   54   2                              TargetCisternNumber =  upCisternNumber; //设置本次机械臂运行的目标槽位
   55   2                              if(ManiOperationTimer > timeBetweenOpeartion) //定时时间到
@@ -126,7 +126,7 @@ line level    source
  113   4                                              MotorRight = 1;
  114   4                                              MotorSpeedUp = 1;
  115   4                                              MotorSlowDown = 1;
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 3   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 3   
 
  116   4                                              A_Up_Down_Steps++;      
  117   4                                      }       
@@ -190,7 +190,7 @@ line level    source
  175   4                                              SystemError = 1;
  176   4                                              MotorLeft = 1;
  177   4                                              MotorRight = 1;
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 4   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 4   
 
  178   4                                              MotorSpeedUp = 1;
  179   4                                              MotorSlowDown = 1;
@@ -254,7 +254,7 @@ line level    source
  237   4                                              manipulator.manipulaterStatus = GoEntrance;
  238   4                                              if(displayFlag == 0)
  239   4                                              {
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 5   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 5   
 
  240   5                                                      displayFlag = 2;
  241   5                                              }
@@ -318,7 +318,7 @@ line level    source
  299   3                                      if(manipulator.currentPosition > downCisternNumber) //当前机械臂在cisternNumber号槽右边
  300   3                                      {
  301   3                                              MotorLeft = 0; //行车向左 
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 6   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 6   
 
  302   3                                              MotorRight = 1;
  303   3                                              MotorSpeedUp = 1;
@@ -382,7 +382,7 @@ line level    source
  361   3                                      manipulator.manipulaterStatus = Stop;   
  362   3                                      cistern[downCisternNumber/2].cisternStatus = InCounting;//标记当前槽为满
  363   3                                      cistern[downCisternNumber/2].currentTime = 0;//清除当前槽计时时间
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 7   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 7   
 
  364   3                                      displayFlag = 1;
  365   3                                      A_Up_Down_Steps = 100;
@@ -446,7 +446,7 @@ line level    source
  423          void ManualMode_Operation(void)
  424          {
  425   1              MotorLeft = 1;
-C51 COMPILER V7.50   OPERATION                                                             04/15/2014 14:20:20 PAGE 8   
+C51 COMPILER V7.50   OPERATION                                                             04/21/2014 19:07:26 PAGE 8   
 
  426   1              MotorRight = 1;
  427   1              ManiUp =  1;

@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 14:20:25 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   1              //机械臂调度状态机
   53   1              switch(ManiDispatchSteps)
   54   1              {
-C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 14:20:25 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 2   
 
   55   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
   56   2                              A_Move_Entrance_Steps = 0;
@@ -126,7 +126,7 @@ line level    source
  114   2                              A_Up_Down(0,4);
  115   2                              if(A_Up_Down_Steps == 100)
  116   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 14:20:25 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 3   
 
  117   3                                      ManiDispatchSteps = 20;
  118   3                              }
@@ -184,13 +184,13 @@ line level    source
              -绪
  166   2                              {
  167   3                                      A_Up_Down_Steps = 0;
- 168   3                                      timeBetweenOpeartionDry = 90;
+ 168   3                                      timeBetweenOpeartionDry = 60;
  169   3                                      ManiDispatchSteps = 4;
  170   3                              }
  171   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)   //5：4号槽空，并且3号
              -就绪
  172   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/15/2014 14:20:25 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 4   
 
  173   3                                      A_Up_Down_Steps = 0;
  174   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
@@ -201,13 +201,13 @@ line level    source
  179   3                                      if(cistern[2].cisternStatus == Ready && cistern[1].cisternStatus == InCounting) //二号槽就绪
  180   3                                      {
  181   4                                              A_Up_Down_Steps = 0;
- 182   4                                              timeBetweenOpeartionDry = 90;
+ 182   4                                              timeBetweenOpeartionDry = 60;
  183   4                                              ManiDispatchSteps = 6;
  184   4                                      }
  185   3                                      else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == InCounting) //一号槽就绪
  186   3                                      {
  187   4                                              A_Up_Down_Steps = 0;
- 188   4                                              timeBetweenOpeartionDry = 90;
+ 188   4                                              timeBetweenOpeartionDry = 60;
  189   4                                              ManiDispatchSteps = 7;
  190   4                                      }
  191   3                                      else if(cistern[1].cisternStatus == Ready && cistern[2].cisternStatus == Ready) //一号二号都就绪
@@ -215,13 +215,13 @@ line level    source
  193   4                                              if(cistern[1].currentTime > cistern[2].currentTime)
  194   4                                              {
  195   5                                                      A_Up_Down_Steps = 0;
- 196   5                                                      timeBetweenOpeartionDry = 90;
+ 196   5                                                      timeBetweenOpeartionDry = 60;
  197   5                                                      ManiDispatchSteps = 7;  
  198   5                                              }
  199   4                                              else
  200   4                                              {
  201   5                                                      A_Up_Down_Steps = 0;
- 202   5                                                      timeBetweenOpeartionDry = 90;
+ 202   5                                                      timeBetweenOpeartionDry = 60;
  203   5                                                      ManiDispatchSteps = 6;  
  204   5                                              }
  205   4                                      }
@@ -240,7 +240,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    684    ----
+   CODE SIZE        =    680    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      5    ----
    PDATA SIZE       =   ----    ----
