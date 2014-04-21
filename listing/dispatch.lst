@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 20:43:38 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   1              //机械臂调度状态机
   53   1              switch(ManiDispatchSteps)
   54   1              {
-C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 20:43:38 PAGE 2   
 
   55   2                      case 0: //0：开机状态（机械臂在最下面，槽1为空）
   56   2                              A_Move_Entrance_Steps = 0;
@@ -126,7 +126,7 @@ line level    source
  114   2                              A_Up_Down(0,4);
  115   2                              if(A_Up_Down_Steps == 100)
  116   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 20:43:38 PAGE 3   
 
  117   3                                      ManiDispatchSteps = 20;
  118   3                              }
@@ -190,7 +190,7 @@ line level    source
  171   2                              else if(cistern[4].cisternStatus == Empty && cistern[3].cisternStatus == Ready)   //5：4号槽空，并且3号
              -就绪
  172   2                              {
-C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 19:07:28 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 20:43:38 PAGE 4   
 
  173   3                                      A_Up_Down_Steps = 0;
  174   3                                      timeBetweenOpeartionDry = timeBetweenOpeartion;
@@ -225,22 +225,39 @@ line level    source
  203   5                                                      ManiDispatchSteps = 6;  
  204   5                                              }
  205   4                                      }
- 206   3                              }
- 207   2                      break;
- 208   2                      default:
- 209   2                               _nop_();
- 210   2              }
- 211   1      }
- 212          
- 213          void ManualDispatch(void)
- 214          {
- 215   1              ManiDispatchSteps = 20;
- 216   1              ManualMode_Operation();
- 217   1      }
+ 206   3                                      else
+ 207   3                                      {
+ 208   4                                              if(cistern[1].cisternStatus == Ready)
+ 209   4                                              {
+ 210   5                                                      A_Up_Down_Steps = 0;
+ 211   5                                                      timeBetweenOpeartionDry = 60;
+ 212   5                                                      ManiDispatchSteps = 7;
+ 213   5                                              }
+ 214   4                                              else if(cistern[2].cisternStatus == Ready)
+ 215   4                                              {
+ 216   5                                                      A_Up_Down_Steps = 0;
+ 217   5                                                      timeBetweenOpeartionDry = 60;
+ 218   5                                                      ManiDispatchSteps = 6;
+ 219   5                                              }
+ 220   4                                      }
+ 221   3                              }
+ 222   2                      break;
+ 223   2                      default:
+ 224   2                               _nop_();
+ 225   2              }
+ 226   1      }
+ 227          
+ 228          void ManualDispatch(void)
+ 229          {
+ 230   1              ManiDispatchSteps = 20;
+ 231   1              ManualMode_Operation();
+ 232   1      }
 
+
+C51 COMPILER V7.50   DISPATCH                                                              04/21/2014 20:43:38 PAGE 5   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    680    ----
+   CODE SIZE        =    694    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      5    ----
    PDATA SIZE       =   ----    ----

@@ -203,6 +203,21 @@ void ManiDispatch(void)
 						ManiDispatchSteps = 6;	
 					}
 				}
+				else
+				{
+					if(cistern[1].cisternStatus == Ready)
+					{
+						A_Up_Down_Steps = 0;
+						timeBetweenOpeartionDry = 60;
+						ManiDispatchSteps = 7;
+					}
+					else if(cistern[2].cisternStatus == Ready)
+					{
+						A_Up_Down_Steps = 0;
+						timeBetweenOpeartionDry = 60;
+						ManiDispatchSteps = 6;
+					}
+				}
 			}
 		break;
 		default:
