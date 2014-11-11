@@ -100,8 +100,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 						MotorSpeedUp = 1;
 						MotorSlowDown = 1;
 					}
-					drivingDirect = GoOutfall;
-					manipulator.manipulaterStatus = DGoOutfall;
+					drivingDirect = DGoOutfall;
+					manipulator.manipulaterStatus = GoOutfall;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
@@ -157,8 +157,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 					MotorRight = 0; //行车向右
 					MotorSpeedUp = 1;
 					MotorSlowDown = 0; //电机减速
-					drivingDirect = GoOutfall;
-					manipulator.manipulaterStatus = DGoOutfall;
+					drivingDirect = DGoOutfall;
+					manipulator.manipulaterStatus = GoOutfall;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
@@ -259,8 +259,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 						MotorSpeedUp = 1;
 						MotorSlowDown = 1;
 					}
-					drivingDirect = GoOutfall;
-					manipulator.manipulaterStatus = DGoOutfall;
+					drivingDirect = DGoOutfall;
+					manipulator.manipulaterStatus = GoOutfall;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;
@@ -316,8 +316,8 @@ void A_Up_Down(uchar upCisternNumber, uchar downCisternNumber)
 					MotorRight = 0;	 //行车向右
 					MotorSpeedUp = 1;
 					MotorSlowDown = 0; //电机减速
-					drivingDirect = GoOutfall;
-					manipulator.manipulaterStatus = DGoOutfall;
+					drivingDirect = DGoOutfall;
+					manipulator.manipulaterStatus = GoOutfall;
 					if(displayFlag == 0)
 					{
 						displayFlag = 2;

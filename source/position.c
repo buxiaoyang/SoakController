@@ -25,7 +25,7 @@ void maniPosition(void) //机械臂定位
 	{
 		if(sensorPositon == 0)
 		{
-			if(drivingDirect == DGoOutfall)
+			if(drivingDirect == DGoOutfall && manipulator.manipulaterStatus == GoOutfall)
 			{
 				//向右机械臂位置加一
 				manipulator.currentPosition++;
@@ -35,7 +35,7 @@ void maniPosition(void) //机械臂定位
 					manipulator.currentPosition = 14;
 				}
 			}
-			else if (drivingDirect == DGoEntrance)
+			else if (drivingDirect == DGoEntrance && manipulator.manipulaterStatus == GoEntrance)
 			{
 				//向右机械臂位置减一
 				manipulator.currentPosition--;
@@ -64,7 +64,7 @@ void maniPosition(void) //机械臂定位
 	{
 		if(sensorPositon == 1)
 		{
-			if(drivingDirect == DGoOutfall)
+			if(drivingDirect == DGoOutfall && manipulator.manipulaterStatus == GoOutfall)
 			{
 				//向右机械臂位置加一
 				manipulator.currentPosition++;
@@ -74,7 +74,7 @@ void maniPosition(void) //机械臂定位
 					manipulator.currentPosition = 14;
 				}
 			}
-			else if (drivingDirect == DGoEntrance)
+			else if (drivingDirect == DGoEntrance && manipulator.manipulaterStatus == GoEntrance)
 			{
 				//向右机械臂位置减一
 				manipulator.currentPosition--;
